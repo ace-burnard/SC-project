@@ -1,0 +1,122 @@
+---
+title: "Plot for Karl (email 3rd April)"
+author: "Alexandra Stephenson (a1795202)"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+#Beginning stuff
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(tidyverse, readr, patchwork, showtext, ggrepel)
+data <- read_csv("data/2023-03-01_gene-data.csv")
+
+theme_set(theme_bw())
+
+font_add(
+  family = "times",
+  regular = "C:/WINDOWS/FONTS/TIMES.TTF"
+)
+```
+
+# Data
+```{r}
+data_plotting <- data %>%
+  separate_wider_delim(sheet_names, delim = "-", names = c("discard", "names")) %>% 
+  select(-discard) %>% 
+  mutate(treatment = str_to_sentence(treatment)) %>% 
+  mutate(CL = `cell line`,
+         treat = treatment) %>%
+  unite(`CL`, `treat`, sep = "; ", col = "grouping") %>%
+  pivot_longer(cols = 4:14, names_to = "concentration", values_to = "gene expression") %>%
+  filter(`gene expression` >= 0) %>%
+  mutate(concentration = as.integer(concentration),
+         names = as.factor(names),
+         `cell line` = as.factor(`cell line`),
+         treatment = as.factor(treatment),
+         grouping = as.factor(grouping))
+showtext_auto()
+
+text_size <- 60
+```
+
+#Left plot
+```{r}
+p1 <- data_plotting %>% 
+  filter(`cell line` == "wild-type") %>% 
+  ggplot(aes(x = concentration,
+             y = `gene expression`,
+             fill = treatment)) +
+  geom_point(shape = 21, size = 3) +
+  geom_label_repel(data = data_plotting %>% filter(`cell line` == "wild-type" & concentration == 10), 
+             aes(label = names, fill = treatment),
+             family = "times",
+             size = text_size*(1/4),
+             nudge_x = 0.8,
+             # hjust = "outward",
+             show.legend = FALSE,
+             # segment.size  = 0.5,
+             segment.color = "black",
+             direction = 'y',
+             # xlim = c(10,11),
+             point.padding = 0.25,
+             min.segment.length = 0) +
+  ggtitle("Wild-type") +
+  scale_fill_manual(values = c("#98C2D9", "#D9AC82")) +
+  labs(x = 'μg/ml',
+       y = 'Gene Expression',
+       fill = 'Treatment') +
+  theme(text = element_text(family = "times", size = text_size)) +
+  # xlim(0,11)
+  scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9,10), limits = c(0,11))
+p1
+```
+
+#Right plot
+```{r}
+p2 <- data_plotting %>% 
+  filter(`cell line` == "cell-type 101") %>% 
+  ggplot(aes(x = concentration,
+             y = `gene expression`,
+             fill = treatment)) +
+  geom_point(shape = 21, size = 3) +
+  geom_label_repel(data = data_plotting %>% filter(`cell line` == "cell-type 101" & concentration == 10), 
+             aes(label = names, fill = treatment),
+             family = "times",
+             size = text_size*(1/4),
+             nudge_x = 0.8,
+             # hjust = "outward",
+             show.legend = FALSE,
+             # segment.size  = 0.5,
+             segment.color = "black",
+             direction = 'y',
+             # xlim = c(10,11),
+             point.padding = 0.25,
+             min.segment.length = 0) +
+  ggtitle("Cell-type 101") +
+  scale_fill_manual(values = c("#98C2D9", "#D9AC82")) +
+  labs(x = 'μg/ml',
+       y = 'Gene Expression',
+       fill = 'Treatment') +
+  theme(text = element_text(family = "times", size = text_size)) +
+  scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9,10), limits = c(0,11))
+p2
+```
+
+#Overall plot
+```{r}
+plots <- p1 + p2 + 
+  plot_layout(guides = 'collect') + 
+  plot_annotation(tag_levels = 'A') &
+  theme(legend.position = 'bottom', text = element_text(family = "times", size = text_size))
+plots
+ggsave(paste(here::here(), "figures/2023-04-03_plot-for-Karl.tiff", sep = '/'), width = 9, height = 6, units = "in", dpi = 500)
+```
+
+#End stuff
+```{r}
+showtext_auto(FALSE)
+```
+
+

@@ -1,0 +1,28 @@
+---
+title: "Sample size (email 1 May 2023)"
+author: "Alexandra Stephenson (a1795202)"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(pwr)
+```
+
+# Details
+a linear regression of gene expression with the predictors concentration, cell age, treatment (two levels), cell type (two levels), and media (two levels)
+
+done a previous study and got $R^{2} = 0.1$
+
+want power = 90% and significant level = 5%
+
+# Calculations
+```{r}
+R2 <- 0.1
+result <- pwr.f2.test(u = 5, f2 = R2/(1-R2), sig.level = 0.05, power = 0.9)
+sample_size <- round(result$v,0)+6
+sample_size
+```
+
+

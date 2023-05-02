@@ -1,0 +1,359 @@
+---
+title: "Mixed ANOVA"
+author: "Alexandra Stephenson (a1795202)"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load}
+pacman::p_load(tidyverse, readr, rstatix, ggpubr)
+data <- read_csv("data/2023-03-01_gene-data.csv")
+plot_height <- 5
+```
+
+# Example
+Source: https://www.datanovia.com/en/lessons/mixed-anova-in-r/
+
+```{r example load}
+library(datarium)
+data("performance", package = "datarium")
+performance <- performance %>%
+  gather(key = 'time', value = 'score', t1, t2) %>%
+  convert_as_factor(id, time)
+```
+
+## Visualisation
+```{r example vis}
+bxp <- ggboxplot(performance,
+                 x = 'gender',
+                 y = 'score',
+                 color = 'stress',
+                 palette = 'jco',
+                 facet.by = 'time')
+bxp
+```
+
+## Check assumptions
+```{r example check outliers}
+performance %>%
+  group_by(gender, stress, time) %>%
+  identify_outliers(score)
+```
+
+```{r example check normality}
+normality_test <- performance %>%
+  group_by(gender, stress, time) %>%
+  shapiro_test(score)
+normality_test %>% arrange(p)
+```
+
+```{r example check normality plot}
+ggqqplot(performance, 'score', ggtheme = theme_bw()) +
+  facet_grid(time ~ stress, labeller = "label_both")
+```
+
+```{r example check homogeneity}
+homogeneity_test <- performance %>%
+  group_by(time) %>%
+  levene_test(score ~ gender*stress)
+homogeneity_test %>% arrange(p)
+```
+
+## Three-way mixed ANOVA
+```{r example ANOVA}
+res.aov <- anova_test(data = performance,
+                      dv = score,
+                      wid = id,
+                      within = time,
+                      between = c(gender, stress))
+get_anova_table(res.aov)
+```
+
+## Post-hoc
+### Two-way interaction at each time level
+```{r example post-hoc 1}
+two.way <- performance %>%
+  group_by(time) %>%
+  anova_test(dv = score, wid = id, between = c(gender, stress))
+two.way
+```
+
+### Simple simple main effect
+```{r example post-hoc 2}
+stress.effect <- performance %>%
+  group_by(time, gender) %>%
+  anova_test(dv = score, wid = id, between = stress)
+stress.effect# %>% filter(time == "t2")
+```
+
+### Simple simple pairwise comparisons
+```{r example post-hoc 3}
+pwc <- performance %>%
+  group_by(time, gender) %>%
+  pairwise_t_test(score ~ stress, p.adjust.method = "bonferroni") %>%
+  select(-p, -p.signif) # Remove details
+pwc %>% filter(time == "t2", gender == "female")
+```
+
+### Visualization: box plots with p-values
+```{r example viz results}
+pwc <- pwc %>% add_xy_position(x = "gender")
+pwc.filtered <- pwc %>% filter(time == "t2", gender == "female")
+bxp +
+  stat_pvalue_manual(pwc.filtered, tip.length = 0, hide.ns = TRUE) +
+  labs(
+    subtitle = get_test_label(res.aov, detailed = TRUE),
+    caption = get_pwc_label(pwc)
+  )
+```
+
+# Actual data
+```{r data load}
+data_aov <- data %>%
+  mutate(CL = `cell line`) %>%
+  select(-`cell line`) %>%
+  gather(key = "conc", value = "GE", '0','1','2','3','4','5','6','7','8','9','10') %>%
+  convert_as_factor(sheet_names) %>%
+  filter(!is.na(GE))
+head(data_aov)
+```
+
+## Visualisation
+```{r data viz}
+bxp <- ggdotplot(data_aov,
+                 x = 'conc',
+                 y = 'GE',
+                 color = 'treatment',
+                 palette = 'jco',
+                 facet.by = 'CL',
+                 binwidth = 1)
+bxp
+ggsave("figures/conc-ge-grouping_scatterplot.svg", width = 2*plot_height, height = plot_height)
+```
+
+## Check assumptions
+```{r data outliers}
+data_aov %>%
+  group_by(CL, treatment, conc) %>%
+  identify_outliers(GE)
+```
+Therefore, no extreme outliers.
+
+```{r data normality}
+normality_test <- data_aov %>%
+  group_by('CL', treatment, conc) %>%
+  shapiro_test(GE)
+normality_test %>% arrange(p)
+```
+Only one potentially non-normal.
+
+```{r data normality plots}
+ggqqplot(data_aov, 'GE', ggtheme = theme_bw()) +
+  facet_grid(conc ~ treatment, labeller = "label_both")
+```
+None appear non-normal from this plot.
+
+```{r data homogeneity, warning = FALSE}
+homogeneity_test <- data_aov %>%
+  group_by(conc) %>%
+  levene_test(GE ~ CL*treatment)
+homogeneity_test %>% arrange(p)
+```
+Non-homogenous (NOT SURE WHAT TO DO HERE?)
+
+## Three-way mixed ANOVA
+```{r data ANOVA}
+res.aov <- anova_test(data = data_aov,
+                      dv = GE,
+                      wid = sheet_names,
+                      within = conc,
+                      between = c(CL, treatment))
+get_anova_table(res.aov)
+```
+There is a statistically significant three-way interaction between cell line, treatment, and concentration.
+
+## Post-hoc
+### Two-way interaction at each cell line level
+```{r data post-hoc 1, warning = FALSE}
+two.way <- data_aov %>%
+  group_by(CL) %>%
+  anova_test(dv = GE, wid = sheet_names, between = c(conc, treatment))
+two.way
+```
+There is a statistically significant interaction between concentration and treatment for cell line 'wild-type'.
+
+### Simple simple main effect
+```{r data post-hoc 2}
+treatment.effect <- data_aov %>%
+  group_by(CL, conc) %>%
+  anova_test(dv = GE, wid = sheet_names, between = treatment)
+treatment.effect %>% 
+  data.frame() %>% 
+  mutate(conc = as.integer(conc)) %>%
+  arrange(conc) %>%
+  arrange(desc(CL)) %>%
+  arrange(desc(`p..05`)) %>% 
+  filter(CL == "wild-type")
+```
+There is a statistically significant effect of treatment on all concentration levels for the 'wild-type' cell line.
+
+### Simple simple pairwise comparisons
+```{r data post-hoc 3}
+pwc <- data_aov %>%
+  filter(treatment == "placebo") %>% 
+  group_by(treatment, CL) %>%
+  pairwise_t_test(GE ~ conc, p.adjust.method = "bonferroni") %>%
+  select(-p, -p.signif)
+pwc %>% 
+  filter(CL == "wild-type", p.adj.signif != 'ns') %>% 
+  mutate(group1 = as.integer(group1), group2 = as.integer(group2)) %>% 
+  arrange(p.adj.signif) %>% 
+  arrange(group2) %>% 
+  arrange(group1)
+```
+```{r}
+pwc2 <- data_aov %>%  
+  filter(treatment != "placebo", conc != 5) %>% 
+  group_by(treatment, CL) %>% 
+  pairwise_t_test(GE ~ conc, p.adjust.method = "bonferroni") %>%
+  select(-p, -p.signif)
+pwc2_print <- pwc2 %>% 
+  filter(p.adj.signif != 'ns') %>% 
+  mutate(group1 = as.integer(group1), group2 = as.integer(group2)) %>% 
+  arrange(p.adj.signif) %>% 
+  arrange(group2) %>% 
+  arrange(group1)
+pwc2_print
+```
+There are statistically significant different gene expressions between the following pairs of concentration:
+
+Treatment | Group 1 | Group 2
+----------|---------|---------
+placebo   | 0       | 6
+placebo   | 0       | 10
+placebo   | 1       | 10
+placebo   | 2       | 6
+placebo   | 2       | 10
+placebo   | 4       | 6
+placebo   | 4       | 10
+placebo   | 5       | 10
+AF 42     | 0       | 4
+AF 42     | 0       | 6
+AF 42     | 0       | 7
+AF 42     | 0       | 8
+AF 42     | 0       | 9
+AF 42     | 0       | 10
+AF 42     | 1       | 4
+AF 42     | 1       | 6
+AF 42     | 1       | 7
+AF 42     | 1       | 8
+AF 42     | 1       | 9
+AF 42     | 1       | 10
+AF 42     | 2       | 6
+AF 42     | 2       | 7
+AF 42     | 2       | 8
+AF 42     | 2       | 9
+AF 42     | 2       | 10
+AF 42     | 3       | 7
+AF 42     | 3       | 8
+AF 42     | 3       | 9
+AF 42     | 3       | 10
+AF 42     | 4       | 8
+AF 42     | 4       | 9
+AF 42     | 4       | 10
+AF 42     | 6       | 10
+
+**DO MORE HERE**
+
+```{r data post-hoc 3}
+pwc3 <- data_aov %>%
+  filter(CL != "wild-type") %>%
+  group_by(treatment, CL) %>%
+  pairwise_t_test(GE ~ conc, p.adjust.method = "bonferroni") %>%
+  select(-p, -p.signif) %>% 
+  filter(p.adj.signif != 'ns') %>% 
+  mutate(group1 = as.integer(group1), group2 = as.integer(group2)) %>% 
+  arrange(p.adj.signif) %>% 
+  arrange(group2) %>% 
+  arrange(group1)
+pwc3 %>% 
+  filter(CL != "wild-type", p.adj.signif != 'ns') %>% 
+  mutate(group1 = as.integer(group1), group2 = as.integer(group2)) %>% 
+  arrange(p.adj.signif) %>% 
+  arrange(group2) %>% 
+  arrange(group1)
+```
+
+### Visualization: box plots with p-values
+```{r data viz results 1}
+pwc <- pwc %>%
+  add_xy_position(x = "conc") %>%
+  mutate(group1 = as.integer(group1),
+         group2 = as.integer(group2)) %>%
+  arrange(p.adj.signif)
+head(pwc)
+pwc2 <- pwc2 %>% 
+  add_xy_position(x = "conc") %>%
+  mutate(group1 = as.integer(group1),
+         group2 = as.integer(group2)) %>%
+  arrange(p.adj.signif)
+head(pwc2)
+```
+
+```{r data viz results 2}
+pwc.filtered <- pwc %>% filter(CL == "wild-type", treatment == "placebo")
+head(pwc.filtered)
+pwc2.filtered <- pwc2# %>% filter(CL == "wild-type")
+head(pwc2.filtered)
+```
+
+```{r data viz results 3}
+bxp2 <- ggdotplot(data_aov,
+                 x = 'conc',
+                 y = 'GE',
+                 color = 'treatment',
+                 palette = 'jco',
+                 facet.by = 'CL',
+                 binwidth = 1,
+                 size = 2)
+bxp2
+```
+
+```{r data viz results 4}
+bxp2 +
+  stat_pvalue_manual(pwc.filtered, tip.length = 0, hide.ns = TRUE) +
+  stat_pvalue_manual(pwc2.filtered, tip.length = 0, hide.ns = TRUE) +
+  labs(
+    subtitle = get_test_label(res.aov, detailed = TRUE),
+    caption = get_pwc_label(pwc)
+  )
+ggsave("figures/conc-ge-grouping_scatterplot_labelled.svg", width = 2*plot_height, height = plot_height)
+```
+
+## Report
+
+**DO MORE HERE**
+
+A three-way mixed ANOVA was performed to evaluate the effects of treatment, concentration and cell line on gene expression.
+
+There were no extreme outliers, as assessed by box plot method. The data was normally distributed, as assessed by Shapiro-Wilk’s test of normality ($p > 0.05$) and seen in the qqplot of the data. 
+<!-- There was homogeneity of variances ($p > 0.05$) as assessed by Levene’s test of homogeneity of variances. -->
+
+There was a statistically significant three-way interaction between treatment, concentration and cell line, $F(10, 30) = 2.244, p = 0.0043$.
+
+For the simple two-way interactions and simple simple main effects, a Bonferroni adjustment was applied leading to statistical significance being accepted at the $p < 0.025$ level.
+
+There was a statistically significant simple two-way interaction between concentration and treatment for cell line 'wild-type', $F(10, 21) = 26.1$, $p = 1.29\times 10^{-9}$, but not for cell line 'cell-type 101', $F(10,22) = 0.895$, $p = 0.553$.
+
+There was a statistically significant simple simple main effect of treatment on gene expression for all concentration levels and the cell line 'wild-type', $F(1, 2) = 54.288$ $p = 0.018$, $F(1, 2) = 68.081$ $p = 0.014$, $F(1, 2) = 368.331$ $p = 0.003$, $F(1, 2) = 120.454$ $p = 0.008$, $F(1, 2) = 86.894$ $p = 0.011$, $F(1, 2) = 212.206$ $p = 0.044$, $F(1, 2) = 53.816$ $p = 0.018$, $F(1, 2) = 500.484$ $p = 0.002$, $F(1, 2) = 207.936$ $p = 0.005$, $F(1, 2) = 202.365$ $p = 0.005$ and $F(1, 2) = 108.000$ $p = 0.009$.
+
+All simple simple pairwise comparisons were run between the different treatment groups for all concentration levels and cell line 'wild-type'. A Bonferroni adjustment was applied.
+
+The mean performance score was statistically significantly different between 0 mg/ml and 6 mg/ml ($p = 0.0146$), 0 mg/ml vs 10 mg/ml ($p = 0.00331$), 1 mg/ml vs 10 mg/ml ($p = 0.0108$), 2 mg/ml vs 6 mg/ml ($p = 0.0224$), 2 mg/ml vs 10 mg/ml ($p = 0.00488$), 4 mg/ml vs 6 mg/ml ($p = 0.0394$), 4 mg/ml vs 10 mg/ml ($p = 0.00816$), and 5 mg/ml vs 10 mg/ml ($p = 0.0401$), all for cell line 'wild-type' and treatment 'placebo'. 
+There was no significant difference between the other pairs of concentration levels.
+
+
