@@ -35,7 +35,7 @@ pacman::p_load(tidyverse)
 
 -   A tidied up version of "2023-03-19_mixed-measures-ANOVA.R" in "2023-03-21_mixed--ANOVA.Rmd"
 
-# Redo graph (original sent ???)
+# Redo graph (original sent 3 April 2023)
 
 -   code to make plot in "2023-04-03_plot-for-Karl_diff-font.Rmd"
 
