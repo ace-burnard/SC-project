@@ -25,7 +25,7 @@ pacman::p_load(tidyverse)
 
 -   Summary plots made using code "2023-03-02_summary-plots.R" on data "data/2023-03-01_gene-data.csv"
 
--   Summary plots saved in "figures/conc-ge_[grouping]_[plot type].svg", where [grouping] is one of 'all-grouping', 'cell-line', 'treatment'; and [plot type] is either 'datapoints' or 'lm'
+-   Summary plots saved in "figures/conc-ge\_\[grouping\]\_\[plot type\].svg", where \[grouping\] is one of 'all-grouping', 'cell-line', 'treatment'; and \[plot type\] is either 'datapoints' or 'lm'
 
 -   Fitting models in code "2023-03-07_lm-fitting.R" on data in "data/2023-03-01_gene-data.csv"
 
@@ -43,5 +43,9 @@ pacman::p_load(tidyverse)
 
 -   code to calculate sample size in "2023-05-02_sample-size-for-grant.Rmd"
 
-
-
+# IMRaD report
+-   use lmer command in lme4 package (advice from Jono)
+-   random intercept model (advice from Jono)
+-   look in Zuur book, section on random intercepts (advice from Jono)
+-   include the plot with new font (advice from Jono)
+-   use "dutchmasters::view_of_Delft" palette for that plot, use paletteer package (advice from Jono)
