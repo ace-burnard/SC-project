@@ -19,6 +19,41 @@ bibliography: references.bib
 -   Y = gene expression
 -   X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels)
 
+```{r}
+pacman::p_load(tidyverse, readr)
+data <- read_csv("data/2023-03-01_gene-data.csv")
+data_long <- data %>%
+  mutate(CL = `cell line`,
+         treat = treatment) %>%
+  unite(`cell line`, `treat`, sep = "; ", col = "grouping") %>%
+  pivot_longer(cols = 4:14, names_to = "concentration", values_to = "GE") %>%
+  filter(GE >= 0) %>%
+  mutate(concentration = as.integer(concentration),
+         sheet_names = as.factor(sheet_names),
+         CL = as.factor(CL),
+         treatment = as.factor(treatment),
+         grouping = as.factor(grouping))
+```
+
+```{r}
+pacman::p_load(lme4)
+```
+
+```{r}
+test1 <- lmer(GE ~ concentration, data = data_long, na.action = na.omit)
+summary(test1)
+test2 <- lmer(GE ~ concentration + treatment*CL, data = data_long, na.action = na.omit)
+summary(test2)
+test3 <- lmer(GE ~ concentration*treatment*CL, data = data_long, na.action = na.omit)
+summary(test3)
+test4 <- lmer(GE ~ concentration + (1|sheet_names), data = data_long, na.action = na.omit)
+summary(test4)
+test5 <- lmer(GE ~ concentration + treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
+summary(test5)
+test6 <- lmer(GE ~ concentration*treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
+summary(test6)
+```
+
 # Introduction
 
 # Method
@@ -30,6 +65,7 @@ bibliography: references.bib
 -   patchwork [@patchwork]
 -   showtext [@showtext]
 -   ggrepel [@ggrepel]
+-   lme4 [@lme4]
 
 # Appendix: Code
 ```{r ref.label=knitr::all_labels()}
