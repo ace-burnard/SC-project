@@ -70,6 +70,12 @@ Cell line does not appear (from the EDA plots) to have a large impact on the slo
 -   ggrepel [@ggrepel]
 -   lme4 [@lme4]
 
+# Results
+
+
+# Discussion
+
+
 # Appendix: Code
 ```{r ref.label=knitr::all_labels()}
 #| eval: false
