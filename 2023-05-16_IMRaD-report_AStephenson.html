@@ -2868,9 +2868,6 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p><a href="#fig-ge-conc-grouping">Figure 1</a> scatter plot</p>
-<p><a href="#fig-ge-cl-boxplot">Figure 2</a> boxplot (cell line)</p>
-<p><a href="#fig-ge-treat-boxplot">Figure 3</a> boxplot (treatment)</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ge-conc-grouping" class="quarto-figure quarto-figure-center anchored">
@@ -2881,6 +2878,7 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
 </div>
 </div>
+<p>The data is plotted in <a href="#fig-ge-conc-grouping">Figure 1</a>, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment. From this plot, it can be seen that there appear to be differences between (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. From <a href="#fig-ge-conc-grouping">Figure 1</a>, it can be seen that there does appear to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ge-cl-boxplot" class="quarto-figure quarto-figure-center anchored">
@@ -2891,6 +2889,7 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
 </div>
 </div>
+<p>A boxplot of gene expression, grouped by cell line, is shown in <a href="#fig-ge-cl-boxplot">Figure 2</a>. From this boxplot, it can be seen that there does not appear to be a significant difference between gene expression for wild-type and gene expression for cell-type 101. This suggests that cell line is not a predictor of gene expression.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ge-treat-boxplot" class="quarto-figure quarto-figure-center anchored">
@@ -2901,6 +2900,7 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
 </div>
 </div>
+<p><a href="#fig-ge-treat-boxplot">Figure 3</a> shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.</p>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
