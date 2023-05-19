@@ -32,7 +32,7 @@ data_long <- data %>%
   pivot_longer(cols = 4:14, names_to = "concentration", values_to = "GE") %>%
   filter(GE >= 0) %>%
   mutate(concentration = as.integer(concentration),
-         sheet_names = as.factor(sheet_names),
+         gene_line = as.factor(sheet_names),
          CL = as.factor(CL),
          treatment = as.factor(treatment),
          grouping = as.factor(grouping))
@@ -43,21 +43,21 @@ pacman::p_load(lme4)
 ```
 
 ```{r}
-test1 <- lmer(GE ~ concentration + (1|sheet_names), data = data_long, na.action = na.omit)
+test1 <- lmer(GE ~ concentration + (1|gene_line), data = data_long, na.action = na.omit)
 summary(test1)
-test2 <- lmer(GE ~ concentration + treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
+test2 <- lmer(GE ~ concentration + treatment*CL + (1|gene_line), data = data_long, na.action = na.omit)
 summary(test2)
-test3 <- lmer(GE ~ concentration*treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
+test3 <- lmer(GE ~ concentration*treatment*CL + (1|gene_line), data = data_long, na.action = na.omit)
 summary(test3)
-test4 <- lmer(GE ~ concentration*treatment + (1|sheet_names), data = data_long, na.action = na.omit)
+test4 <- lmer(GE ~ concentration*treatment + (1|gene_line), data = data_long, na.action = na.omit)
 summary(test4)
-test5 <- lmer(GE ~ concentration*treatment + CL + (1|sheet_names), data = data_long, na.action = na.omit)
+test5 <- lmer(GE ~ concentration*treatment + CL + (1|gene_line), data = data_long, na.action = na.omit)
 summary(test5)
 AIC(test1, test2, test3, test4, test5)
 BIC(test1, test2, test3, test4, test5)
 ```
 
-Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|sheet_names)`, `GE ~ concentration*treatment + (1|sheet_names)` and `GE ~ concentration*treatment + CL + (1|sheet_names)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|sheet_names)`. **CHECK THIS**
+Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|gene_line)`, `GE ~ concentration*treatment + (1|gene_line)` and `GE ~ concentration*treatment + CL + (1|gene_line)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|gene_line)`. **CHECK THIS**
 
 # Introduction
 
@@ -111,7 +111,23 @@ data_long %>%
 
 @fig-ge-treat-boxplot shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.
 
+**REPEATED MEASURES HERE**
+Given that the gene expression for each cell line and treatment was measured for different concentrations on the same bacteria, then this must be taken into account in fitting models on the data. Four models are compared (all with random effects for the gene line):
+-   gene expression ~ concentration
+-   gene expression ~ concentration * treatment
+-   gene expression ~ concentration * treatment + cell line
+-   gene expression ~ concentration * treatment * cell line
 
+```{r}
+m1 <- lmer(GE ~ concentration + (1|gene_line), data = data_long, na.action = na.omit)
+summary(m1)
+m2 <- lmer(GE ~ concentration*treatment + (1|gene_line), data = data_long, na.action = na.omit)
+summary(m2)
+m3 <- lmer(GE ~ concentration*treatment + CL + (1|gene_line), data = data_long, na.action = na.omit)
+summary(m3)
+m4 <- lmer(GE ~ concentration*treatment*CL + (1|gene_line), data = data_long, na.action = na.omit)
+summary(m4)
+```
 
 
 
