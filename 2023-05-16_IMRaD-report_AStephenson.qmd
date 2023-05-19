@@ -81,7 +81,7 @@ data_long %>%
   ggplot(aes(x = concentration, y = GE, color = grouping)) +
   geom_point() +
   ylim(0, NA) +
-  theme_light() +
+  # theme_light() +
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
@@ -92,7 +92,7 @@ data_long %>%
 data_long %>%
   ggplot(aes(x = CL, y = GE, col = CL)) +
   geom_boxplot() +
-  theme_light() +
+  # theme_light() +
   theme(legend.position = 'none') +
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Cell line",
@@ -103,7 +103,7 @@ data_long %>%
 data_long %>%
   ggplot(aes(x = treatment, y = GE, col = treatment)) +
   geom_boxplot() +
-  theme_light() +
+  # theme_light() +
   theme(legend.position = 'none') +
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Treatment",
