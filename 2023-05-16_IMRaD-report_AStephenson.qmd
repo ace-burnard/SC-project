@@ -140,6 +140,11 @@ m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action
 summary(m4)
 ```
 
+```{r}
+AIC(m1, m2, m3, m4)
+```
+These four models can be compared using AIC, which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE**
+
 
 
 
