@@ -2655,13 +2655,10 @@ vertical-align: -.125em;
 
 </header>
 
-<section id="a-predictive-model-of-gene-expression" class="level1">
-<h1>A predictive model of gene expression</h1>
-<ul>
-<li><p>Y = gene expression</p></li>
-<li><p>X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels)</p></li>
-<li><p>grouping = sheet names</p></li>
-</ul>
+<!-- # A predictive model of gene expression -->
+<!-- -   Y = gene expression -->
+<!-- -   X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels) -->
+<!-- -   grouping = sheet names -->
 <div class="cell">
 
 </div>
@@ -2681,7 +2678,6 @@ vertical-align: -.125em;
 <!-- ``` -->
 <!--  -->
 <!-- Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|GL)`, `GE ~ concentration*treatment + (1|GL)` and `GE ~ concentration*treatment + CL + (1|GL)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|GL)`. **CHECK THIS** -->
-</section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 </section>
