@@ -74,7 +74,11 @@ Cell line does not appear (from the EDA plots) to have a large impact on the slo
 
 # Results
 
-@fig-ge-conc-grouping blah
+@fig-ge-conc-grouping scatter plot
+
+@fig-ge-cl-boxplot boxplot (cell line)
+
+@fig-ge-treat-boxplot boxplot (treatment)
 
 ```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
 data_long %>%
