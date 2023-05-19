@@ -2689,7 +2689,7 @@ vertical-align: -.125em;
 <li>rstatix <span class="citation" data-cites="rstatix">(<a href="#ref-rstatix" role="doc-biblioref">Kassambara 2023b</a>)</span></li>
 <li>ggpubr <span class="citation" data-cites="ggpubr">(<a href="#ref-ggpubr" role="doc-biblioref">Kassambara 2023a</a>)</span></li>
 <li>patchwork <span class="citation" data-cites="patchwork">(<a href="#ref-patchwork" role="doc-biblioref">Pedersen 2022</a>)</span></li>
-<li>showtext <span class="citation" data-cites="showtext">(<a href="#ref-showtext" role="doc-biblioref">Qiu and See file AUTHORS for details. 2022</a>)</span></li>
+<li>showtext <span class="citation" data-cites="showtext">(<a href="#ref-showtext" role="doc-biblioref">Qiu and software. 2022</a>)</span></li>
 <li>ggrepel <span class="citation" data-cites="ggrepel">(<a href="#ref-ggrepel" role="doc-biblioref">Slowikowski 2023</a>)</span></li>
 <li>lme4 <span class="citation" data-cites="lme4">(<a href="#ref-lme4" role="doc-biblioref">Bates et al. 2015</a>)</span></li>
 </ul>
@@ -2967,31 +2967,9 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>GL), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">AIC</span>(m1, m2, m3, m4))</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">AIC</span>(m1, m2, m3, m4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
-</section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
@@ -3008,7 +2986,7 @@ Kassambara, Alboukadel. 2023a. <em>Ggpubr: ’Ggplot2’ Based Publication Ready
 Pedersen, Thomas Lin. 2022. <em>Patchwork: The Composer of Plots</em>. <a href="https://CRAN.R-project.org/package=patchwork">https://CRAN.R-project.org/package=patchwork</a>.
 </div>
 <div id="ref-showtext" class="csl-entry" role="doc-biblioentry">
-Qiu, Yixuan, and authors/contributors of the included software. See file AUTHORS for details. 2022. <em>Showtext: Using Fonts More Easily in r Graphs</em>. <a href="https://CRAN.R-project.org/package=showtext">https://CRAN.R-project.org/package=showtext</a>.
+Qiu, Yixuan, and authors/contributors of the included software. 2022. <em>Showtext: Using Fonts More Easily in r Graphs</em>. <a href="https://CRAN.R-project.org/package=showtext">https://CRAN.R-project.org/package=showtext</a>.
 </div>
 <div id="ref-r-2022" class="csl-entry" role="doc-biblioentry">
 R Core Team. 2022. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
