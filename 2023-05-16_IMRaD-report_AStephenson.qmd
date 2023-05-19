@@ -142,7 +142,7 @@ summary(m4)
 
 ```{r}
 #| label: tbl-AIC-m1234
-#| tbl-cap: "The AIC for eahch of the four fitted models."
+#| tbl-cap: "The AIC for each of the four fitted models."
 
 library(knitr)
 kable(AIC(m1, m2, m3, m4))
