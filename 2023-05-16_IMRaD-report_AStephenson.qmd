@@ -18,7 +18,9 @@ bibliography: references.bib
 # A predictive model of gene expression
 
 -   Y = gene expression
+
 -   X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels)
+
 -   grouping = sheet names
 
 ```{r}
@@ -114,8 +116,11 @@ data_long %>%
 **REPEATED MEASURES HERE**
 Given that the gene expression for each cell line and treatment was measured for different concentrations on the same bacteria, then this must be taken into account in fitting models on the data. Four models are compared (all with random effects for the gene line):
 -   gene expression ~ concentration
+
 -   gene expression ~ concentration * treatment
+
 -   gene expression ~ concentration * treatment + cell line
+
 -   gene expression ~ concentration * treatment * cell line
 
 ```{r}
