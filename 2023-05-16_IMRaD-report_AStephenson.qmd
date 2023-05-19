@@ -24,7 +24,7 @@ bibliography: references.bib
 -   grouping = sheet names
 
 ```{r}
-pacman::p_load(tidyverse, readr)
+pacman::p_load(tidyverse, readr, lme4)
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
 data_long <- data %>%
@@ -40,26 +40,22 @@ data_long <- data %>%
          grouping = as.factor(grouping))
 ```
 
-```{r}
-pacman::p_load(lme4)
-```
-
-```{r}
-test1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
-summary(test1)
-test2 <- lmer(GE ~ concentration + treatment*CL + (1|GL), data = data_long, na.action = na.omit)
-summary(test2)
-test3 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
-summary(test3)
-test4 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
-summary(test4)
-test5 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit)
-summary(test5)
-AIC(test1, test2, test3, test4, test5)
-BIC(test1, test2, test3, test4, test5)
-```
-
-Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|GL)`, `GE ~ concentration*treatment + (1|GL)` and `GE ~ concentration*treatment + CL + (1|GL)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|GL)`. **CHECK THIS**
+<!-- ```{r} -->
+<!-- test1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit) -->
+<!-- summary(test1) -->
+<!-- test2 <- lmer(GE ~ concentration + treatment*CL + (1|GL), data = data_long, na.action = na.omit) -->
+<!-- summary(test2) -->
+<!-- test3 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit) -->
+<!-- summary(test3) -->
+<!-- test4 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit) -->
+<!-- summary(test4) -->
+<!-- test5 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit) -->
+<!-- summary(test5) -->
+<!-- AIC(test1, test2, test3, test4, test5) -->
+<!-- BIC(test1, test2, test3, test4, test5) -->
+<!-- ``` -->
+<!--  -->
+<!-- Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|GL)`, `GE ~ concentration*treatment + (1|GL)` and `GE ~ concentration*treatment + CL + (1|GL)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|GL)`. **CHECK THIS** -->
 
 # Introduction
 
