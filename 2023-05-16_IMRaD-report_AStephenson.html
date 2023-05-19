@@ -3048,6 +3048,45 @@ trtmntp:CL-  0.500 -0.113 -0.707 -0.707  0.159  0.159
 cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-AIC-m1234" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 1: CAPTION HERE.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">AIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">m1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">514.2044</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">408.4662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">m3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">404.9749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">369.1289</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>These four models can be compared using AIC (shown in <a href="#tbl-AIC-m1234">Table 1</a>), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in <a href="#fig-ge-conc-grouping">Figure 1</a> and <a href="#fig-ge-cl-boxplot">Figure 2</a>, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. <strong>DO MORE HERE</strong></p>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
@@ -3112,8 +3151,10 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>GL), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">AIC</span>(m1, m2, m3, m4))</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
