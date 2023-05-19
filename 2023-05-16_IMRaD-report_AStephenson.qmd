@@ -15,6 +15,10 @@ execute:
 bibliography: references.bib
 ---
 
+```{r}
+theme_set(theme_light())
+```
+
 # A predictive model of gene expression
 -   Y = gene expression
 -   X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels)
