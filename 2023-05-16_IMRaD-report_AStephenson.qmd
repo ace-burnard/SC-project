@@ -117,20 +117,25 @@ data_long %>%
 Given that the gene expression for each cell line and treatment was measured for different concentrations on the same bacteria, then this must be taken into account in fitting models on the data. Four models are compared (all with random effects for the gene line):
 
 -   gene expression ~ concentration
-
--   gene expression ~ concentration * treatment
-
--   gene expression ~ concentration * treatment + cell line
-
--   gene expression ~ concentration * treatment * cell line
-
 ```{r}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
 summary(m1)
+```
+
+-   gene expression ~ concentration * treatment
+```{r}
 m2 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
 summary(m2)
+```
+
+-   gene expression ~ concentration * treatment + cell line
+```{r}
 m3 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit)
 summary(m3)
+```
+
+-   gene expression ~ concentration * treatment * cell line
+```{r}
 m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
 summary(m4)
 ```
