@@ -2661,6 +2661,110 @@ vertical-align: -.125em;
 <li>Y = gene expression</li>
 <li>X = concentration (numerical), treatment (factor, 2 levels), cell line (factor, 2 levels)</li>
 </ul>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration + (1 | sheet_names)
+   Data: data_long
+
+REML criterion at convergence: 506.2
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.03686 -0.51171 -0.05062  0.55788  2.46633 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ sheet_names (Intercept) 68.48    8.275   
+ Residual                14.27    3.777   
+Number of obs: 87, groups:  sheet_names, 8
+
+Fixed effects:
+              Estimate Std. Error t value
+(Intercept)     7.2948     3.0215   2.414
+concentration   2.0461     0.1273  16.069
+
+Correlation of Fixed Effects:
+            (Intr)
+concentratn -0.211</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration + treatment * CL + (1 | sheet_names)
+   Data: data_long
+
+REML criterion at convergence: 478.3
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-1.95809 -0.54466 -0.05948  0.56363  2.54522 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ sheet_names (Intercept)  9.776   3.127   
+ Residual                14.266   3.777   
+Number of obs: 87, groups:  sheet_names, 8
+
+Fixed effects:
+                             Estimate Std. Error t value
+(Intercept)                   14.9441     2.4376   6.131
+concentration                  2.0461     0.1273  16.070
+treatmentplacebo             -11.9491     3.3277  -3.591
+CLwild-type                   -0.9641     3.3325  -0.289
+treatmentplacebo:CLwild-type  -4.7600     4.7094  -1.011
+
+Correlation of Fixed Effects:
+            (Intr) cncntr trtmnt CLwld-
+concentratn -0.261                     
+tretmntplcb -0.683  0.000              
+CLwild-type -0.682  0.000  0.499       
+trtmntp:CL-  0.482  0.000 -0.707 -0.708</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration * treatment * CL + (1 | sheet_names)
+   Data: data_long
+
+REML criterion at convergence: 349.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.02535 -0.53265 -0.04358  0.58637  2.57581 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ sheet_names (Intercept) 10.828   3.291   
+ Residual                 2.608   1.615   
+Number of obs: 87, groups:  sheet_names, 8
+
+Fixed effects:
+                                           Estimate Std. Error t value
+(Intercept)                                 9.91750    2.41428   4.108
+concentration                               3.05141    0.10887  28.027
+treatmentplacebo                           -4.92159    3.41431  -1.441
+CLwild-type                                -0.36156    3.41518  -0.106
+concentration:treatmentplacebo             -1.40550    0.15397  -9.128
+concentration:CLwild-type                  -0.12145    0.15397  -0.789
+treatmentplacebo:CLwild-type                0.08179    4.82918   0.017
+concentration:treatmentplacebo:CLwild-type -0.96741    0.21775  -4.443
+
+Correlation of Fixed Effects:
+            (Intr) cncntr trtmnt CLwld- cncnt: cn:CL- tr:CL-
+concentratn -0.225                                          
+tretmntplcb -0.707  0.159                                   
+CLwild-type -0.707  0.159  0.500                            
+cncntrtn:tr  0.159 -0.707 -0.225 -0.113                     
+cncntrt:CL-  0.159 -0.707 -0.113 -0.225  0.500              
+trtmntp:CL-  0.500 -0.113 -0.707 -0.707  0.159  0.159       
+cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
+</div>
+</div>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
@@ -2675,13 +2779,34 @@ vertical-align: -.125em;
 <li>patchwork <span class="citation" data-cites="patchwork">(<a href="#ref-patchwork" role="doc-biblioref">Pedersen 2022</a>)</span></li>
 <li>showtext <span class="citation" data-cites="showtext">(<a href="#ref-showtext" role="doc-biblioref">Qiu and See file AUTHORS for details. 2022</a>)</span></li>
 <li>ggrepel <span class="citation" data-cites="ggrepel">(<a href="#ref-ggrepel" role="doc-biblioref">Slowikowski 2023</a>)</span></li>
+<li>lme4 <span class="citation" data-cites="lme4">(<a href="#ref-lme4" role="doc-biblioref">Bates et al. 2015</a>)</span></li>
 </ul>
 </section>
 <section id="appendix-code" class="level1">
 <h1>Appendix: Code</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2023-03-01_gene-data.csv&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CL =</span> <span class="st">`</span><span class="at">cell line</span><span class="st">`</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">treat =</span> treatment) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">`</span><span class="at">cell line</span><span class="st">`</span>, <span class="st">`</span><span class="at">treat</span><span class="st">`</span>, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>, <span class="at">col =</span> <span class="st">&quot;grouping&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">names_to =</span> <span class="st">&quot;concentration&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;GE&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GE <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">concentration =</span> <span class="fu">as.integer</span>(concentration),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sheet_names =</span> <span class="fu">as.factor</span>(sheet_names),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">CL =</span> <span class="fu">as.factor</span>(CL),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">treatment =</span> <span class="fu">as.factor</span>(treatment),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">grouping =</span> <span class="fu">as.factor</span>(grouping))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(lme4)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test1)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test2)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test3)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
@@ -2707,6 +2832,9 @@ vertical-align: -.125em;
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-lme4" class="csl-entry" role="doc-biblioentry">
+Bates, Douglas, Martin Mächler, Ben Bolker, and Steve Walker. 2015. <span>“Fitting Linear Mixed-Effects Models Using <span class="nocase">lme4</span>.”</span> <em>Journal of Statistical Software</em> 67 (1): 1–48. <a href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a>.
+</div>
 <div id="ref-ggpubr" class="csl-entry" role="doc-biblioentry">
 Kassambara, Alboukadel. 2023a. <em>Ggpubr: ’Ggplot2’ Based Publication Ready Plots</em>. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.
 </div>
