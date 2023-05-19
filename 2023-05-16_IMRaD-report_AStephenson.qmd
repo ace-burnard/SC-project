@@ -47,8 +47,15 @@ test2 <- lmer(GE ~ concentration + treatment*CL + (1|sheet_names), data = data_l
 summary(test2)
 test3 <- lmer(GE ~ concentration*treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
 summary(test3)
-AIC(test1, test2, test3)
+test4 <- lmer(GE ~ concentration*treatment + (1|sheet_names), data = data_long, na.action = na.omit)
+summary(test4)
+test5 <- lmer(GE ~ concentration*treatment + CL + (1|sheet_names), data = data_long, na.action = na.omit)
+summary(test5)
+AIC(test1, test2, test3, test4, test5)
+BIC(test1, test2, test3, test4, test5)
 ```
+
+Cell line does not appear (from the EDA plots) to have a large impact on the slope of `GE ~ concentration`, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves `GE ~ concentration + (1|sheet_names)`, `GE ~ concentration*treatment + (1|sheet_names)` and `GE ~ concentration*treatment + CL + (1|sheet_names)` as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: `GE ~ concentration*treatment + (1|sheet_names)`. **CHECK THIS**
 
 # Introduction
 
