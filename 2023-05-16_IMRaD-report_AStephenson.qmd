@@ -74,7 +74,9 @@ Cell line does not appear (from the EDA plots) to have a large impact on the slo
 
 # Results
 
-```{r ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
+
+
+```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
 data_long %>%
   ggplot(aes(x = concentration, y = GE, color = grouping)) +
   geom_point() +
@@ -85,7 +87,7 @@ data_long %>%
        color = "Cell Line; Treatment")
 ```
 
-```{r ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
+```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
   ggplot(aes(x = CL, y = GE, col = CL)) +
   geom_boxplot() +
@@ -95,7 +97,7 @@ data_long %>%
        y = "Gene expression")
 ```
 
-```{r ge-treat-boxplot, fig.cap = "A boxplot of gene expression for each treatment (placebo and activating factor 42)."}
+```{r fig-ge-treat-boxplot, fig.cap = "A boxplot of gene expression for each treatment (placebo and activating factor 42)."}
 data_long %>%
   ggplot(aes(x = treatment, y = GE, col = treatment)) +
   geom_boxplot() +
