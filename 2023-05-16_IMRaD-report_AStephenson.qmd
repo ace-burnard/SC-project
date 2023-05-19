@@ -70,6 +70,8 @@ data_long <- data %>%
 -   showtext [@showtext]
 -   ggrepel [@ggrepel]
 -   lme4 [@lme4]
+-   readr [@readr]
+-   knitr [@knitr]
 
 # Results
 
