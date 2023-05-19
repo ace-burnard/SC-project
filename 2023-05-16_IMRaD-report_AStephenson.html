@@ -2903,10 +2903,7 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 <p><a href="#fig-ge-treat-boxplot">Figure 3</a> shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.</p>
 <p><strong>REPEATED MEASURES HERE</strong> Given that the gene expression for each cell line and treatment was measured for different concentrations on the same bacteria, then this must be taken into account in fitting models on the data. Four models are compared (all with random effects for the gene line):</p>
 <ul>
-<li><p>gene expression ~ concentration</p></li>
-<li><p>gene expression ~ concentration * treatment</p></li>
-<li><p>gene expression ~ concentration * treatment + cell line</p></li>
-<li><p>gene expression ~ concentration * treatment * cell line</p></li>
+<li>gene expression ~ concentration</li>
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2935,6 +2932,11 @@ Correlation of Fixed Effects:
             (Intr)
 concentratn -0.211</code></pre>
 </div>
+</div>
+<ul>
+<li>gene expression ~ concentration * treatment</li>
+</ul>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
 Formula: GE ~ concentration * treatment + (1 | GL)
@@ -2965,6 +2967,11 @@ concentratn -0.263
 tretmntplcb -0.707  0.186       
 cncntrtn:tr  0.186 -0.707 -0.263</code></pre>
 </div>
+</div>
+<ul>
+<li>gene expression ~ concentration * treatment + cell line</li>
+</ul>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
 Formula: GE ~ concentration * treatment + CL + (1 | GL)
@@ -2997,6 +3004,11 @@ tretmntplcb -0.585  0.200
 CLwild-type -0.561  0.000  0.000       
 cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
+</div>
+<ul>
+<li>gene expression ~ concentration * treatment * cell line</li>
+</ul>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
 Formula: GE ~ concentration * treatment * CL + (1 | GL)
