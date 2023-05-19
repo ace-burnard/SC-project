@@ -72,6 +72,18 @@ Cell line does not appear (from the EDA plots) to have a large impact on the slo
 
 # Results
 
+```{r ge-conc-grouping, fig.cap = "CAPTION HERE."}
+data_long %>%
+  ggplot(aes(x = concentration, y = GE, color = grouping)) +
+  geom_point() +
+  ylim(0, NA) +
+  theme_light() +
+  harrypotter::scale_color_hp_d("Ravenclaw") +
+  labs(x = "Concentration (mg/ml)",
+       y = "Gene expression",
+       color = "Cell Line; Treatment")
+```
+
 
 # Discussion
 
