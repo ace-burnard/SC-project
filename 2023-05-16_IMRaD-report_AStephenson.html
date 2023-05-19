@@ -2671,7 +2671,7 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
-Formula: GE ~ concentration + (1 | sheet_names)
+Formula: GE ~ concentration + (1 | gene_line)
    Data: data_long
 
 REML criterion at convergence: 506.2
@@ -2681,10 +2681,10 @@ Scaled residuals:
 -2.03686 -0.51171 -0.05062  0.55788  2.46633 
 
 Random effects:
- Groups      Name        Variance Std.Dev.
- sheet_names (Intercept) 68.48    8.275   
- Residual                14.27    3.777   
-Number of obs: 87, groups:  sheet_names, 8
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 68.48    8.275   
+ Residual              14.27    3.777   
+Number of obs: 87, groups:  gene_line, 8
 
 Fixed effects:
               Estimate Std. Error t value
@@ -2697,7 +2697,7 @@ concentratn -0.211</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
-Formula: GE ~ concentration + treatment * CL + (1 | sheet_names)
+Formula: GE ~ concentration + treatment * CL + (1 | gene_line)
    Data: data_long
 
 REML criterion at convergence: 478.3
@@ -2707,10 +2707,10 @@ Scaled residuals:
 -1.95809 -0.54466 -0.05948  0.56363  2.54522 
 
 Random effects:
- Groups      Name        Variance Std.Dev.
- sheet_names (Intercept)  9.776   3.127   
- Residual                14.266   3.777   
-Number of obs: 87, groups:  sheet_names, 8
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept)  9.776   3.127   
+ Residual              14.266   3.777   
+Number of obs: 87, groups:  gene_line, 8
 
 Fixed effects:
                              Estimate Std. Error t value
@@ -2729,7 +2729,7 @@ trtmntp:CL-  0.482  0.000 -0.707 -0.708</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
-Formula: GE ~ concentration * treatment * CL + (1 | sheet_names)
+Formula: GE ~ concentration * treatment * CL + (1 | gene_line)
    Data: data_long
 
 REML criterion at convergence: 349.1
@@ -2739,10 +2739,10 @@ Scaled residuals:
 -2.02535 -0.53265 -0.04358  0.58637  2.57581 
 
 Random effects:
- Groups      Name        Variance Std.Dev.
- sheet_names (Intercept) 10.828   3.291   
- Residual                 2.608   1.615   
-Number of obs: 87, groups:  sheet_names, 8
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 10.828   3.291   
+ Residual               2.608   1.615   
+Number of obs: 87, groups:  gene_line, 8
 
 Fixed effects:
                                            Estimate Std. Error t value
@@ -2767,7 +2767,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
-Formula: GE ~ concentration * treatment + (1 | sheet_names)
+Formula: GE ~ concentration * treatment + (1 | gene_line)
    Data: data_long
 
 REML criterion at convergence: 396.5
@@ -2777,10 +2777,10 @@ Scaled residuals:
 -1.84951 -0.73934 -0.04455  0.72880  2.38181 
 
 Random effects:
- Groups      Name        Variance Std.Dev.
- sheet_names (Intercept) 12.609   3.551   
- Residual                 4.255   2.063   
-Number of obs: 87, groups:  sheet_names, 8
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 12.609   3.551   
+ Residual               4.255   2.063   
+Number of obs: 87, groups:  gene_line, 8
 
 Fixed effects:
                                Estimate Std. Error t value
@@ -2797,7 +2797,7 @@ cncntrtn:tr  0.186 -0.707 -0.263</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
-Formula: GE ~ concentration * treatment + CL + (1 | sheet_names)
+Formula: GE ~ concentration * treatment + CL + (1 | gene_line)
    Data: data_long
 
 REML criterion at convergence: 391
@@ -2807,10 +2807,10 @@ Scaled residuals:
 -1.87305 -0.77007 -0.03212  0.71414  2.36286 
 
 Random effects:
- Groups      Name        Variance Std.Dev.
- sheet_names (Intercept) 10.729   3.275   
- Residual                 4.255   2.063   
-Number of obs: 87, groups:  sheet_names, 8
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 10.729   3.275   
+ Residual               4.255   2.063   
+Number of obs: 87, groups:  gene_line, 8
 
 Fixed effects:
                                Estimate Std. Error t value
@@ -2848,7 +2848,7 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 5     7  422.</code></pre>
 </div>
 </div>
-<p>Cell line does not appear (from the EDA plots) to have a large impact on the slope of <code>GE ~ concentration</code>, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves <code>GE ~ concentration + (1|sheet_names)</code>, <code>GE ~ concentration*treatment + (1|sheet_names)</code> and <code>GE ~ concentration*treatment + CL + (1|sheet_names)</code> as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: <code>GE ~ concentration*treatment + (1|sheet_names)</code>. <strong>CHECK THIS</strong></p>
+<p>Cell line does not appear (from the EDA plots) to have a large impact on the slope of <code>GE ~ concentration</code>, so removing the interaction terms with cell line (lower AIC and BIC may just be due to overfitting). Removing this option leaves <code>GE ~ concentration + (1|gene_line)</code>, <code>GE ~ concentration*treatment + (1|gene_line)</code> and <code>GE ~ concentration*treatment + CL + (1|gene_line)</code> as the possible models. Of these, the last two models have the best AIC and BIC. However, there is not much difference between the AIC and BIC for these two models, so the model with fewer degrees of freedom is chosen: <code>GE ~ concentration*treatment + (1|gene_line)</code>. <strong>CHECK THIS</strong></p>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
@@ -2901,6 +2901,135 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
 </div>
 <p><a href="#fig-ge-treat-boxplot">Figure 3</a> shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.</p>
+<p><strong>REPEATED MEASURES HERE</strong> Given that the gene expression for each cell line and treatment was measured for different concentrations on the same bacteria, then this must be taken into account in fitting models on the data. Four models are compared (all with random effects for the gene line): - gene expression ~ concentration - gene expression ~ concentration * treatment - gene expression ~ concentration * treatment + cell line - gene expression ~ concentration * treatment * cell line</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration + (1 | gene_line)
+   Data: data_long
+
+REML criterion at convergence: 506.2
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.03686 -0.51171 -0.05062  0.55788  2.46633 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 68.48    8.275   
+ Residual              14.27    3.777   
+Number of obs: 87, groups:  gene_line, 8
+
+Fixed effects:
+              Estimate Std. Error t value
+(Intercept)     7.2948     3.0215   2.414
+concentration   2.0461     0.1273  16.069
+
+Correlation of Fixed Effects:
+            (Intr)
+concentratn -0.211</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration * treatment + (1 | gene_line)
+   Data: data_long
+
+REML criterion at convergence: 396.5
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-1.84951 -0.73934 -0.04455  0.72880  2.38181 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 12.609   3.551   
+ Residual               4.255   2.063   
+Number of obs: 87, groups:  gene_line, 8
+
+Fixed effects:
+                               Estimate Std. Error t value
+(Intercept)                     9.73729    1.86897   5.210
+concentration                   2.99068    0.09834  30.413
+treatmentplacebo               -4.88126    2.64267  -1.847
+concentration:treatmentplacebo -1.88920    0.13907 -13.585
+
+Correlation of Fixed Effects:
+            (Intr) cncntr trtmnt
+concentratn -0.263              
+tretmntplcb -0.707  0.186       
+cncntrtn:tr  0.186 -0.707 -0.263</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration * treatment + CL + (1 | gene_line)
+   Data: data_long
+
+REML criterion at convergence: 391
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-1.87305 -0.77007 -0.03212  0.71414  2.36286 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 10.729   3.275   
+ Residual               4.255   2.063   
+Number of obs: 87, groups:  gene_line, 8
+
+Fixed effects:
+                               Estimate Std. Error t value
+(Intercept)                    11.40960    2.10015   5.433
+concentration                   2.99068    0.09834  30.413
+treatmentplacebo               -4.88000    2.45837  -1.985
+CLwild-type                    -3.34716    2.35799  -1.419
+concentration:treatmentplacebo -1.88920    0.13907 -13.585
+
+Correlation of Fixed Effects:
+            (Intr) cncntr trtmnt CLwld-
+concentratn -0.234                     
+tretmntplcb -0.585  0.200              
+CLwild-type -0.561  0.000  0.000       
+cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: GE ~ concentration * treatment * CL + (1 | gene_line)
+   Data: data_long
+
+REML criterion at convergence: 349.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.02535 -0.53265 -0.04358  0.58637  2.57581 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ gene_line (Intercept) 10.828   3.291   
+ Residual               2.608   1.615   
+Number of obs: 87, groups:  gene_line, 8
+
+Fixed effects:
+                                           Estimate Std. Error t value
+(Intercept)                                 9.91750    2.41428   4.108
+concentration                               3.05141    0.10887  28.027
+treatmentplacebo                           -4.92159    3.41431  -1.441
+CLwild-type                                -0.36156    3.41518  -0.106
+concentration:treatmentplacebo             -1.40550    0.15397  -9.128
+concentration:CLwild-type                  -0.12145    0.15397  -0.789
+treatmentplacebo:CLwild-type                0.08179    4.82918   0.017
+concentration:treatmentplacebo:CLwild-type -0.96741    0.21775  -4.443
+
+Correlation of Fixed Effects:
+            (Intr) cncntr trtmnt CLwld- cncnt: cn:CL- tr:CL-
+concentratn -0.225                                          
+tretmntplcb -0.707  0.159                                   
+CLwild-type -0.707  0.159  0.500                            
+cncntrtn:tr  0.159 -0.707 -0.225 -0.113                     
+cncntrt:CL-  0.159 -0.707 -0.113 -0.225  0.500              
+trtmntp:CL-  0.500 -0.113 -0.707 -0.707  0.159  0.159       
+cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
+</div>
+</div>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
@@ -2908,57 +3037,65 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 <section id="appendix-code" class="level1">
 <h1>Appendix: Code</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readr)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>())</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2023-03-01_gene-data.csv&quot;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CL =</span> <span class="st">`</span><span class="at">cell line</span><span class="st">`</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">treat =</span> treatment) <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">`</span><span class="at">cell line</span><span class="st">`</span>, <span class="st">`</span><span class="at">treat</span><span class="st">`</span>, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>, <span class="at">col =</span> <span class="st">&quot;grouping&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">names_to =</span> <span class="st">&quot;concentration&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;GE&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GE <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">concentration =</span> <span class="fu">as.integer</span>(concentration),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">sheet_names =</span> <span class="fu">as.factor</span>(sheet_names),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">CL =</span> <span class="fu">as.factor</span>(CL),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">treatment =</span> <span class="fu">as.factor</span>(treatment),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">grouping =</span> <span class="fu">as.factor</span>(grouping))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(lme4)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test1)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test2)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test3)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>test4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test4)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>test5 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>sheet_names), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test5)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(test1, test2, test3, test4, test5)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(test1, test2, test3, test4, test5)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> concentration, <span class="at">y =</span> GE, <span class="at">color =</span> grouping)) <span class="sc">+</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentration (mg/ml)&quot;</span>,</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>,</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment&quot;</span>)</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> CL, <span class="at">y =</span> GE, <span class="at">col =</span> CL)) <span class="sc">+</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cell line&quot;</span>,</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> GE, <span class="at">col =</span> treatment)) <span class="sc">+</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Treatment&quot;</span>,</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>)</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>())</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2023-03-01_gene-data.csv&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CL =</span> <span class="st">`</span><span class="at">cell line</span><span class="st">`</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">treat =</span> treatment) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">`</span><span class="at">cell line</span><span class="st">`</span>, <span class="st">`</span><span class="at">treat</span><span class="st">`</span>, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>, <span class="at">col =</span> <span class="st">&quot;grouping&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">names_to =</span> <span class="st">&quot;concentration&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;GE&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GE <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">concentration =</span> <span class="fu">as.integer</span>(concentration),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">gene_line =</span> <span class="fu">as.factor</span>(sheet_names),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">CL =</span> <span class="fu">as.factor</span>(CL),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">treatment =</span> <span class="fu">as.factor</span>(treatment),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">grouping =</span> <span class="fu">as.factor</span>(grouping))</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(lme4)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test1)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test2)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test3)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>test4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test4)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>test5 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test5)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(test1, test2, test3, test4, test5)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(test1, test2, test3, test4, test5)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> concentration, <span class="at">y =</span> GE, <span class="at">color =</span> grouping)) <span class="sc">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentration (mg/ml)&quot;</span>,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment&quot;</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> CL, <span class="at">y =</span> GE, <span class="at">col =</span> CL)) <span class="sc">+</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cell line&quot;</span>,</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> GE, <span class="at">col =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Treatment&quot;</span>,</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment <span class="sc">+</span> CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gene_line), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
