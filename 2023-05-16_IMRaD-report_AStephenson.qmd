@@ -84,6 +84,26 @@ data_long %>%
        color = "Cell Line; Treatment")
 ```
 
+```{r}
+data_long %>%
+  ggplot(aes(x = CL, y = GE, col = CL)) +
+  geom_boxplot() +
+  theme(legend.position = 'none') +
+  harrypotter::scale_color_hp_d("Ravenclaw") +
+  labs(x = "Cell line",
+       y = "Gene expression")
+```
+
+```{r}
+data_long %>%
+  ggplot(aes(x = treatment, y = GE, col = treatment)) +
+  geom_boxplot() +
+  theme(legend.position = 'none') +
+  harrypotter::scale_color_hp_d("Ravenclaw") +
+  labs(x = "Treatment",
+       y = "Gene expression")
+```
+
 
 # Discussion
 
