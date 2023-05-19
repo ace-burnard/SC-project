@@ -24,7 +24,7 @@ bibliography: references.bib
 <!-- -   grouping = sheet names -->
 
 ```{r}
-pacman::p_load(tidyverse, readr, lme4)
+pacman::p_load(tidyverse, readr, lme4, knitr)
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
 data_long <- data %>%
@@ -140,8 +140,6 @@ summary(m4)
 ```{r}
 #| label: tbl-AIC-m1234
 #| tbl-cap: "The AIC for each of the four fitted models."
-
-library(knitr)
 kable(AIC(m1, m2, m3, m4))
 ```
 These four models can be compared using AIC (shown in @tbl-AIC-m1234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.
