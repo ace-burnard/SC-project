@@ -74,12 +74,6 @@ Cell line does not appear (from the EDA plots) to have a large impact on the slo
 
 # Results
 
-@fig-ge-conc-grouping scatter plot
-
-@fig-ge-cl-boxplot boxplot (cell line)
-
-@fig-ge-treat-boxplot boxplot (treatment)
-
 ```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
 data_long %>%
   ggplot(aes(x = concentration, y = GE, color = grouping)) +
@@ -91,6 +85,8 @@ data_long %>%
        color = "Cell Line; Treatment")
 ```
 
+The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment. From this plot, it can be seen that there appear to be differences between (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression.
+
 ```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
   ggplot(aes(x = CL, y = GE, col = CL)) +
@@ -101,6 +97,8 @@ data_long %>%
        y = "Gene expression")
 ```
 
+A boxplot of gene expression, grouped by cell line, is shown in @fig-ge-cl-boxplot. From this boxplot, it can be seen that there does not appear to be a significant difference between gene expression for wild-type and gene expression for cell-type 101. This suggests that cell line is not a predictor of gene expression.
+
 ```{r fig-ge-treat-boxplot, fig.cap = "A boxplot of gene expression for each treatment (placebo and activating factor 42)."}
 data_long %>%
   ggplot(aes(x = treatment, y = GE, col = treatment)) +
@@ -110,6 +108,14 @@ data_long %>%
   labs(x = "Treatment",
        y = "Gene expression")
 ```
+
+@fig-ge-treat-boxplot boxplot (treatment)
+
+
+
+
+
+
 
 # Discussion
 
