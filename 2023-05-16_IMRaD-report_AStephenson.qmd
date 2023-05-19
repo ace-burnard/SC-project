@@ -84,7 +84,7 @@ data_long %>%
        color = "Cell Line; Treatment")
 ```
 
-```{r}
+```{r ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
   ggplot(aes(x = CL, y = GE, col = CL)) +
   geom_boxplot() +
@@ -94,7 +94,7 @@ data_long %>%
        y = "Gene expression")
 ```
 
-```{r}
+```{r ge-treat-boxplot, fig.cap = "A boxplot of gene expression for each treatment (placebo and activating factor 42)."}
 data_long %>%
   ggplot(aes(x = treatment, y = GE, col = treatment)) +
   geom_boxplot() +
