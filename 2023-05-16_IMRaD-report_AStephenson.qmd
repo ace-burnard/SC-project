@@ -40,18 +40,12 @@ pacman::p_load(lme4)
 ```
 
 ```{r}
-test1 <- lmer(GE ~ concentration, data = data_long, na.action = na.omit)
+test1 <- lmer(GE ~ concentration + (1|sheet_names), data = data_long, na.action = na.omit)
 summary(test1)
-test2 <- lmer(GE ~ concentration + treatment*CL, data = data_long, na.action = na.omit)
+test2 <- lmer(GE ~ concentration + treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
 summary(test2)
-test3 <- lmer(GE ~ concentration*treatment*CL, data = data_long, na.action = na.omit)
+test3 <- lmer(GE ~ concentration*treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
 summary(test3)
-test4 <- lmer(GE ~ concentration + (1|sheet_names), data = data_long, na.action = na.omit)
-summary(test4)
-test5 <- lmer(GE ~ concentration + treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
-summary(test5)
-test6 <- lmer(GE ~ concentration*treatment*CL + (1|sheet_names), data = data_long, na.action = na.omit)
-summary(test6)
 ```
 
 # Introduction
