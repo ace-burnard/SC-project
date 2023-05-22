@@ -24,7 +24,7 @@ bibliography: references.bib
 <!-- -   grouping = sheet names -->
 
 ```{r}
-pacman::p_load(tidyverse, readr, lme4, knitr)
+pacman::p_load(tidyverse, readr, lme4, knitr, performance)
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
 data_long <- data %>%
