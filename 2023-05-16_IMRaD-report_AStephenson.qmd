@@ -64,7 +64,7 @@ This report investigates models for predicting gene expression based on concentr
 
 # Method
 
-The data was cleaned and analysed using the R language [@r-2022], and the packages ggpubr [@ggpubr], ggrepel [@ggrepel], knitr [@knitr], lme4 [@lme4], patchwork [@patchwork], readr [@readr], rstatix [@rstatix], showtext [@showtext], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
+The data was cleaned and analysed using the R language [@r-2022], and the packages ggpubr [@ggpubr], ggrepel [@ggrepel], knitr [@knitr], lme4 [@lme4], patchwork [@patchwork], performance [@performance], readr [@readr], rstatix [@rstatix], showtext [@showtext], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
@@ -170,16 +170,20 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The residuals plots for the model with concentration and treatment as predictors (with interaction terms), with or without cell line as another predictor (without interaction terms), in @fig-m2-plot and @fig-m3-plot, both appear not to have any residual variance in them, whilst the residuals plot (in @fig-m4-plot) for the model with concentration, treatment and cell line as predictors (with interactions between all three) appears to possibly have some residual variance. **CHECK THIS**  -->
 
 ```{r}
-#| label: tbl-AIC-m1234
+#| label: tbl-AIC-m234
 #| tbl-cap: "The AIC for each of the three fitted models."
 kable(AIC(m2, m3, m4))
 ```
-These three models can be compared using AIC (shown in @tbl-AIC-m1234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.
+These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.
 
 ```{r}
-pacman::p_load(performance)
+#| label: tbl-performance-m234
+#| tbl-cap: "The metrics for each of the three fitted models."
 compare_performance(m2,m3,m4)
 ```
+
+**WRITE STUFF HERE ABOUT** @tbl-performance-m234
+
 
 
 # Discussion
