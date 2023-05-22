@@ -133,7 +133,7 @@ lm_step <- step(lm_null, scope = scope, direction = "both")
 summary(lm_step)
 ```
 
-A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot with this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
@@ -192,18 +192,18 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 ```{r}
 #| label: tbl-performance-m234
 #| tbl-cap: "The metrics for each of the three fitted models."
-compare_performance(m2,m3,m4) %>% 
-  select(c("Name", "AIC", "R2_conditional", "R2_marginal", "RMSE")) %>% 
+compare_performance(lm_step, m2,m3,m4) %>% 
+  select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
   kable()
 # r2(m2)
 # r2(m3)
 # r2(m4)
 ```
 
-These three models can be compared using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
-From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values.
-The marginal R$^{2}$ values, which look only at the fixed effects, suggest that the model with interaction terms between all three predictors is best (although all three are fairly similar), whilst the condition R$^{2}$ values, which take into account the random effects as well, are very similar for all models, but the model with all interaction terms is still slightly better.
-The root mean square errors of the first two models in @tbl-performance-m234 are very similar, whilst the root mean squared error of the final model is much lower, suggesting that this model is the best.
+These three models can be compared two each other and to the linear model without random effects using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
+From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two mixed effects models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values, whilst the model without random effects has the worst AIC.
+The conditional R$^{2}$ values, which take into account both the fixed effects and the random effects, are very similar for all models, but the model with all interaction terms is still slightly better. The R$^{2}$ value for the fixed effects model is worse than the conditional R$^{2}$ values for the mixed effects models.
+The root mean square errors of the first two mixed effects models in @tbl-performance-m234 are very similar, whilst the root mean squared error for the fixed effects model is much greater than the other values. The lowest root mean squared error occurs for the mixed effects model with interaction terms between all three predictors, suggesting that this model is the best.
 Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
 
 **NEED TO TALK ABOUT WHY CELL LINE INCLUDED WHEN IT DOESN'T LOOK LIKE IT SHOULD BE**
