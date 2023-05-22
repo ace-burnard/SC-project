@@ -125,7 +125,7 @@ data_long %>%
 **REPEATED MEASURES HERE**
 Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must be taken into account in fitting models on the data. 
 
-A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot with this model is shown in @fig-m1-plot. From @fig-m1-plot, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot with this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
@@ -175,6 +175,13 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 kable(AIC(m2, m3, m4))
 ```
 These three models can be compared using AIC (shown in @tbl-AIC-m1234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.
+
+```{r}
+pacman::p_load(MuMIn)
+r.squaredGLMM(m2)
+r.squaredGLMM(m3)
+r.squaredGLMM(m4)
+```
 
 
 # Discussion
