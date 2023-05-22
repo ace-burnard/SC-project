@@ -2691,7 +2691,7 @@ vertical-align: -.125em;
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from <span class="math inline">\(0\)</span> to <span class="math inline">\(10\)</span>). Only one data point is missing, that of concentration <span class="math inline">\(5\)</span> mg/ml for gene line GL-fUg (with cell line wild-type and treatment activating factor 42).</p>
-<p>This report investigates models for predicting gene expression based on concentration, cell line and treatment (or a subset of these predictors), as well as taking into account the effect of gene line.</p>
+<p>This report investigates the impact of growth factor concentration, treatment, and cell line on gene expression, as well as the effect of gene line.</p>
 </section>
 <section id="method" class="level1">
 <h1>Method</h1>
@@ -2826,7 +2826,7 @@ cncntrtn:tr  0.186 -0.707 -0.263</code></pre>
 </div>
 </div>
 </div>
-<p>Including cell line as a predictor, two models are fitted. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in <a href="#fig-m3-plot">Figure 6</a> and <a href="#fig-m4-plot">Figure 7</a>, respectively.</p>
+<p>Two models are fitted that include cell line as a predictor. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in <a href="#fig-m3-plot">Figure 6</a> and <a href="#fig-m4-plot">Figure 7</a>, respectively.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
@@ -2925,130 +2925,61 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <!-- -   gene expression ~ concentration * treatment * cell line -->
 <!-- The residuals for each model are plotted in @fig-m1-plot, @fig-m2-plot, @fig-m3-plot and @fig-m4-plot. From @fig-m1-plot, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.  -->
 <!-- The residuals plots for the model with concentration and treatment as predictors (with interaction terms), with or without cell line as another predictor (without interaction terms), in @fig-m2-plot and @fig-m3-plot, both appear not to have any residual variance in them, whilst the residuals plot (in @fig-m4-plot) for the model with concentration, treatment and cell line as predictors (with interactions between all three) appears to possibly have some residual variance. **CHECK THIS**  -->
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-AIC-m234" class="anchored">
-<table class="table table-sm table-striped">
-<caption>Table 1: The AIC for each of the three fitted models.</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">df</th>
-<th style="text-align: right;">AIC</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">m2</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">408.4662</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">m3</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">404.9749</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">m4</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">369.1289</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>These three models can be compared using AIC (shown in <a href="#tbl-AIC-m234">Table 1</a>), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in <a href="#fig-ge-conc-grouping">Figure 1</a> and <a href="#fig-ge-cl-boxplot">Figure 2</a>, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. <strong>DO MORE HERE</strong> <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. --></p>
+<!-- ```{r} -->
+<!-- #| label: tbl-AIC-m234 -->
+<!-- #| tbl-cap: "The AIC for each of the three fitted models." -->
+<!-- kable(AIC(m2, m3, m4)) -->
+<!-- ``` -->
+<!-- These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting. -->
+<!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
+<!-- , then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE**  -->
+<!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-performance-m234" class="anchored">
 <table class="table table-sm table-striped">
-<caption>Table 2: The metrics for each of the three fitted models.</caption>
-<colgroup>
-<col style="width: 4%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 9%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 7%">
-</colgroup>
+<caption>Table 1: The metrics for each of the three fitted models.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Name</th>
-<th style="text-align: left;">Model</th>
 <th style="text-align: right;">AIC</th>
-<th style="text-align: right;">AIC_wt</th>
-<th style="text-align: right;">AICc</th>
-<th style="text-align: right;">AICc_wt</th>
-<th style="text-align: right;">BIC</th>
-<th style="text-align: right;">BIC_wt</th>
 <th style="text-align: right;">R2_conditional</th>
 <th style="text-align: right;">R2_marginal</th>
-<th style="text-align: right;">ICC</th>
 <th style="text-align: right;">RMSE</th>
-<th style="text-align: right;">Sigma</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">m2</td>
-<td style="text-align: left;">lmerMod</td>
 <td style="text-align: right;">408.8027</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">409.8527</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">423.5982</td>
-<td style="text-align: right;">0.0000019</td>
 <td style="text-align: right;">0.9647610</td>
 <td style="text-align: right;">0.8603310</td>
-<td style="text-align: right;">0.7476965</td>
 <td style="text-align: right;">1.942813</td>
-<td style="text-align: right;">2.062701</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">m3</td>
-<td style="text-align: left;">lmerMod</td>
 <td style="text-align: right;">408.4980</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">409.9157</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">425.7593</td>
-<td style="text-align: right;">0.0000006</td>
 <td style="text-align: right;">0.9651153</td>
 <td style="text-align: right;">0.8771508</td>
-<td style="text-align: right;">0.7160366</td>
 <td style="text-align: right;">1.942749</td>
-<td style="text-align: right;">2.062695</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">m4</td>
-<td style="text-align: left;">lmerMod</td>
 <td style="text-align: right;">372.5428</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">375.4376</td>
-<td style="text-align: right;">0.9999999</td>
-<td style="text-align: right;">397.2019</td>
-<td style="text-align: right;">0.9999975</td>
 <td style="text-align: right;">0.9788391</td>
 <td style="text-align: right;">0.8909742</td>
-<td style="text-align: right;">0.8059091</td>
 <td style="text-align: right;">1.500209</td>
-<td style="text-align: right;">1.614841</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Using the function <code>compare_performance()</code> from the R package <code>performance</code>, the AIC values, BIC values, R<span class="math inline">\(^{2}\)</span> values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R<span class="math inline">\(^{2}\)</span> values for all three models are fairly similar.</p>
-<p><strong>WRITE STUFF HERE ABOUT</strong> <a href="#tbl-performance-m234">Table 2</a></p>
+<p>These three models can be compared using AIC values, R<span class="math inline">\(^{2}\)</span> values and RMSE values (shown in <a href="#tbl-performance-m234">Table 1</a>). From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values. The marginal R<span class="math inline">\(^{2}\)</span> values, which look only at the fixed effects, suggest that the model with interaction terms between all three predictors is best (although all three are fairly similar), whilst the condition R<span class="math inline">\(^{2}\)</span> values, which take into account the random effects as well, are very similar for all models, but the model with all interaction terms is still slightly better. The root mean square errors of the first two models in <a href="#tbl-performance-m234">Table 1</a> are very similar, whilst the root mean squared error of the final model is much lower, suggesting that this model is the best. Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.</p>
+<!-- which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting. -->
+<!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
+<!-- Using the function `compare_performance()` from the R package `performance`, the AIC values, BIC values, R$^{2}$ values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R$^{2}$ values for all three models are fairly similar. -->
+<!-- **WRITE STUFF HERE ABOUT** @tbl-performance-m234 -->
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
@@ -3104,8 +3035,12 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>GL), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m4)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">AIC</span>(m2, m3, m4))</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">compare_performance</span>(m2,m3,m4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(m2,m3,m4) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;R2_conditional&quot;</span>, <span class="st">&quot;R2_marginal&quot;</span>, <span class="st">&quot;RMSE&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># r2(m2)</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co"># r2(m3)</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># r2(m4)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>

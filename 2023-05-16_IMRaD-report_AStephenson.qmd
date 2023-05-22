@@ -60,7 +60,7 @@ data_long <- data %>%
 # Introduction
 The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from $0$ to $10$). Only one data point is missing, that of concentration $5$ mg/ml for gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
 
-This report investigates models for predicting gene expression based on concentration, cell line and treatment (or a subset of these predictors), as well as taking into account the effect of gene line.
+This report investigates the impact of growth factor concentration, treatment, and cell line on gene expression, as well as the effect of gene line.
 
 # Method
 
@@ -169,13 +169,13 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The residuals for each model are plotted in @fig-m1-plot, @fig-m2-plot, @fig-m3-plot and @fig-m4-plot. From @fig-m1-plot, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.  -->
 <!-- The residuals plots for the model with concentration and treatment as predictors (with interaction terms), with or without cell line as another predictor (without interaction terms), in @fig-m2-plot and @fig-m3-plot, both appear not to have any residual variance in them, whilst the residuals plot (in @fig-m4-plot) for the model with concentration, treatment and cell line as predictors (with interactions between all three) appears to possibly have some residual variance. **CHECK THIS**  -->
 
-```{r}
-#| label: tbl-AIC-m234
-#| tbl-cap: "The AIC for each of the three fitted models."
-kable(AIC(m2, m3, m4))
-```
-These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting.
-The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values.
+<!-- ```{r} -->
+<!-- #| label: tbl-AIC-m234 -->
+<!-- #| tbl-cap: "The AIC for each of the three fitted models." -->
+<!-- kable(AIC(m2, m3, m4)) -->
+<!-- ``` -->
+<!-- These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting. -->
+<!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
 
 <!-- , then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE**  -->
 
@@ -192,9 +192,18 @@ compare_performance(m2,m3,m4) %>%
 # r2(m4)
 ```
 
-Using the function `compare_performance()` from the R package `performance`, the AIC values, BIC values, R$^{2}$ values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R$^{2}$ values for all three models are fairly similar.
+These three models can be compared using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
+From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values.
+The marginal R$^{2}$ values, which look only at the fixed effects, suggest that the model with interaction terms between all three predictors is best (although all three are fairly similar), whilst the condition R$^{2}$ values, which take into account the random effects as well, are very similar for all models, but the model with all interaction terms is still slightly better.
+The root mean square errors of the first two models in @tbl-performance-m234 are very similar, whilst the root mean squared error of the final model is much lower, suggesting that this model is the best.
+Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
 
-**WRITE STUFF HERE ABOUT** @tbl-performance-m234
+<!-- which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting. -->
+<!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
+
+<!-- Using the function `compare_performance()` from the R package `performance`, the AIC values, BIC values, R$^{2}$ values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R$^{2}$ values for all three models are fairly similar. -->
+
+<!-- **WRITE STUFF HERE ABOUT** @tbl-performance-m234 -->
 
 
 
