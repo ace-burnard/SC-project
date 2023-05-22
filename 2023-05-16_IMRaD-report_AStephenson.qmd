@@ -141,7 +141,7 @@ summary(m2)
 plot(m2)
 ```
 
-Including cell line as a predictor, two models are fitted. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in @fig-m3-plot and @fig-m4-plot, respectively.
+Two models are fitted that include cell line as a predictor. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in @fig-m3-plot and @fig-m4-plot, respectively.
 
 ```{r fig-m3-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms) and cell line (without any interaction terms), with gene line as a random effect."}
 m3 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit)
