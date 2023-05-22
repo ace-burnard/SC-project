@@ -174,13 +174,16 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 #| tbl-cap: "The AIC for each of the three fitted models."
 kable(AIC(m2, m3, m4))
 ```
-These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.
+These three models can be compared using AIC (shown in @tbl-AIC-m234), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE** 
+<!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 
 ```{r}
 #| label: tbl-performance-m234
 #| tbl-cap: "The metrics for each of the three fitted models."
-compare_performance(m2,m3,m4)
+kable(compare_performance(m2,m3,m4))
 ```
+
+Using the function `compare_performance()` from the R package `performance`, the AIC values, BIC values, R$^{2}$ values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R$^{2}$ values for all three models are fairly similar.
 
 **WRITE STUFF HERE ABOUT** @tbl-performance-m234
 
