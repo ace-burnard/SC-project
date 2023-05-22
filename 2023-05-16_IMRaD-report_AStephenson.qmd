@@ -195,9 +195,6 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 compare_performance(lm_step, m2,m3,m4) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
   kable()
-# r2(m2)
-# r2(m3)
-# r2(m4)
 ```
 
 These three models can be compared two each other and to the linear model without random effects using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
