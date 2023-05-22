@@ -2958,7 +2958,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 </div>
 </div>
 </div>
-<p>These three models can be compared using AIC (shown in <a href="#tbl-AIC-m234">Table 1</a>), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in <a href="#fig-ge-conc-grouping">Figure 1</a> and <a href="#fig-ge-cl-boxplot">Figure 2</a>, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. <strong>DO MORE HERE</strong> The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression.</p>
+<p>These three models can be compared using AIC (shown in <a href="#tbl-AIC-m234">Table 1</a>), which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in <a href="#fig-ge-conc-grouping">Figure 1</a> and <a href="#fig-ge-cl-boxplot">Figure 2</a>, then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. <strong>DO MORE HERE</strong> <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. --></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-performance-m234" class="anchored">
@@ -3047,6 +3047,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 </div>
 </div>
 </div>
+<p>Using the function <code>compare_performance()</code> from the R package <code>performance</code>, the AIC values, BIC values, R<span class="math inline">\(^{2}\)</span> values and assorted other values can be found for each of the models. From these values, it can be seen that the model with all three predictors and interaction terms between all of them has the lowest AIC, but the R<span class="math inline">\(^{2}\)</span> values for all three models are fairly similar.</p>
 <p><strong>WRITE STUFF HERE ABOUT</strong> <a href="#tbl-performance-m234">Table 2</a></p>
 </section>
 <section id="discussion" class="level1">
