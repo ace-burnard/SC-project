@@ -68,7 +68,7 @@ The data was cleaned and analysed using the R language [@r-2022], and the packag
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
-Several mixed effects models were then fit, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean sequared error.
+Several mixed effects models were then fit, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean squared error.
 
 # Results
 
