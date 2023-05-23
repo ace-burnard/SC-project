@@ -184,7 +184,7 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 
 ```{r}
 # tab_model(m2, m3, m4)
-ranova(m4)
+# ranova(m4)
 ```
 
 ```{r}
