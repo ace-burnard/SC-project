@@ -280,8 +280,6 @@ Thus, the model with interaction terms between all three predictors, and with ge
 # Discussion
 **TALK ABOUT CHOSEN MODEL AND HOW IT PREDICTS GENE EXPRESSION**
 
-The chosen model is the mixed effects model with concentration, treatment and cell line as predictors, along with all interaction terms between the three predictors, and gene line as a random effect. This model is shown as the lines in @fig-ge-conc-grouping-model, where each line is the fitted model for a different gene line. This figure shows how the gene lines with the placebo treatment (in darker brown and lighter blue) have a flatter slope than the gene lines with the activating factor 42 treatment (in lighter brown, grey and darker blue). The slope of the fitted model for the wild-type cell lines with the placebo treatments (in darker brown) is also flatter than the slope of the fitted model for the cell-type 101 cell lines with the placebo treatments (in lighter blue).
-
 ```{r fig-ge-conc-grouping-model, fig.cap = "A plot of gene expression as a function of concentration, coloured by gene line (with cell line and treatment also indicated), and with the fitted model indicated by the lines."}
 data_long %>%
   mutate(group = grouping,
@@ -298,7 +296,7 @@ data_long %>%
        color = "Cell Line; Treatment; Gene Line")
 ```
 
-The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, and the random intercepts are shown in @tbl-random-coefs-m4. The intercept for each gene line is found as the overall intercept (in @tbl-fixed-coefs-m4) plus the gene line specific intercept in @tbl-random-coefs-m4.
+The chosen model is the mixed effects model with concentration, treatment and cell line as predictors, along with all interaction terms between the three predictors, and gene line as a random effect. This model is shown as the lines in @fig-ge-conc-grouping-model, where each line is the fitted model for a different gene line. This figure shows how the gene lines with the placebo treatment (in darker brown and lighter blue) have a flatter slope than the gene lines with the activating factor 42 treatment (in lighter brown, grey and darker blue). The slope of the fitted model for the wild-type cell lines with the placebo treatments (in darker brown) is also flatter than the slope of the fitted model for the cell-type 101 cell lines with the placebo treatments (in lighter blue).
 
 ```{r}
 #| label: tbl-fixed-coefs-m4
@@ -321,6 +319,8 @@ random_effects %>%
   # pivot_wider(names_from = names, values_from = value) %>% 
   kable()
 ```
+
+The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, and the random intercepts are shown in @tbl-random-coefs-m4. The intercept for each gene line is found as the overall intercept (in @tbl-fixed-coefs-m4) plus the gene line specific intercept in @tbl-random-coefs-m4.
 
 <!-- The fitted model has the coefficients shown in @tbl-coefs-m4. -->
 
