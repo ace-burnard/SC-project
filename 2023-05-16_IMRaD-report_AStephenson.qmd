@@ -201,6 +201,20 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- ``` -->
 
 ```{r}
+#| label: tbl-sjPlot-m3
+#| tbl-cap: "CAPTION HERE"
+tab_model(m3)
+```
+
+@tbl-sjPlot-m3 shows the estimates and p-values for these estimates for the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor), as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The estimates for this model are shown in @tbl-sjPlot-m2, along with the p-values for these estimates.
+
+```{r}
+#| label: tbl-sjPlot-m2
+#| tbl-cap: "CAPTION HERE"
+tab_model(m2)
+```
+
+```{r}
 #| label: tbl-sjPlot-m234
 #| tbl-cap: "CAPTION HERE"
 tab_model(m2, m3, m4)
