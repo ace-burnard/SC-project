@@ -225,6 +225,7 @@ tab_model(m4)
 ```{r}
 #| label: tbl-sjPlot-step-m24
 #| tbl-cap: "The estimates and p-values for these estimates for the fixed effects model and the two mixed effects models being considered."
+lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
 tab_model(lm_step, m2, m4)
 ```
 
