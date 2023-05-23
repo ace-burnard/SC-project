@@ -215,20 +215,12 @@ tab_model(m2)
 ```
 
 ```{r}
-#| label: tbl-sjPlot-m234
-#| tbl-cap: "CAPTION HERE"
-tab_model(m2, m3, m4)
+#| label: tbl-sjPlot-m4
+#| tbl-cap: "The estimates for the mixed effects model with concentration, treatment and cell line predictors, and interaction terms between all of the predictors, as well as a gene line random effects."
+tab_model(m4)
 ```
 
-@tbl-sjPlot-m234 shows the estimates and p-values for these estimates for the predictors in each of the mixed effects models.
-
-```{r}
-#| label: tbl-sjPlot-m23
-#| tbl-cap: "CAPTION HERE"
-tab_model(m2, m3)
-```
-
-@tbl-sjPlot-m23 shows the estimates for the first two mixed effects models, as well as the p-values for these estimates. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed, which results in the model having only concentration and treatment (and the interaction term) as fixed effects.
+@tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
 
 ```{r}
 #| label: tbl-sjPlot-m24
@@ -236,12 +228,12 @@ tab_model(m2, m3)
 tab_model(m2, m4)
 ```
 
-@tbl-sjPlot-m24 
+The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m24. 
 
 ```{r}
 #| label: tbl-performance-m234
 #| tbl-cap: "The metrics for each of the three fitted models."
-compare_performance(lm_step, m2,m3,m4) %>% 
+compare_performance(lm_step, m2, m4) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
   kable()
 ```
