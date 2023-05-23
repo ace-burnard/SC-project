@@ -233,13 +233,13 @@ The estimates for two remaining mixed effects models being studied are shown in 
 ```{r}
 #| label: tbl-ranova-m2
 #| tbl-cap: "CAPTION"
-ranova(m2)
+ranova(m2) %>% kable()
 ```
 
 ```{r}
 #| label: tbl-ranova-m4
 #| tbl-cap: "CAPTION"
-ranova(m4)
+ranova(m4) %>% kable()
 ```
 
 @tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effects terms should not be removed.
