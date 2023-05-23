@@ -183,6 +183,11 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 
 ```{r}
+pacman::p_load(sjPlot)
+tab_model(m4)
+```
+
+```{r}
 #| label: tbl-performance-m234
 #| tbl-cap: "The metrics for each of the three fitted models."
 compare_performance(lm_step, m2,m3,m4) %>% 
