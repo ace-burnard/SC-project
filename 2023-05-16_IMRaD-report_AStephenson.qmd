@@ -201,20 +201,28 @@ ranova(m4) %>% kable()
 ```
 
 ```{r}
-#| label: tbl-sjPlot-m23
-#| tbl-cap: "CAPTION HERE"
-tab_model(m2, m3)
-```
-
-@tbl-sjPlot-m23 shows the estimates for the first two mized effects models, as well as the p-values for these estimates. From this table, 
-
-```{r}
 #| label: tbl-sjPlot-m234
 #| tbl-cap: "CAPTION HERE"
 tab_model(m2, m3, m4)
 ```
 
 @tbl-sjPlot-m234 shows the estimates and p-values for these estimates for the predictors in each of the mixed effects models.
+
+```{r}
+#| label: tbl-sjPlot-m23
+#| tbl-cap: "CAPTION HERE"
+tab_model(m2, m3)
+```
+
+@tbl-sjPlot-m23 shows the estimates for the first two mized effects models, as well as the p-values for these estimates. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed, which results in the model having only concentration and treatment (and the interaction term) as fixed effects.
+
+```{r}
+#| label: tbl-sjPlot-m24
+#| tbl-cap: "CAPTION HERE"
+tab_model(m2, m4)
+```
+
+@tbl-sjPlot-m24 
 
 ```{r}
 #| label: tbl-performance-m234
