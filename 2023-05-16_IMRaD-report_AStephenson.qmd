@@ -24,7 +24,7 @@ bibliography: references.bib
 <!-- -   grouping = sheet names -->
 
 ```{r}
-pacman::p_load(tidyverse, readr, lme4, knitr, performance)
+pacman::p_load(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest)
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
 data_long <- data %>%
@@ -183,8 +183,7 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 
 ```{r}
-pacman::p_load(sjPlot, lmerTest)
-tab_model(m2, m3, m4)
+# tab_model(m2, m3, m4)
 ranova(m4)
 ```
 
