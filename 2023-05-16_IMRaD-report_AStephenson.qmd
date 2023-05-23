@@ -306,7 +306,7 @@ The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, and the r
 fixef(m4) %>% 
   data.frame() %>% 
   # mutate(names = rownames(data.frame(fixef(m4)))) %>%
-  # rename(values = ".") %>% 
+  rename(value = ".") %>%
   # pivot_wider(names_from = names, values_from = values) %>% 
   kable()
 ```
@@ -316,8 +316,9 @@ fixef(m4) %>%
 #| tbl-cap: "**CAPTION**"
 random_effects <- ranef(m4)$GL
 random_effects %>%
+  rename(value = `(Intercept)`) %>% 
   # mutate(names = rownames(random_effects)) %>% 
-  # pivot_wider(names_from = names, values_from = `(Intercept)`) %>% 
+  # pivot_wider(names_from = names, values_from = value) %>% 
   kable()
 ```
 

@@ -3576,58 +3576,44 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <div id="tbl-fixed-coefs-m4" class="anchored">
 <table class="table table-sm table-striped">
 <caption>Table 8: <strong>CAPTION</strong></caption>
-<colgroup>
-<col style="width: 44%">
-<col style="width: 11%">
-<col style="width: 44%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">values</th>
-<th style="text-align: left;">names</th>
+<th style="text-align: right;">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
 <td style="text-align: right;">9.9175000</td>
-<td style="text-align: left;">(Intercept)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">concentration</td>
 <td style="text-align: right;">3.0514091</td>
-<td style="text-align: left;">concentration</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">treatmentplacebo</td>
 <td style="text-align: right;">-4.9215909</td>
-<td style="text-align: left;">treatmentplacebo</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CLwild-type</td>
 <td style="text-align: right;">-0.3615634</td>
-<td style="text-align: left;">CLwild-type</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">concentration:treatmentplacebo</td>
 <td style="text-align: right;">-1.4055000</td>
-<td style="text-align: left;">concentration:treatmentplacebo</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">concentration:CLwild-type</td>
 <td style="text-align: right;">-0.1214545</td>
-<td style="text-align: left;">concentration:CLwild-type</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">treatmentplacebo:CLwild-type</td>
 <td style="text-align: right;">0.0817907</td>
-<td style="text-align: left;">treatmentplacebo:CLwild-type</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">concentration:treatmentplacebo:CLwild-type</td>
 <td style="text-align: right;">-0.9674091</td>
-<td style="text-align: left;">concentration:treatmentplacebo:CLwild-type</td>
 </tr>
 </tbody>
 </table>
@@ -3642,50 +3628,41 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">(Intercept)</th>
-<th style="text-align: left;">names</th>
+<th style="text-align: right;">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">GL-bNo</td>
 <td style="text-align: right;">-0.5448884</td>
-<td style="text-align: left;">GL-bNo</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">GL-CsE</td>
 <td style="text-align: right;">0.5448884</td>
-<td style="text-align: left;">GL-CsE</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">GL-fUg</td>
 <td style="text-align: right;">-0.9801050</td>
-<td style="text-align: left;">GL-fUg</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">GL-Hoe</td>
 <td style="text-align: right;">0.9171917</td>
-<td style="text-align: left;">GL-Hoe</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">GL-jEK</td>
 <td style="text-align: right;">-0.9171917</td>
-<td style="text-align: left;">GL-jEK</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">GL-JZC</td>
 <td style="text-align: right;">0.9801050</td>
-<td style="text-align: left;">GL-JZC</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">GL-Rza</td>
 <td style="text-align: right;">-4.3688926</td>
-<td style="text-align: left;">GL-Rza</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">GL-xpo</td>
 <td style="text-align: right;">4.3688926</td>
-<td style="text-align: left;">GL-xpo</td>
 </tr>
 </tbody>
 </table>
@@ -3802,15 +3779,16 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment; Gene Line&quot;</span>)</span>
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="fu">fixef</span>(m4) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">names =</span> <span class="fu">rownames</span>(<span class="fu">data.frame</span>(<span class="fu">fixef</span>(m4)))) <span class="sc">%&gt;%</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">values =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutate(names = rownames(data.frame(fixef(m4)))) %&gt;%</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">value =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot_wider(names_from = names, values_from = values) %&gt;% </span></span>
 <span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
 <span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>random_effects <span class="ot">&lt;-</span> <span class="fu">ranef</span>(m4)<span class="sc">$</span>GL</span>
 <span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>random_effects <span class="sc">%&gt;%</span></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">names =</span> <span class="fu">rownames</span>(random_effects)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot_wider(names_from = names, values_from = `(Intercept)`) %&gt;% </span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">value =</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutate(names = rownames(random_effects)) %&gt;% </span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot_wider(names_from = names, values_from = `(Intercept)`) %&gt;% </span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
