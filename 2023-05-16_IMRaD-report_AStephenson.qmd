@@ -220,7 +220,7 @@ Thus, the model with interaction terms between all three predictors, and with ge
 data_long %>%
   mutate(group = grouping,
          geneline = GL) %>%
-  unite(geneline, group, sep = "; ", col = "grouping2") %>%
+  unite(group, geneline, sep = "; ", col = "grouping2") %>%
   ggplot(aes(x = concentration, y = GE, color = grouping2)) +
   geom_point() +
   geom_line(aes(y = predict(m4))) +
@@ -229,7 +229,7 @@ data_long %>%
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
-       color = "Gene Line; Cell Line; Treatment")
+       color = "Cell Line; Treatment; Gene Line")
 ```
 
 # Appendix: Code
