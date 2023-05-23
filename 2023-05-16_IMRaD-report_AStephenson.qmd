@@ -216,11 +216,11 @@ Thus, the model with interaction terms between all three predictors, and with ge
 # Discussion
 **TALK ABOUT CHOSEN MODEL AND HOW IT PREDICTS GENE EXPRESSION**
 
-```{r fig-ge-conc-grouping-model, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42) as well as gene line, with the fitted model indicated by the lines."}
+```{r fig-ge-conc-grouping-model, fig.cap = "A plot of gene expression as a function of concentration, coloured by gene line, with cell line and treatment also indicated, and with the fitted model indicated by the lines."}
 data_long %>%
   mutate(group = grouping,
          geneline = GL) %>%
-  unite(group, geneline, sep = "; ", col = "grouping2") %>%
+  unite(geneline, group, sep = "; ", col = "grouping2") %>%
   ggplot(aes(x = concentration, y = GE, color = grouping2)) +
   geom_point() +
   geom_line(aes(y = predict(m4))) +
@@ -229,7 +229,7 @@ data_long %>%
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
-       color = "Cell Line; Treatment; Gene Line")
+       color = "Gene Line; Cell Line; Treatment")
 ```
 
 # Appendix: Code
