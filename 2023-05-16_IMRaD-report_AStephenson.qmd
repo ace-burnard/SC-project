@@ -202,7 +202,7 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 
 ```{r}
 #| label: tbl-sjPlot-m3
-#| tbl-cap: "CAPTION HERE"
+#| tbl-cap: "The estimates for the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
 tab_model(m3)
 ```
 
@@ -210,7 +210,7 @@ tab_model(m3)
 
 ```{r}
 #| label: tbl-sjPlot-m2
-#| tbl-cap: "CAPTION HERE"
+#| tbl-cap: "The estimates for the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
 tab_model(m2)
 ```
 
