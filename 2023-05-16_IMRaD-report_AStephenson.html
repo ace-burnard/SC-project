@@ -3575,7 +3575,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <div class="cell-output-display">
 <div id="tbl-fixed-coefs-m4" class="anchored">
 <table class="table table-sm table-striped">
-<caption>Table 8: <strong>CAPTION</strong></caption>
+<caption>Table 8: The coefficients of the chosen model. The value of the intercept is the overall intercept, which is added to the values in <a href="#tbl-random-coefs-m4">Table 9</a> to find the intercept for each gene line. <strong>CHECK THIS</strong></caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -3624,7 +3624,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <div class="cell-output-display">
 <div id="tbl-random-coefs-m4" class="anchored">
 <table class="table table-sm table-striped">
-<caption>Table 9: <strong>CAPTION</strong></caption>
+<caption>Table 9: The difference from the overall intercept for each gene line. <strong>CHECK THIS</strong></caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -3787,7 +3787,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>random_effects <span class="sc">%&gt;%</span></span>
 <span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">value =</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutate(names = rownames(random_effects)) %&gt;% </span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot_wider(names_from = names, values_from = `(Intercept)`) %&gt;% </span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot_wider(names_from = names, values_from = value) %&gt;% </span></span>
 <span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
