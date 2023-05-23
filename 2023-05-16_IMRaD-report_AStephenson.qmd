@@ -183,10 +183,20 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 
 ```{r}
-#| label: tbl-ranova
+#| label: tbl-ranova2
 #| tbl-cap: "CAPTION HERE"
 ranova(m2)
+```
+
+```{r}
+#| label: tbl-ranova3
+#| tbl-cap: "CAPTION HERE"
 ranova(m3)
+```
+
+```{r}
+#| label: tbl-ranova4
+#| tbl-cap: "CAPTION HERE"
 ranova(m4)
 ```
 
