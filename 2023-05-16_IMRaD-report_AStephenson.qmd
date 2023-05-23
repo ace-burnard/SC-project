@@ -298,27 +298,29 @@ data_long %>%
        color = "Cell Line; Treatment; Gene Line")
 ```
 
-The fitted model has the coefficients shown in **TABLE HERE**
+The fitted model has the coefficients shown in @tbl-coefs-m4.
 
 ```{r}
+#| label: tbl-coefs-m4
+#| tbl-cap: "**CAPTION**"
 fixed_effects <- fixef(m4)
 random_effects <- ranef(m4)$GL
 coefs <- random_effects
 # orig_rows <- rownames(coefs)
 # overall_intercept <- fixed_effects[[1]]
 coefs <- coefs %>% rename('value' = `(Intercept)`)
-for (i in 1:length(orig_rows)) {
+for (i in 1:length(rownames(coefs))) {
   row.names(coefs)[i] <- paste(rownames(coefs)[i], "(Intercept)", sep = '')
   coefs[[1]][i] <- coefs[[1]][i] + fixed_effects[[1]]
 }
 for (i in 2:8) {
   coefs <- coefs %>% add_row(value = fixed_effects[[i]])
-  row.names(coefs)[length(orig_rows)+(i-1)] <- names(fixed_effects)[i]
+  row.names(coefs)[length(rownames(coefs))] <- names(fixed_effects)[i]
 }
-coefs <- coefs %>% 
+coefs %>% 
   mutate(names = rownames(coefs)) %>% 
-  pivot_wider(names_from = names, values_from = value)
-coefs %>% kable()
+  pivot_wider(names_from = names, values_from = value) %>% 
+  kable()
 ```
 
 

@@ -3570,9 +3570,70 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 </div>
 </div>
 </div>
-<p>The fitted model has the coefficients shown in <strong>TABLE HERE</strong></p>
+<p>The fitted model has the coefficients shown in <a href="#tbl-coefs-m4">Table 8</a>.</p>
 <div class="cell">
-
+<div class="cell-output-display">
+<div id="tbl-coefs-m4" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 8: <strong>CAPTION</strong></caption>
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">GL-bNo(Intercept)</th>
+<th style="text-align: right;">GL-CsE(Intercept)</th>
+<th style="text-align: right;">GL-fUg(Intercept)</th>
+<th style="text-align: right;">GL-Hoe(Intercept)</th>
+<th style="text-align: right;">GL-jEK(Intercept)</th>
+<th style="text-align: right;">GL-JZC(Intercept)</th>
+<th style="text-align: right;">GL-Rza(Intercept)</th>
+<th style="text-align: right;">GL-xpo(Intercept)</th>
+<th style="text-align: right;">concentration</th>
+<th style="text-align: right;">treatmentplacebo</th>
+<th style="text-align: right;">CLwild-type</th>
+<th style="text-align: right;">concentration:treatmentplacebo</th>
+<th style="text-align: right;">concentration:CLwild-type</th>
+<th style="text-align: right;">treatmentplacebo:CLwild-type</th>
+<th style="text-align: right;">concentration:treatmentplacebo:CLwild-type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">9.372612</td>
+<td style="text-align: right;">10.46239</td>
+<td style="text-align: right;">8.937395</td>
+<td style="text-align: right;">10.83469</td>
+<td style="text-align: right;">9.000308</td>
+<td style="text-align: right;">10.89761</td>
+<td style="text-align: right;">5.548607</td>
+<td style="text-align: right;">14.28639</td>
+<td style="text-align: right;">3.051409</td>
+<td style="text-align: right;">-4.921591</td>
+<td style="text-align: right;">-0.3615634</td>
+<td style="text-align: right;">-1.4055</td>
+<td style="text-align: right;">-0.1214545</td>
+<td style="text-align: right;">0.0817907</td>
+<td style="text-align: right;">-0.9674091</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </section>
 <section id="appendix-code" class="level1">
@@ -3660,7 +3721,23 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>,</span>
 <span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment; Gene Line&quot;</span>)</span>
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>fixed_effects <span class="ot">&lt;-</span> <span class="fu">fixef</span>(m4)</span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>random_effects <span class="ot">&lt;-</span> <span class="fu">ranef</span>(m4)<span class="sc">$</span>GL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>random_effects <span class="ot">&lt;-</span> <span class="fu">ranef</span>(m4)<span class="sc">$</span>GL</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> random_effects</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="co"># orig_rows &lt;- rownames(coefs)</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="co"># overall_intercept &lt;- fixed_effects[[1]]</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> coefs <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&#39;value&#39;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>)</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">rownames</span>(coefs))) {</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row.names</span>(coefs)[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">rownames</span>(coefs)[i], <span class="st">&quot;(Intercept)&quot;</span>, <span class="at">sep =</span> <span class="st">&#39;&#39;</span>)</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  coefs[[<span class="dv">1</span>]][i] <span class="ot">&lt;-</span> coefs[[<span class="dv">1</span>]][i] <span class="sc">+</span> fixed_effects[[<span class="dv">1</span>]]</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>) {</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  coefs <span class="ot">&lt;-</span> coefs <span class="sc">%&gt;%</span> <span class="fu">add_row</span>(<span class="at">value =</span> fixed_effects[[i]])</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row.names</span>(coefs)[<span class="fu">length</span>(<span class="fu">rownames</span>(coefs))] <span class="ot">&lt;-</span> <span class="fu">names</span>(fixed_effects)[i]</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>coefs <span class="sc">%&gt;%</span> </span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">names =</span> <span class="fu">rownames</span>(coefs)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> names, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
