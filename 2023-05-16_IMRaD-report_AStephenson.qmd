@@ -24,7 +24,7 @@ bibliography: references.bib
 <!-- -   grouping = sheet names -->
 
 ```{r}
-pacman::p_load(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest)
+pacman::p_load(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest, gt)
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
 data_long <- data %>%
@@ -64,7 +64,7 @@ This report investigates the impact of growth factor concentration, treatment, a
 
 # Method
 
-The data was cleaned and analysed using the R language [@r-2022], and the packages ggpubr [@ggpubr], ggrepel [@ggrepel], knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest], patchwork [@patchwork], performance [@performance], readr [@readr], rstatix [@rstatix], showtext [@showtext], sjPlot [@sjPlot], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
+The data was cleaned and analysed using the R language [@r-2022], and the packages ggpubr [@ggpubr], ggrepel [@ggrepel], gt [@gt], knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest], patchwork [@patchwork], performance [@performance], readr [@readr], rstatix [@rstatix], showtext [@showtext], sjPlot [@sjPlot], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
@@ -234,13 +234,17 @@ The estimates for two remaining mixed effects models being studied are shown in 
 ```{r}
 #| label: tbl-ranova-m2
 #| tbl-cap: "**CAPTION**"
-ranova(m2) %>% kable()
+ranova(m2) %>% 
+  gt(rownames_to_stub = TRUE) %>%  
+  fmt_scientific(columns = 6, decimals = 4)
 ```
 
 ```{r}
 #| label: tbl-ranova-m4
 #| tbl-cap: "**CAPTION**"
-ranova(m4) %>% kable()
+ranova(m4) %>% 
+  gt(rownames_to_stub = TRUE) %>%  
+  fmt_scientific(columns = 6, decimals = 4)
 ```
 
 @tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effect terms should not be removed.
@@ -250,7 +254,7 @@ ranova(m4) %>% kable()
 #| tbl-cap: "The AIC, R$^{2}$ values and root mean squared errors for each of the three fitted models."
 compare_performance(lm_step, m2, m4) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
-  kable()
+  gt()
 ```
 
 The fixed effects model and mixed effects models can be compared to each other using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
