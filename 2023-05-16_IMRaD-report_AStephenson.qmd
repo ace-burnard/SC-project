@@ -70,17 +70,6 @@ Exploratory data analysis was then conducted on the data, including plotting gen
 
 Several mixed effects models were then fit, and compared using Akaike's Information Criterion (AIC).
 
--   R language [@r-2022]
--   tidyverse [@tidyverse]
--   rstatix [@rstatix]
--   ggpubr [@ggpubr]
--   patchwork [@patchwork]
--   showtext [@showtext]
--   ggrepel [@ggrepel]
--   lme4 [@lme4]
--   readr [@readr]
--   knitr [@knitr]
-
 # Results
 
 **ASSUMPTIONS CHECKING**
