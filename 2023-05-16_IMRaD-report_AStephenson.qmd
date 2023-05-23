@@ -242,7 +242,7 @@ ranova(m2) %>% kable()
 ranova(m4) %>% kable()
 ```
 
-@tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effects terms should not be removed.
+@tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effect terms should not be removed.
 
 ```{r}
 #| label: tbl-performance-m234
@@ -257,6 +257,8 @@ From these values, it can be seen that the model with interaction terms between 
 The conditional R$^{2}$ values, which take into account both the fixed effects and the random effects, are very similar for all models, but the model with all interaction terms is still slightly better. The R$^{2}$ value for the fixed effects model is worse than the conditional R$^{2}$ values for the mixed effects models.
 The root mean square errors of the first two mixed effects models in @tbl-performance-m234 are very similar, whilst the root mean squared error for the fixed effects model is much greater than the other values. The lowest root mean squared error occurs for the mixed effects model with interaction terms between all three predictors, suggesting that this model is the best.
 Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
+
+**MORE HERE MAYBE**
 
 <!-- **NEED TO TALK ABOUT WHY CELL LINE INCLUDED WHEN IT DOESN'T LOOK LIKE IT SHOULD BE** -->
 
