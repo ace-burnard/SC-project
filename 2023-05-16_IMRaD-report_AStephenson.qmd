@@ -233,13 +233,13 @@ The estimates for two remaining mixed effects models being studied are shown in 
 
 ```{r}
 #| label: tbl-ranova-m2
-#| tbl-cap: "CAPTION"
+#| tbl-cap: "**CAPTION**"
 ranova(m2) %>% kable()
 ```
 
 ```{r}
 #| label: tbl-ranova-m4
-#| tbl-cap: "CAPTION"
+#| tbl-cap: "**CAPTION**"
 ranova(m4) %>% kable()
 ```
 
