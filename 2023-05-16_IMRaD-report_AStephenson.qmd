@@ -312,10 +312,13 @@ for (i in 1:length(orig_rows)) {
   coefs[[1]][i] <- coefs[[1]][i] + fixed_effects[[1]]
 }
 for (i in 2:8) {
-  coefs <- coefs %>% 
-    add_row(value = fixed_effects[[i]])
+  coefs <- coefs %>% add_row(value = fixed_effects[[i]])
   row.names(coefs)[length(orig_rows)+(i-1)] <- names(fixed_effects)[i]
 }
+coefs <- coefs %>% 
+  mutate(names = rownames(coefs)) %>% 
+  pivot_wider(names_from = names, values_from = value)
+coefs %>% kable()
 ```
 
 
