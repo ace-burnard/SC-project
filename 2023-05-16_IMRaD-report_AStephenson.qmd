@@ -298,13 +298,13 @@ data_long %>%
        color = "Cell Line; Treatment; Gene Line")
 ```
 
-```{r}
-fixef(m4)
-```
+The fitted model has the coefficients shown in **TABLE HERE**
 
 ```{r}
-ranef(m4)$GL
+fixed_effects <- fixef(m4)
+random_effects <- ranef(m4)$GL
 ```
+
 
 # Appendix: Code
 
