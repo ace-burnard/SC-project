@@ -322,6 +322,9 @@ random_effects %>%
   kable()
 ```
 
+From these tables, it can be seen that as growth factor concentration increases, so does gene expression. It can also be seen that the placebo treatment has a smaller intercept and flatter slope than the activating factor 42 treatment does. Similarly, the wild-type cell line has a lower intercept and flatter slope than the cell-type 101 cell line does. 
+Thus, gene expression is higher for higher concentrations of the growth factor, the activating factor 42 treatment and cell-type 101 cell line. Conversely, lower concentrations of the growth factor, the placebo treatment and wild-type cell line results in lower gene expression.
+
 <!-- The fitted model has the coefficients shown in @tbl-coefs-m4. -->
 
 <!-- ```{r} -->
