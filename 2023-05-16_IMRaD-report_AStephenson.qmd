@@ -202,7 +202,7 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 
 ```{r}
 #| label: tbl-sjPlot-m3
-#| tbl-cap: "The estimates for the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
+#| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
 tab_model(m3)
 ```
 
@@ -210,29 +210,29 @@ tab_model(m3)
 
 ```{r}
 #| label: tbl-sjPlot-m2
-#| tbl-cap: "The estimates for the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
+#| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
 tab_model(m2)
 ```
 
 ```{r}
 #| label: tbl-sjPlot-m4
-#| tbl-cap: "The estimates for the mixed effects model with concentration, treatment and cell line predictors, and interaction terms between all of the predictors, as well as a gene line random effects."
+#| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration, treatment and cell line predictors, and interaction terms between all of the predictors, as well as a gene line random effects."
 tab_model(m4)
 ```
 
 @tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
 
 ```{r}
-#| label: tbl-sjPlot-m24
-#| tbl-cap: "CAPTION HERE"
-tab_model(m2, m4)
+#| label: tbl-sjPlot-step-m24
+#| tbl-cap: "The estimates and p-values for these estimates for the fixed effects model and the two mixed effects models being considered."
+tab_model(lm_step, m2, m4)
 ```
 
-The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m24. 
+The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-step-m24, along with fixed effects model.
 
 ```{r}
 #| label: tbl-performance-m234
-#| tbl-cap: "The metrics for each of the three fitted models."
+#| tbl-cap: "The AIC, R$^{2}$ values and root mean squared errors for each of the three fitted models."
 compare_performance(lm_step, m2, m4) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
   kable()
