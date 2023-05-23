@@ -233,7 +233,7 @@ The estimates for two remaining mixed effects models being studied are shown in 
 
 ```{r}
 #| label: tbl-ranova-m2
-#| tbl-cap: "**CAPTION**"
+#| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration and treatment (and the interaction term between these predictors) as fixed effects. **CHECK THIS**"
 ranova(m2) %>% 
   kable(digits = c(0,4,4,5,4,25))
   # gt(rownames_to_stub = TRUE) %>%  
@@ -242,7 +242,7 @@ ranova(m2) %>%
 
 ```{r}
 #| label: tbl-ranova-m4
-#| tbl-cap: "**CAPTION**"
+#| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration, treatment and cell line (and the interaction terms between these predictors) as fixed effects. **CHECK THIS**"
 ranova(m4) %>% 
   kable(digits = c(0,4,4,5,4,25))
   # gt(rownames_to_stub = TRUE) %>%  
