@@ -201,6 +201,14 @@ ranova(m4) %>% kable()
 ```
 
 ```{r}
+#| label: tbl-sjPlot-m23
+#| tbl-cap: "CAPTION HERE"
+tab_model(m2, m3)
+```
+
+@tbl-sjPlot-m23 shows the estimates for the first two mized effects models, as well as the p-values for these estimates. From this table, 
+
+```{r}
 #| label: tbl-sjPlot-m234
 #| tbl-cap: "CAPTION HERE"
 tab_model(m2, m3, m4)
