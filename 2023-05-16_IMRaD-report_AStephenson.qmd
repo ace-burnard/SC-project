@@ -298,6 +298,28 @@ data_long %>%
        color = "Cell Line; Treatment; Gene Line")
 ```
 
+The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, where the intercept for each gene line 
+
+```{r}
+#| label: tbl-fixed-coefs-m4
+#| tbl-cap: "**CAPTION**"
+fixef(m4) %>% 
+  data.frame() %>% 
+  mutate(names = rownames(data.frame(fixef(m4)))) %>%
+  rename(values = ".") %>% 
+  pivot_wider(names_from = names, values_from = values) %>% 
+  kable()
+```
+
+```{r}
+#| label: tbl-random-coefs-m4
+#| tbl-cap: "**CAPTION**"
+random_effects <- ranef(m4)$GL
+random_effects %>%
+  mutate(names = rownames(random_effects)) %>% 
+  pivot_wider(names_from = names, values_from = `(Intercept)`) %>% 
+```
+
 The fitted model has the coefficients shown in @tbl-coefs-m4.
 
 ```{r}
