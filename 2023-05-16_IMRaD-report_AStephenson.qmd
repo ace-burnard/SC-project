@@ -298,7 +298,7 @@ data_long %>%
        color = "Cell Line; Treatment; Gene Line")
 ```
 
-The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, where the intercept for each gene line 
+The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, and the random intercepts are shown in @tbl-random-coefs-m4. The intercept for each gene line is found as the overall intercept (in @tbl-fixed-coefs-m4) plus the gene line specific intercept in @tbl-random-coefs-m4.
 
 ```{r}
 #| label: tbl-fixed-coefs-m4
