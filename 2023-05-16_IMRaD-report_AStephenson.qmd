@@ -237,8 +237,6 @@ The estimates for two remaining mixed effects models being studied are shown in 
 #| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration and treatment (and the interaction term between these predictors) as fixed effects. **CHECK THIS**"
 ranova(m2) %>% 
   kable(digits = c(0,4,4,5,4,25))
-  # gt(rownames_to_stub = TRUE) %>%  
-  # fmt_scientific(columns = 6, decimals = 4)
 ```
 
 ```{r}
@@ -246,8 +244,6 @@ ranova(m2) %>%
 #| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration, treatment and cell line (and the interaction terms between these predictors) as fixed effects. **CHECK THIS**"
 ranova(m4) %>% 
   kable(digits = c(0,4,4,5,4,25))
-  # gt(rownames_to_stub = TRUE) %>%  
-  # fmt_scientific(columns = 6, decimals = 4)
 ```
 
 @tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effect terms should not be removed.
@@ -307,9 +303,7 @@ The coefficients of the fitted model are shown in @tbl-fixed-coefs-m4, and the r
 #| tbl-cap: "The coefficients of the chosen model. The value of the intercept is the overall intercept, which is added to the values in @tbl-random-coefs-m4 to find the intercept for each gene line. **CHECK THIS**"
 fixef(m4) %>% 
   data.frame() %>% 
-  # mutate(names = rownames(data.frame(fixef(m4)))) %>%
   rename(value = ".") %>%
-  # pivot_wider(names_from = names, values_from = values) %>% 
   kable()
 ```
 
@@ -319,8 +313,6 @@ fixef(m4) %>%
 random_effects <- ranef(m4)$GL
 random_effects %>%
   rename(value = `(Intercept)`) %>% 
-  # mutate(names = rownames(random_effects)) %>% 
-  # pivot_wider(names_from = names, values_from = value) %>% 
   kable()
 ```
 
