@@ -74,19 +74,6 @@ Several mixed effects models were then fit, and compared using Akaike's Informat
 
 **ASSUMPTIONS CHECKING**
 
-```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
-data_long %>%
-  ggplot(aes(x = concentration, y = GE, color = grouping)) +
-  geom_point() +
-  ylim(0, NA) +
-  harrypotter::scale_color_hp_d("Ravenclaw") +
-  labs(x = "Concentration (mg/ml)",
-       y = "Gene expression",
-       color = "Cell Line; Treatment")
-```
-
-The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment. From this plot, it can be seen that there appear to be differences between (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. From @fig-ge-conc-grouping, it can be seen that there does appear to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.
-
 ```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
   ggplot(aes(x = CL, y = GE, col = CL)) +
@@ -97,7 +84,7 @@ data_long %>%
        y = "Gene expression")
 ```
 
-A boxplot of gene expression, grouped by cell line, is shown in @fig-ge-cl-boxplot. From this boxplot, it can be seen that there does not appear to be a significant difference between gene expression for wild-type and gene expression for cell-type 101. This suggests that cell line is not a predictor of gene expression.
+A boxplot of gene expression, grouped by cell line, is shown in @fig-ge-cl-boxplot. From this boxplot, it can be seen that there does not appear to be a significant difference between gene expression for wild-type and gene expression for cell-type 101. This suggests that cell line may not be a predictor of gene expression, or at least, not on its own.
 
 ```{r fig-ge-treat-boxplot, fig.cap = "A boxplot of gene expression for each treatment (placebo and activating factor 42)."}
 data_long %>%
@@ -111,14 +98,31 @@ data_long %>%
 
 @fig-ge-treat-boxplot shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.
 
+```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
+data_long %>%
+  ggplot(aes(x = concentration, y = GE, color = grouping)) +
+  geom_point() +
+  ylim(0, NA) +
+  harrypotter::scale_color_hp_d("Ravenclaw") +
+  labs(x = "Concentration (mg/ml)",
+       y = "Gene expression",
+       color = "Cell Line; Treatment")
+```
+
+The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment. 
+From this plot, it can be seen that there does appear to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.
+From @fig-ge-conc-grouping, it can be seen that there appear to be differences between the pairs (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. Thus, cell line may be a predictor for gene expression.
+
 **REPEATED MEASURES HERE**
 Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must be taken into account in fitting models on the data.
 
-A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model. Using AIC, the function selects the full model as the best model.
+A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
+<!-- Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model.  -->
+Using AIC, the function selects the full model as the best model.
 ```{r}
 lm_null <- lm(GE ~ 1, data = data_long)
 scope <- GE ~ concentration*treatment*CL
-lm_step <- step(lm_null, scope = scope, direction = "both")
+lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 summary(lm_step)
 ```
 
@@ -130,7 +134,7 @@ summary(m1)
 plot(m1)
 ```
 
-The next model considered fits gene expression as a function of concentration and treatment (with interaction terms), as well as gene line as a random effect. The residuals plot for this model is shown in @fig-m2-plot. 
+The next model considered fits gene expression as a function of concentration and treatment (with interaction terms), as well as gene line as a random effect. The residuals plot for this model is shown in @fig-m2-plot.
 
 ```{r fig-m2-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms), with gene line as a random effect."}
 m2 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
@@ -186,13 +190,13 @@ compare_performance(lm_step, m2,m3,m4) %>%
   kable()
 ```
 
-These three models can be compared two each other and to the linear model without random effects using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
+These three models can be compared to each other and to the linear model without random effects using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
 From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two mixed effects models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values, whilst the model without random effects has the worst AIC.
 The conditional R$^{2}$ values, which take into account both the fixed effects and the random effects, are very similar for all models, but the model with all interaction terms is still slightly better. The R$^{2}$ value for the fixed effects model is worse than the conditional R$^{2}$ values for the mixed effects models.
 The root mean square errors of the first two mixed effects models in @tbl-performance-m234 are very similar, whilst the root mean squared error for the fixed effects model is much greater than the other values. The lowest root mean squared error occurs for the mixed effects model with interaction terms between all three predictors, suggesting that this model is the best.
 Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
 
-**NEED TO TALK ABOUT WHY CELL LINE INCLUDED WHEN IT DOESN'T LOOK LIKE IT SHOULD BE**
+<!-- **NEED TO TALK ABOUT WHY CELL LINE INCLUDED WHEN IT DOESN'T LOOK LIKE IT SHOULD BE** -->
 
 <!-- which shows that the model with interaction terms between concentration, treatment and cell line has the best AIC, but given that cell line does not appear to be important in predicting gene expression in @fig-ge-conc-grouping and @fig-ge-cl-boxplot and that there is possibly some residual variation in @fig-m4-plot, this model may be overfitting. -->
 <!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
