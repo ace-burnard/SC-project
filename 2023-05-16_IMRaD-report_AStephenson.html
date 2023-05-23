@@ -2779,7 +2779,8 @@ F-statistic: 156.6 on 7 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in <a href="#fig-m1-plot">Figure 4</a>. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+lmerModLmerTest]
 Formula: GE ~ concentration + (1 | GL)
    Data: data_long
 
@@ -2796,9 +2797,11 @@ Random effects:
 Number of obs: 87, groups:  GL, 8
 
 Fixed effects:
-              Estimate Std. Error t value
-(Intercept)     7.2948     3.0215   2.414
-concentration   2.0461     0.1273  16.069
+              Estimate Std. Error      df t value Pr(&gt;|t|)    
+(Intercept)     7.2948     3.0215  7.6657   2.414   0.0435 *  
+concentration   2.0461     0.1273 78.0015  16.069   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Correlation of Fixed Effects:
             (Intr)
@@ -2816,7 +2819,8 @@ concentratn -0.211</code></pre>
 <p>The next model considered fits gene expression as a function of concentration and treatment (with interaction terms), as well as gene line as a random effect. The residuals plot for this model is shown in <a href="#fig-m2-plot">Figure 5</a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+lmerModLmerTest]
 Formula: GE ~ concentration * treatment + (1 | GL)
    Data: data_long
 
@@ -2833,11 +2837,18 @@ Random effects:
 Number of obs: 87, groups:  GL, 8
 
 Fixed effects:
-                               Estimate Std. Error t value
-(Intercept)                     9.73729    1.86897   5.210
-concentration                   2.99068    0.09834  30.413
-treatmentplacebo               -4.88126    2.64267  -1.847
-concentration:treatmentplacebo -1.88920    0.13907 -13.585
+                               Estimate Std. Error       df t value Pr(&gt;|t|)
+(Intercept)                     9.73729    1.86897  6.93144   5.210  0.00128
+concentration                   2.99068    0.09834 77.00344  30.413  &lt; 2e-16
+treatmentplacebo               -4.88126    2.64267  6.92670  -1.847  0.10767
+concentration:treatmentplacebo -1.88920    0.13907 77.00344 -13.585  &lt; 2e-16
+                                  
+(Intercept)                    ** 
+concentration                  ***
+treatmentplacebo                  
+concentration:treatmentplacebo ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Correlation of Fixed Effects:
             (Intr) cncntr trtmnt
@@ -2857,7 +2868,8 @@ cncntrtn:tr  0.186 -0.707 -0.263</code></pre>
 <p>Two models are fitted that include cell line as a predictor. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in <a href="#fig-m3-plot">Figure 6</a> and <a href="#fig-m4-plot">Figure 7</a>, respectively.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+lmerModLmerTest]
 Formula: GE ~ concentration * treatment + CL + (1 | GL)
    Data: data_long
 
@@ -2874,12 +2886,20 @@ Random effects:
 Number of obs: 87, groups:  GL, 8
 
 Fixed effects:
-                               Estimate Std. Error t value
-(Intercept)                    11.40960    2.10015   5.433
-concentration                   2.99068    0.09834  30.413
-treatmentplacebo               -4.88000    2.45837  -1.985
-CLwild-type                    -3.34716    2.35799  -1.419
-concentration:treatmentplacebo -1.88920    0.13907 -13.585
+                               Estimate Std. Error       df t value Pr(&gt;|t|)
+(Intercept)                    11.40960    2.10015  5.59703   5.433  0.00201
+concentration                   2.99068    0.09834 77.00431  30.413  &lt; 2e-16
+treatmentplacebo               -4.88000    2.45837  5.90950  -1.985  0.09509
+CLwild-type                    -3.34716    2.35799  5.00431  -1.419  0.21493
+concentration:treatmentplacebo -1.88920    0.13907 77.00431 -13.585  &lt; 2e-16
+                                  
+(Intercept)                    ** 
+concentration                  ***
+treatmentplacebo               .  
+CLwild-type                       
+concentration:treatmentplacebo ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Correlation of Fixed Effects:
             (Intr) cncntr trtmnt CLwld-
@@ -2899,7 +2919,8 @@ cncntrtn:tr  0.166 -0.707 -0.283  0.000</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+lmerModLmerTest]
 Formula: GE ~ concentration * treatment * CL + (1 | GL)
    Data: data_long
 
@@ -2916,15 +2937,26 @@ Random effects:
 Number of obs: 87, groups:  GL, 8
 
 Fixed effects:
-                                           Estimate Std. Error t value
-(Intercept)                                 9.91750    2.41428   4.108
-concentration                               3.05141    0.10887  28.027
-treatmentplacebo                           -4.92159    3.41431  -1.441
-CLwild-type                                -0.36156    3.41518  -0.106
-concentration:treatmentplacebo             -1.40550    0.15397  -9.128
-concentration:CLwild-type                  -0.12145    0.15397  -0.789
-treatmentplacebo:CLwild-type                0.08179    4.82918   0.017
-concentration:treatmentplacebo:CLwild-type -0.96741    0.21775  -4.443
+                                           Estimate Std. Error       df t value
+(Intercept)                                 9.91750    2.41428  4.43886   4.108
+concentration                               3.05141    0.10887 75.00175  28.027
+treatmentplacebo                           -4.92159    3.41431  4.43886  -1.441
+CLwild-type                                -0.36156    3.41518  4.44335  -0.106
+concentration:treatmentplacebo             -1.40550    0.15397 75.00175  -9.128
+concentration:CLwild-type                  -0.12145    0.15397 75.00175  -0.789
+treatmentplacebo:CLwild-type                0.08179    4.82918  4.44111   0.017
+concentration:treatmentplacebo:CLwild-type -0.96741    0.21775 75.00175  -4.443
+                                           Pr(&gt;|t|)    
+(Intercept)                                  0.0119 *  
+concentration                               &lt; 2e-16 ***
+treatmentplacebo                             0.2161    
+CLwild-type                                  0.9203    
+concentration:treatmentplacebo             8.48e-14 ***
+concentration:CLwild-type                    0.4327    
+treatmentplacebo:CLwild-type                 0.9872    
+concentration:treatmentplacebo:CLwild-type 3.01e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Correlation of Fixed Effects:
             (Intr) cncntr trtmnt CLwld- cncnt: cn:CL- tr:CL-
@@ -2962,6 +2994,169 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <!-- The other two models, where there is either no interaction with cell line or cell line is not a predictor, have similar AIC values. -->
 <!-- , then this is likely a case of overfitting, so the interaction terms with cell line should be removed. Without this model, the best models are those with an interaction term between concentration and treatment, with or without a cell line term. The model with the cell line term is slightly better than the model without that term. This suggests that this model may be better, however the difference is not great. **DO MORE HERE**  -->
 <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
+<div class="cell">
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;"><caption>CAPTION HERE</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "> </th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">GE</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">GE</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">GE</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">p</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">p</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  0">p</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">9.74</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">6.02 – 13.46</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">11.41</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">7.23 – 15.59</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">9.92</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">5.11 – 14.72</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">concentration</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.99</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.80 – 3.19</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.99</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.79 – 3.19</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">3.05</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">2.83 – 3.27</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">treatment [placebo]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.88</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-10.14 – 0.38</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.068</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.88</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-9.77 – 0.01</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.051</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">-4.92</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-11.72 – 1.88</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.154</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">concentration * treatment<br>[placebo]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-1.89</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-2.17 – -1.61</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-1.89</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-2.17 – -1.61</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">-1.41</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-1.71 – -1.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">CL [wild-type]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-3.35</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-8.04 – 1.35</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.160</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">-0.36</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-7.16 – 6.44</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.916</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">concentration * CL<br>[wild-type]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">-0.12</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-0.43 – 0.19</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.433</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">treatment [placebo] * CL<br>[wild-type]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">0.08</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-9.53 – 9.70</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.987</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(concentration *<br>treatment [placebo]) * CL<br>[wild-type]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">-0.97</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">-1.40 – -0.53</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td colspan="10" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
+</tr>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">σ<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">4.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">4.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">2.61</td>
+</tr>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">τ<sub>00</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">12.61 <sub>GL</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">10.73 <sub>GL</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">10.83 <sub>GL</sub></td>
+
+</tr><tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">ICC</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.75</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.72</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.81</td>
+
+</tr><tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">8 <sub>GL</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">8 <sub>GL</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">8 <sub>GL</sub></td>
+</tr><tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">87</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">87</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">87</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.860 / 0.965</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.877 / 0.965</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.891 / 0.979</td>
+</tr>
+
+</tbody></table>
+
+</div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-performance-m234" class="anchored">
@@ -3034,7 +3229,7 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <section id="appendix-code" class="level1">
 <h1>Appendix: Code</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readr, lme4, knitr, performance)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>())</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2023-03-01_gene-data.csv&quot;</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
@@ -3086,22 +3281,24 @@ cncntr::CL- -0.113  0.500  0.159  0.159 -0.707 -0.707 -0.225</code></pre>
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GE <span class="sc">~</span> concentration<span class="sc">*</span>treatment<span class="sc">*</span>CL <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>GL), <span class="at">data =</span> data_long, <span class="at">na.action =</span> na.omit)</span>
 <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span>
 <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m4)</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(lm_step, m2,m3,m4) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;R2&quot;</span>, <span class="st">&quot;R2_conditional&quot;</span>, <span class="st">&quot;RMSE&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> grouping,</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>         <span class="at">geneline =</span> GL) <span class="sc">%&gt;%</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(group, geneline, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>, <span class="at">col =</span> <span class="st">&quot;grouping2&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> concentration, <span class="at">y =</span> GE, <span class="at">color =</span> grouping2)) <span class="sc">+</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(m4))) <span class="sc">+</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_color_manual(values=c(&quot;#006699&quot;, &quot;#006699&quot;, &quot;#98C2D9&quot;, &quot;#98C2D9&quot;, &quot;#D9AC82&quot;, &quot;#D9AC82&quot;, &quot;#B35900&quot;, &quot;#B35900&quot;)) +</span></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentration (mg/ml)&quot;</span>,</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>,</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment; Gene Line&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(m2, m3, m4)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co"># ranova(m4)</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(lm_step, m2,m3,m4) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;R2&quot;</span>, <span class="st">&quot;R2_conditional&quot;</span>, <span class="st">&quot;RMSE&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">%&gt;%</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> grouping,</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>         <span class="at">geneline =</span> GL) <span class="sc">%&gt;%</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(group, geneline, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>, <span class="at">col =</span> <span class="st">&quot;grouping2&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> concentration, <span class="at">y =</span> GE, <span class="at">color =</span> grouping2)) <span class="sc">+</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(m4))) <span class="sc">+</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_color_manual(values=c(&quot;#006699&quot;, &quot;#006699&quot;, &quot;#98C2D9&quot;, &quot;#98C2D9&quot;, &quot;#D9AC82&quot;, &quot;#D9AC82&quot;, &quot;#B35900&quot;, &quot;#B35900&quot;)) +</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  harrypotter<span class="sc">::</span><span class="fu">scale_color_hp_d</span>(<span class="st">&quot;Ravenclaw&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Concentration (mg/ml)&quot;</span>,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gene expression&quot;</span>,</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Cell Line; Treatment; Gene Line&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>

@@ -183,9 +183,20 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 <!-- The model with only concentration as a predictor of gene expression has a much greater AIC than any of the other models, so this model is definitely not the best model for gene expression. -->
 
 ```{r}
-# tab_model(m2, m3, m4)
-# ranova(m4)
+#| label: tbl-ranova
+#| tbl-cap: "CAPTION HERE"
+ranova(m2)
+ranova(m3)
+ranova(m4)
 ```
+
+```{r}
+#| label: tbl-sjPlot-m234
+#| tbl-cap: "CAPTION HERE"
+tab_model(m2, m3, m4)
+```
+
+@tbl-sjPlot-m234 shows the estimates and p-values for these estimates for the predictors in each of the mixed effects models.
 
 ```{r}
 #| label: tbl-performance-m234
