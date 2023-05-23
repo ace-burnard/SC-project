@@ -307,7 +307,7 @@ fixef(m4) %>%
   data.frame() %>% 
   mutate(names = rownames(data.frame(fixef(m4)))) %>%
   rename(values = ".") %>% 
-  pivot_wider(names_from = names, values_from = values) %>% 
+  # pivot_wider(names_from = names, values_from = values) %>% 
   kable()
 ```
 
@@ -317,7 +317,7 @@ fixef(m4) %>%
 random_effects <- ranef(m4)$GL
 random_effects %>%
   mutate(names = rownames(random_effects)) %>% 
-  pivot_wider(names_from = names, values_from = `(Intercept)`) %>% 
+  # pivot_wider(names_from = names, values_from = `(Intercept)`) %>% 
   kable()
 ```
 
