@@ -103,18 +103,23 @@ Given that the gene expression for each cell line and treatment was measured for
 A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
 <!-- Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model.  -->
 Using AIC, the function selects the full model as the best model.
-```{r}"
+```{r}
 lm_null <- lm(GE ~ 1, data = data_long)
 scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 summary(lm_step)
 ```
 
-However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot and a summary of the model is shown in @tbl-sjPlot-m1. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
-```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
+```{r}
+#| label: tbl-sjPlot-m1
+#| tbl-cap: "CAPTION"
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
-summary(m1)
+# summary(m1)
+mtab2df(tab_model(m1), n_models = 1, output = "kable")
+```
+```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
 plot(m1)
 ```
 
