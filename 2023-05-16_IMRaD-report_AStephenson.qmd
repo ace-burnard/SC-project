@@ -221,14 +221,16 @@ anova(m3) %>% kable()
 #| label: tbl-sjPlot-m2
 #| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
 # tab_model(m2)
-mtab2df(tab_model(m2), n_models=1, output = "kable")
+# mtab2df(tab_model(m2), n_models=1, output = "kable")
+anova(m2) %>% kable()
 ```
 
 ```{r}
 #| label: tbl-sjPlot-m4
 #| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration, treatment and cell line predictors, and interaction terms between all of the predictors, as well as a gene line random effects."
 # tab_model(m4)
-mtab2df(tab_model(m4), n_models=1, output = "kable")
+# mtab2df(tab_model(m4), n_models=1, output = "kable")
+anova(m4) %>% kable()
 ```
 
 @tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
@@ -238,7 +240,8 @@ mtab2df(tab_model(m4), n_models=1, output = "kable")
 #| tbl-cap: "The estimates and p-values for these estimates for the fixed effects model."
 lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
 # tab_model(lm_step, m2, m4)
-mtab2df(tab_model(lm_step), n_models=1, output = "kable")
+# mtab2df(tab_model(lm_step), n_models=1, output = "kable")
+anova(lm_step) %>% kable()
 ```
 
 The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m2 and @tbl-sjPlot-m4, whilst the fixed effects model is shown in @tbl-sjPlot-step.
