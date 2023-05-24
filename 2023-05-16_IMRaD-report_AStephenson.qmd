@@ -212,7 +212,7 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 #| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
 # tab_model(m3)
 # mtab2df(tab_model(m3), n_models=1, output = "kable")
-anova(m3) %>% kable(digits = c(6,6,0,6,6,6))
+anova(m3) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
 @tbl-sjPlot-m3 shows the estimates and p-values for these estimates for the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor), as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The estimates for this model are shown in @tbl-sjPlot-m2, along with the p-values for these estimates.
@@ -222,7 +222,7 @@ anova(m3) %>% kable(digits = c(6,6,0,6,6,6))
 #| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
 # tab_model(m2)
 # mtab2df(tab_model(m2), n_models=1, output = "kable")
-anova(m2) %>% kable(digits = c(6,6,0,6,6,6))
+anova(m2) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
 ```{r}
@@ -230,7 +230,7 @@ anova(m2) %>% kable(digits = c(6,6,0,6,6,6))
 #| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration, treatment and cell line predictors, and interaction terms between all of the predictors, as well as a gene line random effects."
 # tab_model(m4)
 # mtab2df(tab_model(m4), n_models=1, output = "kable")
-anova(m4) %>% kable(digits = c(6,6,0,6,6,6))
+anova(m4) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
 @tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
