@@ -156,7 +156,7 @@ plot(m3)
 #| tbl-cap: "**CAPTION**"
 m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
 # summary(m4)
-mtab2df(tab_model(m4), n_models = 1, output = "kable", booktabs = TRUE)
+mtab2df(tab_model(m4), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
 ```
 ```{r fig-m4-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, treatment and cell line (with interaction terms between all three predictors), with gene line as a random effect."}
 plot(m4)
