@@ -107,7 +107,7 @@ Using AIC, the function selects the full model as the best model.
 lm_null <- lm(GE ~ 1, data = data_long)
 scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
-summary(lm_step)
+summary(lm_step) %>% kable()
 ```
 
 However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot and a summary of the model is shown in @tbl-sjPlot-m1. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
