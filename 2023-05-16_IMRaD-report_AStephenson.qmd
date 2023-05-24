@@ -56,7 +56,7 @@ Several mixed effects models were then fit, and compared using Akaike's Informat
 
 # Results
 
-**ASSUMPTIONS CHECKING**
+<!-- **ASSUMPTIONS CHECKING** -->
 
 ```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
@@ -97,7 +97,7 @@ The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis
 From this plot, it can be seen that there does appear to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.
 From @fig-ge-conc-grouping, it can be seen that there appear to be differences between the pairs (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. Thus, cell line may be a predictor for gene expression.
 
-**REPEATED MEASURES HERE**
+<!-- **REPEATED MEASURES HERE** -->
 Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must be taken into account in fitting models on the data.
 
 A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
