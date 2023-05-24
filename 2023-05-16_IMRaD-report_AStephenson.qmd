@@ -24,7 +24,7 @@ bibliography: references.bib
 <!-- -   grouping = sheet names -->
 
 ```{r}
-pacman::p_load(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest, sjtable2df)
+pacman::p_load(tidyverse, readr, lme4, knitr, performance, sjPlot, lmerTest, sjtable2df, broom)
 options(knitr.kable.NA = "")
 theme_set(theme_light())
 data <- read_csv("data/2023-03-01_gene-data.csv")
@@ -102,19 +102,22 @@ Given that the gene expression for each cell line and treatment was measured for
 
 A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
 <!-- Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model.  -->
-Using AIC, the function selects the full model as the best model.
+Using AIC, the function selects the full model as the best model, which is summarised in @tbl-lm-step.
 ```{r}
+#| label: tbl-lm-step
+#| tbl-cap: "**CAPTION**"
 lm_null <- lm(GE ~ 1, data = data_long)
 scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
-summary(lm_step) %>% kable()
+# summary(lm_step)
+lm_step %>% tidy() %>% kable()
 ```
 
 However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot and a summary of the model is shown in @tbl-sjPlot-m1. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r}
 #| label: tbl-sjPlot-m1
-#| tbl-cap: "CAPTION"
+#| tbl-cap: "**CAPTION**"
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
 # summary(m1)
 mtab2df(tab_model(m1), n_models = 1, output = "kable")
