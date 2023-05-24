@@ -120,7 +120,7 @@ However, this does not consider the impact of gene line. A model can be fitted f
 #| tbl-cap: "**CAPTION**"
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
 # summary(m1)
-mtab2df(tab_model(m1), n_models = 1, output = "kable")
+mtab2df(tab_model(m1), n_models = 1, output = "kable", booktabs = TRUE)
 ```
 ```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
 plot(m1)
