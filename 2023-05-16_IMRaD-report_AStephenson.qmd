@@ -280,7 +280,7 @@ Thus, gene expression is higher for higher concentrations of the growth factor, 
 #| eval: false
 #| echo: true
 #| tidy: true
-#| tidy.opts: list(width.cutoff=60)
+#| tidy.opts: list(width.cutoff=50)
 ```
 
 # References
