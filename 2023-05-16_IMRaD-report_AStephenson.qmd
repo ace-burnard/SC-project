@@ -211,7 +211,8 @@ The residuals plots in @fig-m2-plot and @fig-m3-plot both appear to not have any
 #| label: tbl-sjPlot-m3
 #| tbl-cap: "The estimates and p-values for these estimates for the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
 # tab_model(m3)
-mtab2df(tab_model(m3), n_models=1, output = "kable")
+# mtab2df(tab_model(m3), n_models=1, output = "kable")
+anova(m3) %>% kable()
 ```
 
 @tbl-sjPlot-m3 shows the estimates and p-values for these estimates for the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor), as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The estimates for this model are shown in @tbl-sjPlot-m2, along with the p-values for these estimates.
