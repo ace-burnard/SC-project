@@ -3,7 +3,7 @@ title: "IMRaD report for Karl"
 author: "Alexandra Stephenson"
 date: today
 format: 
-  html:
+  pdf:
     self-contained: true
     df-print: tibble
 editor_options:
@@ -210,14 +210,14 @@ mtab2df(tab_model(m4), n_models=1, output = "kable")
 @tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
 
 ```{r}
-#| label: tbl-sjPlot-step-m24
-#| tbl-cap: "The estimates and p-values for these estimates for the fixed effects model and the two mixed effects models being considered."
+#| label: tbl-sjPlot-step
+#| tbl-cap: "The estimates and p-values for these estimates for the fixed effects model."
 lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
 # tab_model(lm_step, m2, m4)
-mtab2df(tab_model(lm_step, m2, m4), n_models=3, output = "kable")
+mtab2df(tab_model(lm_step), n_models=1, output = "kable")
 ```
 
-The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-step-m24, along with fixed effects model.
+The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m2 and @tbl-sjPlot-m4, whilst the fixed effects model is shown in @tbl-sjPlot-step.
 
 ```{r}
 #| label: tbl-ranova-m2
