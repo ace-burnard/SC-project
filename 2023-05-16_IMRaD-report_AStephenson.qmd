@@ -133,7 +133,7 @@ The next model considered fits gene expression as a function of concentration an
 #| tbl-cap: "**CAPTION**"
 m2 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
 # summary(m2)
-mtab2df(tab_model(m2), n_models = 1, output = "kable")
+mtab2df(tab_model(m2), n_models = 1, output = "kable", booktabs = TRUE)
 ```
 ```{r fig-m2-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms), with gene line as a random effect."}
 plot(m2)
@@ -146,7 +146,7 @@ Two models are fitted that include cell line as a predictor. One with interactio
 #| tbl-cap: "**CAPTION**"
 m3 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit)
 # summary(m3)
-mtab2df(tab_model(m3), n_models = 1, output = "kable")
+mtab2df(tab_model(m3), n_models = 1, output = "kable", booktabs = TRUE)
 ```
 ```{r fig-m3-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms) and cell line (without any interaction terms), with gene line as a random effect."}
 plot(m3)
@@ -156,7 +156,7 @@ plot(m3)
 #| tbl-cap: "**CAPTION**"
 m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
 # summary(m4)
-mtab2df(tab_model(m4), n_models = 1, output = "kable")
+mtab2df(tab_model(m4), n_models = 1, output = "kable", booktabs = TRUE)
 ```
 ```{r fig-m4-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, treatment and cell line (with interaction terms between all three predictors), with gene line as a random effect."}
 plot(m4)
