@@ -241,7 +241,7 @@ anova(m4) %>% kable(digits = c(5,5,0,6,6,6))
 lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
 # tab_model(lm_step, m2, m4)
 # mtab2df(tab_model(lm_step), n_models=1, output = "kable")
-anova(lm_step) %>% kable()
+anova(lm_step) %>% kable(digits = c(0,5,5,6,6))
 ```
 
 The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m2 and @tbl-sjPlot-m4, whilst the fixed effects model is shown in @tbl-sjPlot-step.
