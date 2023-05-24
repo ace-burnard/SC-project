@@ -102,7 +102,7 @@ Given that the gene expression for each cell line and treatment was measured for
 
 A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
 <!-- Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model.  -->
-Using AIC, the function selects the full model as the best model, which is summarised in @tbl-lm-step-new.
+Using AIC, the function selects the full model as the best model<!-- , which is summarised in @tbl-lm-step-new-->.
 ```{r}
 #| label: tbl-lm-step-new
 #| tbl-cap: "**CAPTION**"
@@ -110,43 +110,43 @@ lm_null <- lm(GE ~ 1, data = data_long)
 scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 # summary(lm_step)
-lm_step %>% tidy() %>% kable()
+# lm_step %>% tidy() %>% kable()
 ```
 
-However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot and a summary of the model is shown in @tbl-sjPlot-m1-new. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot<!-- and a summary of the model is shown in @tbl-sjPlot-m1-new-->. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r}
 #| label: tbl-sjPlot-m1-new
 #| tbl-cap: "**CAPTION**"
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
 # summary(m1)
-mtab2df(tab_model(m1), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
+# mtab2df(tab_model(m1), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
 ```
 ```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
 plot(m1)
 ```
 
-The next model considered fits gene expression as a function of concentration and treatment (with interaction terms), as well as gene line as a random effect. The residuals plot for this model is shown in @fig-m2-plot and a summary of the model is shown in @tbl-sjPlot-m2-new.
+The next model considered fits gene expression as a function of concentration and treatment (with interaction terms), as well as gene line as a random effect. The residuals plot for this model is shown in @fig-m2-plot<!-- and a summary of the model is shown in @tbl-sjPlot-m2-new-->.
 
 ```{r}
 #| label: tbl-sjPlot-m2-new
 #| tbl-cap: "**CAPTION**"
 m2 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
 # summary(m2)
-mtab2df(tab_model(m2), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
+# mtab2df(tab_model(m2), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
 ```
 ```{r fig-m2-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms), with gene line as a random effect."}
 plot(m2)
 ```
 
-Two models are fitted that include cell line as a predictor. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in @fig-m3-plot and @fig-m4-plot, respectively, along with summaries of the models shown in @tbl-sjPlot-m3-new and @tbl-sjPlot-m4-new.
+Two models are fitted that include cell line as a predictor. One with interaction terms between concentration and treatment only, and one with interaction terms between concentration, treatment and cell line. The residuals plots for these models are shown in @fig-m3-plot and @fig-m4-plot, respectively<!--, along with summaries of the models shown in @tbl-sjPlot-m3-new and @tbl-sjPlot-m4-new-->.
 
 ```{r}
 #| label: tbl-sjPlot-m3-new
 #| tbl-cap: "**CAPTION**"
 m3 <- lmer(GE ~ concentration*treatment + CL + (1|GL), data = data_long, na.action = na.omit)
 # summary(m3)
-mtab2df(tab_model(m3), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
+# mtab2df(tab_model(m3), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
 ```
 ```{r fig-m3-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms) and cell line (without any interaction terms), with gene line as a random effect."}
 plot(m3)
@@ -156,7 +156,7 @@ plot(m3)
 #| tbl-cap: "**CAPTION**"
 m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
 # summary(m4)
-mtab2df(tab_model(m4), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
+# mtab2df(tab_model(m4), n_models = 1, output = "kable", booktabs = TRUE, escape = FALSE)
 ```
 ```{r fig-m4-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, treatment and cell line (with interaction terms between all three predictors), with gene line as a random effect."}
 plot(m4)
