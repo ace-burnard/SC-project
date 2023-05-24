@@ -282,4 +282,5 @@ Thus, gene expression is higher for higher concentrations of the growth factor, 
 #| tidy: true
 ```
 
+\newpage
 # References
