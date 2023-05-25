@@ -41,15 +41,15 @@ This report investigates the impact of growth factor concentration, treatment, a
 
 # Method
 
-The data was cleaned and analysed using the R language [@r-2022], and the packages <!--ggpubr [@ggpubr], ggrepel [@ggrepel]-->, knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest], <!--patchwork [@patchwork]-->, performance [@performance], readr [@readr]<!--, rstatix [@rstatix], showtext [@showtext]-->, sjPlot [@sjPlot], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
+The data were cleaned and analysed using the R language [@r-2022], and the packages <!--ggpubr [@ggpubr], ggrepel [@ggrepel]-->, knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest]<!--, patchwork [@patchwork]-->, performance [@performance], readr [@readr]<!--, rstatix [@rstatix], showtext [@showtext]-->, sjPlot [@sjPlot], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
-Several mixed effects models were then fit, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean squared error.
+Several fixed effect and mixed effects models were then fitted, using ANOVA tests to confirm the statistical significance of all terms in the models, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean squared error.
 
 # Results
 
-<!-- **ASSUMPTIONS CHECKING** -->
+To begin with, an investigation of the parameters that may impact gene expression is conducted, prior to fitting any models.
 
 ```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101)."}
 data_long %>%
@@ -86,8 +86,9 @@ data_long %>%
        color = "Cell Line; Treatment")
 ```
 
-The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment. 
-From this plot, it can be seen that there does appear to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.
+The effect of concentration of growth factor on gene expression is shown in @fig-ge-conc-grouping, with data points coloured according to cell line and treatment.
+<!-- The data is plotted in @fig-ge-conc-grouping, with gene expression on the y axis and concentration on the x axis, with the data points coloured by cell line and treatment.  -->
+There appears to be a relationship between concentration and gene expression, which suggests that concentration is a predictor of gene expression.
 From @fig-ge-conc-grouping, it can be seen that there appear to be differences between the pairs (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between (cell-type 101, activating factor 42) and (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. Thus, cell line may be a predictor for gene expression.
 
 <!-- **REPEATED MEASURES HERE** -->
