@@ -92,7 +92,8 @@ There appears to be a relationship between concentration and gene expression, wh
 @fig-ge-conc-grouping also shows that there appear to be differences between the pairs (cell-type 101, placebo) and (wild-type, placebo) and the other two pairs of cell line and treatment. However, there does not appear to be a difference between the pair (cell-type 101, activating factor 42) and  the pair (wild-type, activating factor 42). This suggests that for the placebo treatment, cell line has an impact on gene expression, but for the activating factor, cell line may not have an impact on gene expression. Thus, cell line may be a predictor for gene expression.
 
 <!-- **REPEATED MEASURES HERE** -->
-Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must be taken into account in fitting models on the data.
+The initial analysis suggests that gene expression may be predicted by treatment and concentration, with an interaction effect with cell line.
+Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must also be considered when fitting models on the data.
 
 ## Fixed effect model
 
