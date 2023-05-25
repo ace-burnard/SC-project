@@ -73,7 +73,7 @@ data_long %>%
        y = "Gene expression")
 ```
 
-@fig-ge-treat-boxplot shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42. This suggests that treatment is a predictor of gene expression.
+@fig-ge-treat-boxplot shows a boxplot of gene expression for each treatment type (placebo or activating factor 42). From this boxplot, it can be seen that there does appear to be a difference between gene expression for placebo and gene expression for activating factor 42, and that activating factor 42 increases gene expression. This suggests that treatment is a predictor of gene expression.
 
 ```{r fig-ge-conc-grouping, fig.cap = "A plot of gene expression as a function of concentration, coloured by cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42)."}
 data_long %>%
