@@ -103,9 +103,18 @@ scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 ```
 
-However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+The statistical significance of the terms in the selected model can be found using an ANOVA test. @tbl-sjPlot-step shows the results of the ANOVA test conducted upon the selected fixed effect model, which shows that all of the terms are statistically significant.
+
+```{r}
+#| label: tbl-sjPlot-step
+#| tbl-cap: "An ANOVA table showing the statistical significance of each predictor in the fixed effects model."
+lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
+anova(lm_step) %>% kable(digits = c(0,5,5,6,6))
+```
 
 ## Mixed effects models
+
+However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
@@ -161,15 +170,6 @@ anova(m4) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
 @tbl-sjPlot-m4 shows the statistical significance of each term in the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
-
-```{r}
-#| label: tbl-sjPlot-step
-#| tbl-cap: "An ANOVA table showing the statistical significance of each predictor in the fixed effects model."
-lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
-anova(lm_step) %>% kable(digits = c(0,5,5,6,6))
-```
-
-The statistical significance of each term in the fixed effects model is shown in @tbl-sjPlot-step, which shows that all of the terms are statistically significant.
 
 ```{r}
 #| label: tbl-ranova-m2
