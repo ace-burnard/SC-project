@@ -1,5 +1,5 @@
 ---
-title: "Predicting gene expression from growth factor, cell line and treatment"
+title: "Modelling the effect of growth factor, cell line and treatment on gene expression"
 author: "Alexandra Stephenson"
 date: today
 format: 
