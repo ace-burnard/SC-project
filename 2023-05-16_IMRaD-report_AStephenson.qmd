@@ -216,7 +216,6 @@ data_long %>%
   geom_point() +
   geom_line(aes(y = predict(m4))) +
   ylim(0, NA) +
-  # scale_color_manual(values=c("#006699", "#006699", "#98C2D9", "#98C2D9", "#D9AC82", "#D9AC82", "#B35900", "#B35900")) +
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
