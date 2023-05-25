@@ -114,7 +114,7 @@ anova(lm_step) %>% kable(digits = c(0,5,5,6,6))
 
 ## Mixed effects models
 
-However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+The fixed effect model does not consider the impact of gene line. To include this factor, a model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
 
 ```{r}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
