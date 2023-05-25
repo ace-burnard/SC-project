@@ -92,6 +92,8 @@ From @fig-ge-conc-grouping, it can be seen that there appear to be differences b
 <!-- **REPEATED MEASURES HERE** -->
 Given that the gene expression for each cell line and treatment was measured for different concentrations of growth factor for the same gene line, then this must be taken into account in fitting models on the data.
 
+## Fixed effect model
+
 A linear model can be fit using the `step` function to select the best model based on AIC, where the full scope is gene expression as a function of concentration, treatment, and cell line, with interaction terms between all three predictors. 
 <!-- Gene line is not included as it is an additional parameter to be controlled for, not a possible predictor to be included in the model.  -->
 Using AIC, the function selects the full model as the best model.
@@ -102,6 +104,8 @@ lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 ```
 
 However, this does not consider the impact of gene line. A model can be fitted for gene expression as a function of concentration, with gene line as a random effect. The residuals plot for this model is shown in @fig-m1-plot. From this figure, it can be seen that there is still variance not explained by concentration alone, so this model will not be considered further.
+
+## Mixed effects models
 
 ```{r}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
@@ -142,7 +146,7 @@ The residuals plots in @fig-m2-plot, @fig-m3-plot and @fig-m4-plot all show that
 anova(m3) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
-@tbl-sjPlot-m3 shows the estimates and p-values for these estimates for the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor), as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The estimates for this model are shown in @tbl-sjPlot-m2, along with the p-values for these estimates.
+@tbl-sjPlot-m3 shows the statistical significance of each term in the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor), as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The statistical significance of each term in this model are shown in @tbl-sjPlot-m2, from which it can be seen that all fixed effect terms in this model should be kept.
 
 ```{r}
 #| label: tbl-sjPlot-m2
@@ -156,7 +160,7 @@ anova(m2) %>% kable(digits = c(5,5,0,6,6,6))
 anova(m4) %>% kable(digits = c(5,5,0,6,6,6))
 ```
 
-@tbl-sjPlot-m4 shows the estimates and p-values for the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
+@tbl-sjPlot-m4 shows the statistical significance of each term in the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
 
 ```{r}
 #| label: tbl-sjPlot-step
@@ -165,23 +169,25 @@ lm_step <- lm(GE ~ concentration*treatment*CL, data = data_long)
 anova(lm_step) %>% kable(digits = c(0,5,5,6,6))
 ```
 
-The estimates for two remaining mixed effects models being studied are shown in @tbl-sjPlot-m2 and @tbl-sjPlot-m4, whilst the fixed effects model is shown in @tbl-sjPlot-step.
+The statistical significance of each term in the fixed effects model is shown in @tbl-sjPlot-step, which shows that all of the terms are statistically significant.
 
 ```{r}
 #| label: tbl-ranova-m2
-#| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration and treatment (and the interaction term between these predictors) as fixed effects, showing that the random effect term is statistically significant."
+#| tbl-cap: "An ANOVA-like table showing the statistical significance of the random effect term in the mixed effects model with concentration and treatment (and the interaction term between these predictors) as fixed effects, showing that the gene line random effect term is statistically significant."
 ranova(m2) %>% 
   kable(digits = c(0,4,4,5,4,25))
 ```
 
 ```{r}
 #| label: tbl-ranova-m4
-#| tbl-cap: "The results of the function `ranova` applied to the mixed effects model with concentration, treatment and cell line (and the interaction terms between these predictors) as fixed effects, showing that the random effect term is statistically significant."
+#| tbl-cap: "An ANOVA-like table showing the statistical significance of the random effect term in the mixed effects model with concentration, treatment and cell line (and the interaction terms between these predictors) as fixed effects, showing that the gene line random effect term is statistically significant."
 ranova(m4) %>% 
   kable(digits = c(0,4,4,5,4,25))
 ```
 
-@tbl-ranova-m2 and @tbl-ranova-m4 show the results of applying the function `ranova` to the two mixed effects models considered. From these tables, it can be seen that the random effects are significant in both models. Thus, these random effect terms should not be removed.
+The statistical significance of the random effect terms in the mixed effects models can also be tested, as shown in @tbl-ranova-m2 and @tbl-ranova-m4. From these tables, it can be seen that the random effect term in each model is statistically significant, and should therefore be retained.
+
+## Comparing models
 
 ```{r}
 #| label: tbl-performance-m234
