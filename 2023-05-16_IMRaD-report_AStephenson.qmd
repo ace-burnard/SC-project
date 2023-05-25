@@ -134,7 +134,7 @@ m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action
 plot(m4)
 ```
 
-The residuals plots in @fig-m2-plot, @fig-m3-plot and @fig-m4-plot all appear to not have any residual variance. 
+The residuals plots in @fig-m2-plot, @fig-m3-plot and @fig-m4-plot all appear to show there is not any residual variance.
 
 ```{r}
 #| label: tbl-sjPlot-m3
