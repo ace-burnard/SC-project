@@ -103,7 +103,7 @@ scope <- GE ~ concentration*treatment*CL
 lm_step <- step(lm_null, scope = scope, direction = "both", trace = 0)
 ```
 
-The statistical significance of the terms in the selected model can be found using an ANOVA test. @tbl-sjPlot-step shows the results of the ANOVA test conducted upon the selected fixed effect model, which shows that all of the terms are statistically significant.
+The statistical significance of the terms in the selected model can be found using an ANOVA test. @tbl-sjPlot-step shows the results of the ANOVA test conducted upon the selected fixed effect model, from which it can be seen that all of the terms are statistically significant.
 
 ```{r}
 #| label: tbl-sjPlot-step
