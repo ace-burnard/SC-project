@@ -44,7 +44,7 @@ The data were cleaned and analysed using the R language [@r-2022], and the packa
 Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`. Only one data point is missing, that of the gene expression for growth factor concentration $5$ mg/ml and gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
 Data entries that referred to the same cell line or treatment were cleaned so that they all used the same exact phrase (for example, the abbreviation `WT' was replaced by `wild-type').
 
-Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
+Exploratory data analysis was then conducted on the data, including plotting gene expression versus cell line, gene expression versus treatment, and gene expression versus growth factor concentration.
 
 Several fixed effect and mixed effects models were then fitted, using ANOVA tests to confirm the statistical significance of all terms in the models, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean squared error.
 
