@@ -194,9 +194,9 @@ The statistical significance of the random effect terms in the mixed effects mod
 #| label: tbl-performance-m234
 #| tbl-cap: "The AIC, R$^{2}$ values and root mean squared errors for each of the three fitted models."
 fixed_effects_model <- lm_step
-mixed_effects_model1 <- m2
-mixed_effects_model2 <- m4
-compare_performance(fixed_effects_model, mixed_effects_model1, mixed_effects_model2) %>% 
+mixed_effects_model_1 <- m2
+mixed_effects_model_2 <- m4
+compare_performance(fixed_effects_model, mixed_effects_model_1, mixed_effects_model_2) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
   rename("conditional R2" = "R2_conditional") %>% 
   kable(digits = c(0,4,7,7,6))
