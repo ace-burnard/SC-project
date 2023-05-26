@@ -198,7 +198,7 @@ mixed_effects_model_1 <- m2
 mixed_effects_model_2 <- m4
 compare_performance(fixed_effects_model, mixed_effects_model_1, mixed_effects_model_2) %>% 
   select(c("Name", "AIC", "R2", "R2_conditional", "RMSE")) %>% 
-  rename("conditional R2" = "R2_conditional") %>% 
+  rename("conditional $R^{2}$" = "R2_conditional") %>% 
   kable(digits = c(0,4,7,7,6))
 ```
 
