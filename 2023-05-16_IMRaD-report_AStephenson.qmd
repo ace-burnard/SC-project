@@ -154,7 +154,7 @@ plot(m4)
 
 ```{r}
 #| label: tbl-sjPlot-m3
-#| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects."
+#| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration, treatment and cell line predictors, and an interaction term between concentration and treatment, as well as a gene line random effects. The cell line term is not statistically significant, whilst the interaction term between concentration and treatment is, so the individual concentration and treatment terms should also be retained, whilst the cell line term is removed."
 anova(m3) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 ```
 
