@@ -40,7 +40,7 @@ This report investigates the impact of growth factor concentration, treatment, a
 
 # Method
 
-The data were cleaned and analysed using the R language [@r-2022], and the packages<!-- ggpubr [@ggpubr], ggrepel [@ggrepel],--> knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest]<!--, patchwork [@patchwork]-->, performance [@performance], readr [@readr]<!--, rstatix [@rstatix], showtext [@showtext]-->, sjPlot [@sjPlot], and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
+The data were cleaned and analysed using the R language [@r-2022], and the packages<!-- ggpubr [@ggpubr], ggrepel [@ggrepel],--> knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest]<!--, patchwork [@patchwork]-->, performance [@performance], readr [@readr]<!--, rstatix [@rstatix], showtext [@showtext]-->, sjPlot [@sjPlot] and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
