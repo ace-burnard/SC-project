@@ -162,7 +162,7 @@ anova(m3) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 
 ```{r}
 #| label: tbl-sjPlot-m2
-#| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects."
+#| tbl-cap: "An ANOVA table showing the statistical significance of each fixed effect predictor in the mixed effects model with concentration and treatment predictors, and an interaction term, as well as a gene line random effects. The interaction term between concentration and treatment is significant, so all terms in the model should be kept."
 anova(m2) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 ```
 
