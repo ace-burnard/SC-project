@@ -1,5 +1,5 @@
 ---
-title: "Modelling the effect of growth factor, cell line and treatment on gene expression"
+title: "Modelling the effect of growth factor, treatment and cell line on gene expression"
 author: "Alexandra Stephenson"
 date: today
 date-format: long
@@ -34,9 +34,9 @@ data_long <- data %>%
 ```
 
 # Introduction
-The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from $0$ to $10$). Only one data point is missing, that of the gene expression for growth factor concentration $5$ mg/ml and gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
+The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from $0$ mg/ml to $10$ mg/ml). Only one data point is missing, that of the gene expression for growth factor concentration $5$ mg/ml and gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
 
-This report investigates the impact of the concentration of growth factor, treatment, and cell line on gene expression, as well as the effect of gene line.
+This report investigates the effect of growth factor concentration, treatment, and cell line on gene expression, as well as the effect of gene line.
 
 # Method
 
