@@ -240,7 +240,7 @@ fixef(m4) %>%
 
 ```{r}
 #| label: tbl-random-coefs-m4
-#| tbl-cap: "The difference from the average intercept for each gene line."
+#| tbl-cap: "The difference from the average intercept (shown in @tbl-fixed-coefs-m4) for each gene line."
 random_effects <- ranef(m4)$GL
 random_effects %>%
   rename(value = `(Intercept)`) %>% 
