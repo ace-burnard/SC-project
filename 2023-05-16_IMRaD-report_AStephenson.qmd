@@ -34,13 +34,15 @@ data_long <- data %>%
 ```
 
 # Introduction
-The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from $0$ mg/ml to $10$ mg/ml). Only one data point is missing, that of the gene expression for growth factor concentration $5$ mg/ml and gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
+The data set consists of eight gene lines, each with one of two cell lines (wild-type or cell-type 101), one of two treatments (the placebo treatment or activating factor 42), and eleven different concentrations of growth factor (recorded in mg/ml). Thus, for each pair of cell line and treatment, there are two gene lines, each with eleven concentrations of growth factor (from $0$ mg/ml to $10$ mg/ml). 
 
 This report investigates the effect of growth factor concentration, treatment, and cell line on gene expression, as well as the effect of gene line.
 
 # Method
 
-The data were cleaned and analysed using the R language [@r-2022], and the packages knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest], performance [@performance], readr [@readr], sjPlot [@sjPlot] and tidyverse [@tidyverse]. Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`.
+The data were cleaned and analysed using the R language [@r-2022], and the packages knitr [@knitr], lme4 [@lme4], lmerTest [@lmerTest], performance [@performance], readr [@readr], sjPlot [@sjPlot] and tidyverse [@tidyverse]. 
+Any data points recorded as $-99$ were taken to indicate no data was recorded, or `NA`. Only one data point is missing, that of the gene expression for growth factor concentration $5$ mg/ml and gene line GL-fUg (with cell line wild-type and treatment activating factor 42). 
+Data entries that referred to the same cell line or treatment were cleaned so that they all used the same exact phrase.
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus concentration, gene expression versus cell line, and gene expression versus treatment.
 
