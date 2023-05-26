@@ -280,11 +280,13 @@ Thus, gene expression is higher for higher concentrations of the growth factor, 
 <!-- ``` -->
 
 \newpage
+# References {.appendix}
+::: {#refs}
+:::
+
+\newpage
 # Appendix: Code {.appendix}
 ```{r ref.label=knitr::all_labels()}
 #| eval: false
 #| echo: true
 ```
-
-\newpage
-# References {.appendix}
