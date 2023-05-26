@@ -46,7 +46,7 @@ Data entries that referred to the same cell line or treatment were cleaned so th
 
 Exploratory data analysis was then conducted on the data, including plotting gene expression versus cell line, gene expression versus treatment, and gene expression versus growth factor concentration.
 
-Several fixed effect and mixed effects models were then fitted, using ANOVA tests to confirm the statistical significance of all terms in the models, and compared using Akaike's Information Criterion (AIC), R$^{2}$ values and root mean squared error.
+Several fixed effects and mixed effects models were then fitted, using ANOVA tests to confirm the statistical significance of all terms in the models, and compared using Akaike's Information Criterion (AIC), $R^{2}$ values and root mean squared error.
 
 # Results
 
