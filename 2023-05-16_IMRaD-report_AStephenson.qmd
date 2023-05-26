@@ -175,6 +175,8 @@ anova(m4) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 
 @tbl-sjPlot-m4 shows the statistical significance of each term in the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and a gene line random effect. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, all of the other fixed effect terms should also be retained. 
 
+The statistical significance of the random effect terms in the mixed effects models can also be tested, as shown in @tbl-ranova-m2 and @tbl-ranova-m4. From these tables, it can be seen that the random effect term in each model is statistically significant, and should therefore be retained.
+
 ```{r}
 #| label: tbl-ranova-m2
 #| tbl-cap: "An ANOVA-like table showing the statistical significance of the random effect term in the mixed effects model with concentration and treatment (and the interaction term between these predictors) as fixed effects, showing that the gene line random effect term is statistically significant."
@@ -186,8 +188,6 @@ ranova(m2) %>% kable(digits = c(0, 4, 4, 5, 4, 25))
 #| tbl-cap: "An ANOVA-like table showing the statistical significance of the random effect term in the mixed effects model with concentration, treatment and cell line (and the interaction terms between these predictors) as fixed effects, showing that the gene line random effect term is statistically significant."
 ranova(m4) %>% kable(digits = c(0, 4, 4, 5, 4, 25))
 ```
-
-The statistical significance of the random effect terms in the mixed effects models can also be tested, as shown in @tbl-ranova-m2 and @tbl-ranova-m4. From these tables, it can be seen that the random effect term in each model is statistically significant, and should therefore be retained.
 
 ## Comparing models
 
