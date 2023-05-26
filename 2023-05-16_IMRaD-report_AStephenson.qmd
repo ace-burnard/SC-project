@@ -172,7 +172,7 @@ anova(m2) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 anova(m4) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 ```
 
-@tbl-sjPlot-m4 shows the statistical significance of each term in the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and gene line random effects. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
+@tbl-sjPlot-m4 shows the statistical significance of each term in the model with concentration, treatment and cell line as predictors, along with interaction terms between all predictors, and a gene line random effect. From this table, it can be seen that the interaction term between concentration, treatment and cell line is statistically significant, so this term should be kept. Because this term should be kept, then all of the other fixed effect terms should also be kept. 
 
 ```{r}
 #| label: tbl-ranova-m2
