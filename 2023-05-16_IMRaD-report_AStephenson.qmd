@@ -121,7 +121,7 @@ The fixed effects model does not consider the impact of gene line. To consider t
 ```{r}
 m1 <- lmer(GE ~ concentration + (1|GL), data = data_long, na.action = na.omit)
 ```
-```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect."}
+```{r fig-m1-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, with gene line as a random effect.", out.width="80%"}
 plot(m1)
 ```
 
@@ -130,7 +130,7 @@ The next model considered fits gene expression as a function of concentration an
 ```{r}
 m2 <- lmer(GE ~ concentration*treatment + (1|GL), data = data_long, na.action = na.omit)
 ```
-```{r fig-m2-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms), with gene line as a random effect."}
+```{r fig-m2-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration and treatment (with interaction terms), with gene line as a random effect.", out.width="80%"}
 plot(m2)
 ```
 
@@ -145,7 +145,7 @@ plot(m3)
 ```{r}
 m4 <- lmer(GE ~ concentration*treatment*CL + (1|GL), data = data_long, na.action = na.omit)
 ```
-```{r fig-m4-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, treatment and cell line (with interaction terms between all three predictors), with gene line as a random effect."}
+```{r fig-m4-plot, fig.cap = "The residuals plot for the model of gene expression as a function of concentration, treatment and cell line (with interaction terms between all three predictors), with gene line as a random effect.", out.width="80%"}
 plot(m4)
 ```
 
