@@ -159,7 +159,7 @@ plot(m4)
 anova(m3) %>% kable(digits = c(5, 5, 0, 6, 6, 6))
 ```
 
-@tbl-sjPlot-m3 shows the statistical significance of each term in the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor) as predictors, as well as the gene line random effects. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effects. The statistical significance of each term in this model are shown in @tbl-sjPlot-m2, from which it can be seen that all fixed effect terms in this model should be kept.
+@tbl-sjPlot-m3 shows the statistical significance of each term in the mixed effects model with concentration and treatment (with the interaction term) and cell line (without interactions with this predictor) as predictors, as well as the gene line random effect. From this table, it can be seen that the cell line predictor is not statistically significant, so this term should be removed from the model. Removing this term results in the mixed effects models with concentration and treatment predictors (with the interaction term) and the gene line random effect. The statistical significance of each term in this model are shown in @tbl-sjPlot-m2, from which it can be seen that all fixed effect terms in this model should be kept.
 
 ```{r}
 #| label: tbl-sjPlot-m2
