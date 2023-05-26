@@ -189,7 +189,7 @@ ranova(m2) %>% kable(digits = c(0, 4, 4, 5, 4, 25))
 ranova(m4) %>% kable(digits = c(0, 4, 4, 5, 4, 25))
 ```
 
-## Comparing models
+## Comparing the models
 
 ```{r}
 #| label: tbl-performance-m234
@@ -205,7 +205,7 @@ compare_performance(fixed_effects_model, mixed_effects_model_1, mixed_effects_mo
 
 The fixed effects model and mixed effects models can be compared to each other using AIC values, $R^{2}$ values and RMSE values (shown in @tbl-performance-m234).
 These show that the mixed effects model with interaction terms between concentration, treatment and cell line has the best AIC. The other mixed effects model, where cell line is not a predictor, has a very similar AIC value, whilst the fixed effects model (without the gene line random effect) has the worst AIC.
-The conditional $R^{2}$ values, which take into account both the fixed effects and the random effects, are very similar for both mixed effects models, but the model with all interaction terms is still slightly better. The $R^{2}$ value for the fixed effects model is worse than the conditional $R^{2}$ values for the mixed effects models.
+The conditional $R^{2}$ values for the mixed effects models, which take into account both the fixed effects and the random effects, are very similar for both models, but the model with all interaction terms is still slightly better. The $R^{2}$ value for the fixed effects model is worse than the conditional $R^{2}$ values for the mixed effects models.
 The root mean squared error for the fixed effects model is much greater than the root mean squared error of either mixed effects model, whilst the mixed effects model that does not include cell line as a predictor has a larger root mean squared error than the mixed effects model that does include cell line as a predictor. This suggests that the mixed effects model with interaction terms between all three predictors is the best.
 <!-- The root mean square errors of the mixed effects model that  cell line in @tbl-performance-m234 are very similar, whilst the root mean squared error for the fixed effects model is much greater than the other values. The lowest root mean squared error occurs for the mixed effects model with interaction terms between all three predictors, suggesting that this model is the best. -->
 Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
