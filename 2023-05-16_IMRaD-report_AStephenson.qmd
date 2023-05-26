@@ -50,7 +50,7 @@ Several fixed effects and mixed effects models were then fitted, using ANOVA tes
 
 # Results
 
-To begin with, an investigation of the parameters that may impact gene expression is conducted, prior to fitting any models.
+Initially, an investigation of the parameters that may impact gene expression was conducted prior to fitting any models.
 
 ```{r fig-ge-cl-boxplot, fig.cap = "A boxplot of gene expression for each cell line (wild-type and cell-type 101).", out.width="80%"}
 data_long %>%
