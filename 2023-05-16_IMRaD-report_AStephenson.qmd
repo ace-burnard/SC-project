@@ -200,7 +200,7 @@ compare_performance(lm_step, m2, m4) %>%
 ```
 
 The fixed effects model and mixed effects models can be compared to each other using AIC values, R$^{2}$ values and RMSE values (shown in @tbl-performance-m234).
-From these values, it can be seen that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two mixed effects models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values, whilst the model without random effects has the worst AIC.
+These show that the model with interaction terms between concentration, treatment and cell line has the best AIC. The other two mixed effects models, where there is either no interaction with cell line or cell line is not a predictor, have very similar AIC values, whilst the model without random effects has the worst AIC.
 The conditional R$^{2}$ values, which take into account both the fixed effects and the random effects, are very similar for all models, but the model with all interaction terms is still slightly better. The R$^{2}$ value for the fixed effects model is worse than the conditional R$^{2}$ values for the mixed effects models.
 The root mean square errors of the first two mixed effects models in @tbl-performance-m234 are very similar, whilst the root mean squared error for the fixed effects model is much greater than the other values. The lowest root mean squared error occurs for the mixed effects model with interaction terms between all three predictors, suggesting that this model is the best.
 Thus, the model with interaction terms between all three predictors, and with gene line as a random effect, appears to be the best model.
