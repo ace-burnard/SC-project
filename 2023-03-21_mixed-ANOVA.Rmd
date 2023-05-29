@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r load}
 pacman::p_load(tidyverse, readr, rstatix, ggpubr)
-data <- read_csv("data/2023-03-01_gene-data.csv")
+data <- read_csv(here::here("data/2023-03-01_gene-data.csv"))
 plot_height <- 5
 ```
 
@@ -132,7 +132,7 @@ bxp <- ggdotplot(data_aov,
                  facet.by = 'CL',
                  binwidth = 1)
 bxp
-ggsave("figures/conc-ge-grouping_scatterplot.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge-grouping_scatterplot.svg"), width = 2*plot_height, height = plot_height)
 ```
 
 ## Check assumptions
@@ -331,7 +331,7 @@ bxp2 +
     subtitle = get_test_label(res.aov, detailed = TRUE),
     caption = get_pwc_label(pwc)
   )
-ggsave("figures/conc-ge-grouping_scatterplot_labelled.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge-grouping_scatterplot_labelled.svg"), width = 2*plot_height, height = plot_height)
 ```
 
 ## Report
