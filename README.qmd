@@ -44,8 +44,7 @@ pacman::p_load(tidyverse)
 -   code to calculate sample size in "2023-05-02_sample-size-for-grant.Rmd"
 
 # IMRaD report
--   use lmer command in lme4 package (advice from Jono)
--   random intercept model (advice from Jono)
--   look in Zuur book, section on random intercepts (advice from Jono)
--   include the plot with new font (advice from Jono)
--   use "dutchmasters::view_of_Delft" palette for that plot, use paletteer package (advice from Jono)
+
+-   fitting models to predict gene expression based on growth factor concentration, treatment, and cell line, and looking at a random effect term for gene line
+-   writing report on the data and the fitted models
+-   selected a random intercept model (using lmer function from lme4 package)
