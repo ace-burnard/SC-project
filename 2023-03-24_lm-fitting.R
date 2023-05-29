@@ -1,5 +1,5 @@
 pacman::p_load(tidyverse, readr)
-data <- read_csv("data/2023-03-01_gene-data.csv")
+data <- read_csv(here::here("data/2023-03-01_gene-data.csv"))
 
 data_plotting <- data %>%
   mutate(CL = `cell line`,
@@ -38,4 +38,4 @@ data_plotting %>%
        y = "Gene expression",
        color = 'Treatment') +
   theme_bw()
-ggsave("figures/conc-ge_scatterplot_facet-cellline_lm.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_scatterplot_facet-cellline_lm.svg"), width = 2*plot_height, height = plot_height)
