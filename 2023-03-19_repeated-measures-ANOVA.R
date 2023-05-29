@@ -1,5 +1,5 @@
 pacman::p_load(tidyverse, readr)
-data <- read_csv("data/2023-03-01_gene-data.csv")
+data <- read_csv(here::here("data/2023-03-01_gene-data.csv"))
 
 data_plotting <- data %>%
   mutate(CL = `cell line`,

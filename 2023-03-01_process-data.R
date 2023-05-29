@@ -1,5 +1,5 @@
 pacman::p_load(tidyverse, readxl)
-path <- "raw-data/2023-03-01_gene-data.xlsx"
+path <- here::here("raw-data/2023-03-01_gene-data.xlsx")
 
 data_init <- path %>%
   excel_sheets() %>%
@@ -93,5 +93,5 @@ data["5"] <- na_if(data["5"], -99.00)
 #   column_to_rownames(var = "rowname")
 print(data)
 
-save_path <- "data/2023-03-01_gene-data.csv"
+save_path <- here::here("data/2023-03-01_gene-data.csv")
 write_csv(data, save_path)
