@@ -22,7 +22,7 @@ data_plotting %>%
   geom_point() +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression")
-ggsave("figures/conc-ge_scatterplot.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_scatterplot.svg"), width = 2*plot_height, height = plot_height)
 
 data_plotting %>%
   ggplot(aes(x = `cell line`, y = `gene expression`, col = `cell line`)) +
@@ -31,7 +31,7 @@ data_plotting %>%
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Cell line",
        y = "Gene expression")
-ggsave("figures/cellline-ge_boxplot.svg", width = 1.2*plot_height, height = plot_height)
+ggsave(here::here("figures/cellline-ge_boxplot.svg"), width = 1.2*plot_height, height = plot_height)
 
 data_plotting %>%
   ggplot(aes(x = treatment, y = `gene expression`, col = treatment)) +
@@ -40,7 +40,7 @@ data_plotting %>%
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Treatment",
        y = "Gene expression")
-ggsave("figures/treatment-ge_boxplot.svg", width = 1.22*plot_height, height = plot_height)
+ggsave(here::here("figures/treatment-ge_boxplot.svg"), width = 1.22*plot_height, height = plot_height)
 
 data_plotting %>%
   ggplot(aes(x = concentration, y = `gene expression`, col = grouping)) +
@@ -50,5 +50,5 @@ data_plotting %>%
   harrypotter::scale_color_hp_d("Ravenclaw") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression")
-ggsave("figures/conc-ge_scatterplot_facet-treatment-cellline.svg", width = 1.2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_scatterplot_facet-treatment-cellline.svg"), width = 1.2*plot_height, height = plot_height)
 
