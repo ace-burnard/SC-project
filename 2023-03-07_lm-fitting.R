@@ -45,5 +45,5 @@ data_plotting %>%
        y = "Gene expression",
        color = "Cell Line; Treatment") +
   geom_line(aes(y=lme2_predicted))
-ggsave("figures/conc-ge_all-grouping_lme.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_all-grouping_lme.svg"), width = 2*plot_height, height = plot_height)
 

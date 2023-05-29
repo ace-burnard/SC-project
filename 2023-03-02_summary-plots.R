@@ -27,7 +27,7 @@ data_plotting %>%
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Cell Line; Treatment")
-ggsave("figures/conc-ge_all-grouping_datapoints.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_all-grouping_datapoints.svg"), width = 2*plot_height, height = plot_height)
 data_plotting %>% #with fitted curves
   ggplot(aes(x = concentration, y = `gene expression`, color = grouping)) +
   geom_point() +
@@ -38,7 +38,7 @@ data_plotting %>% #with fitted curves
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Cell Line; Treatment")
-ggsave("figures/conc-ge_all-grouping_lm.svg", width = 2*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_all-grouping_lm.svg"), width = 2*plot_height, height = plot_height)
 
 #plot of concentration (x) vs gene expression (y), coloured by cell line
 data_plotting %>%
@@ -50,7 +50,7 @@ data_plotting %>%
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Cell Line")
-ggsave("figures/conc-ge_cell-line_datapoints.svg", width = (8/5)*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_cell-line_datapoints.svg"), width = (8/5)*plot_height, height = plot_height)
 data_plotting %>% #with fitted curves
   ggplot(aes(x = concentration, y = `gene expression`, color = `cell line`)) +
   geom_point() +
@@ -61,7 +61,7 @@ data_plotting %>% #with fitted curves
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Cell Line")
-ggsave("figures/conc-ge_cell-line_lm.svg", width = (8/5)*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_cell-line_lm.svg"), width = (8/5)*plot_height, height = plot_height)
 
 #plot of concentration (x) vs gene expression (y), coloured by treatment
 data_plotting %>%
@@ -75,7 +75,7 @@ data_plotting %>%
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Treatment")
-ggsave("figures/conc-ge_treatment_datapoints.svg", width = (8/5)*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_treatment_datapoints.svg"), width = (8/5)*plot_height, height = plot_height)
 data_plotting %>% #with fitted curves
   ggplot(aes(x = concentration, y = `gene expression`, color = treatment)) +
   geom_point() +
@@ -88,5 +88,5 @@ data_plotting %>% #with fitted curves
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Treatment")
-ggsave("figures/conc-ge_treatment_lm.svg", width = (8/5)*plot_height, height = plot_height)
+ggsave(here::here("figures/conc-ge_treatment_lm.svg"), width = (8/5)*plot_height, height = plot_height)
 
