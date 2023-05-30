@@ -8,7 +8,7 @@
 
 -   Summary plots made using code "R/2023-03-02_summary-plots.R" on data "data/2023-03-01_gene-data.csv"
 
--   Summary plots saved in "figures/conc-ge\_$$grouping$$\_$$plot type$$.svg", where $$grouping$$ is one of 'all-grouping', 'cell-line', 'treatment'; and $$plot type$$ is either 'datapoints' or 'lm'
+-   Summary plots saved in "figures/conc-ge\_[grouping]\_[plot type].svg", where [grouping] is one of 'all-grouping', 'cell-line', 'treatment'; and [plot type] is either 'datapoints' or 'lm'
 
 -   Fitting models in code "R/2023-03-07_lm-fitting.R" on data in "data/2023-03-01_gene-data.csv"
 
