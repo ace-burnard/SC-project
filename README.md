@@ -1,4 +1,6 @@
-# Data provided on 1st March 2023
+#README
+
+## Data provided on 1st March 2023
 
 -   Data from Karl in "raw-data/2023-03-01_gene-data.xlsx"
 
@@ -16,17 +18,17 @@
 
 -   A tidied up version of "R/2023-03-19_mixed-measures-ANOVA.R" in "R/2023-03-21_mixed--ANOVA.Rmd"
 
-# Redo graph (original sent 3 April 2023)
+## Redo graph (original sent 3 April 2023)
 
 -   the original graph is in "resources/2023-04-03_gene_plot.pdf"
 
 -   code to make plot in "R/2023-04-03_plot-for-Karl_diff-font.Rmd"
 
-# Email re grant/sample size (sent 1 May 2023)
+## Email re grant/sample size (sent 1 May 2023)
 
 -   code to calculate sample size in "R/2023-05-02_sample-size-for-grant.Rmd"
 
-# IMRaD report
+## IMRaD report
 
 -   fitting models to predict gene expression based on growth factor concentration, treatment, and cell line, and looking at a random effect term for gene line
 -   writing report on the data and the fitted models
