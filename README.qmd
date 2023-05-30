@@ -14,7 +14,7 @@ execute:
 ---
 
 ```{r, setup}
-pacman::p_load(tidyverse)
+# pacman::p_load(tidyverse)
 ```
 
 # Data provided on 1st March 2023
