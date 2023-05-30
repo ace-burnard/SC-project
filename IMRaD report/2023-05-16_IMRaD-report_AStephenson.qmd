@@ -1,7 +1,7 @@
 ---
 title: "Modelling the effect of growth factor, treatment and cell line on gene expression"
 author: "Alexandra Stephenson"
-date: 'May 26, 2023'
+date: today
 date-format: long
 format: 
   pdf:
