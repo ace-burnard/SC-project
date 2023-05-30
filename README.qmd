@@ -13,10 +13,6 @@ execute:
   message: false
 ---
 
-```{r, setup}
-# pacman::p_load(tidyverse)
-```
-
 # Data provided on 1st March 2023
 
 -   Data from Karl in "raw-data/2023-03-01_gene-data.xlsx"
