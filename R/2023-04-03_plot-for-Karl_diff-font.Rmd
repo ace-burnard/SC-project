@@ -111,7 +111,7 @@ plots <- p1 + p2 +
   plot_annotation(tag_levels = 'A') &
   theme(legend.position = 'bottom', text = element_text(family = "times", size = text_size))
 plots
-ggsave(paste(here::here(), "figures/2023-04-03_plot-for-Karl.tiff", sep = '/'), width = 9, height = 6, units = "in", dpi = 500)
+ggsave(paste(here::here(), "figures/2023-04-03_plot.tiff", sep = '/'), width = 9, height = 6, units = "in", dpi = 500)
 ```
 
 #End stuff
