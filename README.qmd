@@ -33,7 +33,7 @@ pacman::p_load(tidyverse)
 
 -   Some more EDA plots in "R/2023-03-20_EDA-plots.R" of the data in "data/2023-03-01_gene-data.csv"
 
--   A tidied up version of "R/2023-03-19_mixed-measures-ANOVA.R" in "2023-03-21_mixed--ANOVA.Rmd"
+-   A tidied up version of "R/2023-03-19_mixed-measures-ANOVA.R" in "R/2023-03-21_mixed--ANOVA.Rmd"
 
 # Redo graph (original sent 3 April 2023)
 
