@@ -33,6 +33,8 @@ execute:
 
 # Redo graph (original sent 3 April 2023)
 
+-   the original graph is in "resources/2023-04-03_gene_plot.pdf"
+
 -   code to make plot in "R/2023-04-03_plot-for-Karl_diff-font.Rmd"
 
 # Email re grant/sample size (sent 1 May 2023)
