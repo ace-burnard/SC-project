@@ -54,12 +54,9 @@ p1 <- data_plotting %>%
              family = "times",
              size = text_size*(1/4),
              nudge_x = 0.8,
-             # hjust = "outward",
              show.legend = FALSE,
-             # segment.size  = 0.5,
              segment.color = "black",
              direction = 'y',
-             # xlim = c(10,11),
              point.padding = 0.25,
              min.segment.length = 0) +
   ggtitle("Wild-type") +
@@ -86,12 +83,9 @@ p2 <- data_plotting %>%
              family = "times",
              size = text_size*(1/4),
              nudge_x = 0.8,
-             # hjust = "outward",
              show.legend = FALSE,
-             # segment.size  = 0.5,
              segment.color = "black",
              direction = 'y',
-             # xlim = c(10,11),
              point.padding = 0.25,
              min.segment.length = 0) +
   ggtitle("Cell-type 101") +
