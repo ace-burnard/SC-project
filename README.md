@@ -7,7 +7,7 @@
 - Some models are fitted (using `lm`) in "R/2023-03-07_lm-fitting.R"
 - Repeated measures and mixed measures ANOVAs are implemented in "R/2023-03-19_repeated-measures-ANOVA.R" and "R/2023-03-19_mixed-measures-ANOVA.R", to test the significance of predictors on gene expression.
 - A tidied up version of the mixed measures ANOVA code is in "R/2023-03-21_mixed--ANOVA.Rmd".
-- Some more EDA plots of the data are plotted in "R/2023-03-20_EDA-plots.R".
+- Some more EDA plots of the data are plotted in "R/2023-03-20_EDA-plots.R", and are also saved in the "figures" folder.
 - The Powerpoint slides are in the files "2023-03-21_slides-for-Karl.pptx"" and "2023-03-24_slides.pptx".
 
 ## Graph (due 6 April 2023)
