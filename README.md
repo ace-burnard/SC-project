@@ -10,6 +10,11 @@
 - Some more EDA plots of the data are plotted in "R/2023-03-20_EDA-plots.R".
 - The Powerpoint slides are in the files "2023-03-21_slides-for-Karl.pptx"" and "2023-03-24_slides.pptx".
 
+## Graph (due 6 April 2023)
+- The original graph sent by Karl (email on 3 April 2023) is in "resources/2023-04-03_gene_plot.pdf".
+- The feature to be changed is the font (change to Times New Roman font), and the new graph should be a 9in x 6in file with a resolution of 500 dpi.
+- The new graph is plotted using the code in "R/2023-04-03_plot-for-Karl_diff-font.Rmd", and saved in the "figures" folder with the file name "2023-04-03_plot.tiff".
+
 ## Data provided on 1st March 2023
 -   Data from Karl in "raw-data/2023-03-01_gene-data.xlsx"
 -   Cleaned using file "R/2023-03-01_process-data.R", and saved in "data/2023-03-01_gene-data.csv"
