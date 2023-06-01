@@ -17,11 +17,11 @@
 
 ## Sample size (due 5 May 2023)
 - Email sent by Karl (on 1 May 2023), requesting the sample size required for a linear regression of gene expression with five predictors, where power is $90\%$, significance level is $0.05$ and previous research shows that $R^{2}=0.1$. The five predictors are:
-- concentration
-- cell age
-- treatment (two levels)
-- cell type (two levels)
-- media (two levels)
+  - concentration
+  - cell age
+  - treatment (two levels)
+  - cell type (two levels)
+  - media (two levels)
 - The code used to find the necessary sample size is in "R/2023-05-02_sample-size-for-grant.Rmd".
 
 ## Data provided on 1st March 2023
