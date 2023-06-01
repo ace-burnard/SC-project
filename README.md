@@ -24,6 +24,11 @@
   - media (two levels)
 - The code used to find the necessary sample size is in "R/2023-05-02_sample-size-for-grant.Rmd".
 
+## IMRaD report (due 26 May 2023)
+- Requested a report on a predictive model of gene expression (email on 8 May 2023).
+- The predictors investigated are growth factor concentration, treatment and cell line, as well as investigating the effect of a random intercept for gene line.
+- The report is in the folder "IMRaD report".
+
 ## Data provided on 1st March 2023
 -   Data from Karl in "raw-data/2023-03-01_gene-data.xlsx"
 -   Cleaned using file "R/2023-03-01_process-data.R", and saved in "data/2023-03-01_gene-data.csv"
