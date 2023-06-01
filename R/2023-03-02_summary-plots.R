@@ -70,8 +70,6 @@ data_plotting %>%
   ylim(0, NA) +
   theme_light() +
   harrypotter::scale_color_hp_d("Ravenclaw") +
-  # scale_colour_manual(values = c("#B2DF8A", "#33A02C")) +
-  # scale_colour_brewer(palette = "Paired") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Treatment")
@@ -83,8 +81,6 @@ data_plotting %>% #with fitted curves
   ylim(0, NA) +
   theme_light() +
   harrypotter::scale_color_hp_d("Ravenclaw") +
-  # scale_colour_manual(values = c("#B2DF8A", "#33A02C")) +
-  # scale_colour_brewer(palette = "Paired") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Treatment")
