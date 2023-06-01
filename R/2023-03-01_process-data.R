@@ -89,8 +89,6 @@ for (conc in 0:10) {
 
 data["5"] <- na_if(data["5"], -99.00)
 
-# data <- data %>%
-#   column_to_rownames(var = "rowname")
 print(data)
 
 save_path <- here::here("data/2023-03-01_gene-data.csv")
