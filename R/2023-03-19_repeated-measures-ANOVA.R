@@ -13,24 +13,12 @@ data_plotting <- data %>%
          treatment = as.factor(treatment),
          grouping = as.factor(grouping))
 
-# pacman::p_load(rstatix, reshape, tidyverse, dplyr, ggpubr, plyr, datarium)
-# one.way <- data_plotting %>%
-#   group_by(concentration) %>%
-#   anova_test(dv = GE, wid = sheet_names, within = treatment) %>%
-#   get_anova_table() %>%
-#   adjust_pvalue(method = "bonferroni")
-# one.way
-
 library(reshape2)
 data_long <- data %>%
   mutate(CL = `cell line`,
          treat = treatment) %>%
   unite(`cell line`, `treat`, sep = "; ", col = "grouping") %>%
   mutate(id = sheet_names) %>%
-  # mutate(id = as.factor(sheet_names),
-  #        CL = as.factor(CL),
-  #        treatment = as.factor(treatment),
-  #        grouping = as.factor(grouping)) %>%
   melt(id.vars = c('id', 'grouping'),
        measure.vars = c('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
        variable.name = "concentration",
