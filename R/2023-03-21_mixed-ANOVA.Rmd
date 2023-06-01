@@ -87,7 +87,7 @@ two.way
 stress.effect <- performance %>%
   group_by(time, gender) %>%
   anova_test(dv = score, wid = id, between = stress)
-stress.effect# %>% filter(time == "t2")
+stress.effect
 ```
 
 ### Simple simple pairwise comparisons
@@ -95,7 +95,7 @@ stress.effect# %>% filter(time == "t2")
 pwc <- performance %>%
   group_by(time, gender) %>%
   pairwise_t_test(score ~ stress, p.adjust.method = "bonferroni") %>%
-  select(-p, -p.signif) # Remove details
+  select(-p, -p.signif)
 pwc %>% filter(time == "t2", gender == "female")
 ```
 
@@ -163,7 +163,6 @@ homogeneity_test <- data_aov %>%
   levene_test(GE ~ CL*treatment)
 homogeneity_test %>% arrange(p)
 ```
-Non-homogenous (NOT SURE WHAT TO DO HERE?)
 
 ## Three-way mixed ANOVA
 ```{r data ANOVA}
@@ -267,8 +266,6 @@ AF 42     | 4       | 9
 AF 42     | 4       | 10
 AF 42     | 6       | 10
 
-**DO MORE HERE**
-
 ```{r data post-hoc 3}
 pwc3 <- data_aov %>%
   filter(CL != "wild-type") %>%
@@ -307,7 +304,7 @@ head(pwc2)
 ```{r data viz results 2}
 pwc.filtered <- pwc %>% filter(CL == "wild-type", treatment == "placebo")
 head(pwc.filtered)
-pwc2.filtered <- pwc2# %>% filter(CL == "wild-type")
+pwc2.filtered <- pwc2
 head(pwc2.filtered)
 ```
 
@@ -336,12 +333,9 @@ ggsave(here::here("figures/conc-ge-grouping_scatterplot_labelled.svg"), width = 
 
 ## Report
 
-**DO MORE HERE**
-
 A three-way mixed ANOVA was performed to evaluate the effects of treatment, concentration and cell line on gene expression.
 
 There were no extreme outliers, as assessed by box plot method. The data was normally distributed, as assessed by Shapiro-Wilk’s test of normality ($p > 0.05$) and seen in the qqplot of the data. 
-<!-- There was homogeneity of variances ($p > 0.05$) as assessed by Levene’s test of homogeneity of variances. -->
 
 There was a statistically significant three-way interaction between treatment, concentration and cell line, $F(10, 30) = 2.244, p = 0.0043$.
 
