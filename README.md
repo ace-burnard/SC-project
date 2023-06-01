@@ -8,7 +8,7 @@
 - Repeated measures and mixed measures ANOVAs are implemented in "R/2023-03-19_repeated-measures-ANOVA.R" and "R/2023-03-19_mixed-measures-ANOVA.R", to test the significance of predictors on gene expression.
 - A tidied up version of the mixed measures ANOVA code is in "R/2023-03-21_mixed-ANOVA.Rmd".
 - Some more EDA plots of the data are plotted in "R/2023-03-20_EDA-plots.R", and are also saved in the "figures" folder.
-- The Powerpoint slides are in the files "2023-03-21_slides-for-Karl.pptx and "2023-03-24_slides.pptx".
+- The Powerpoint slides are in the files "2023-03-21_slides-for-Karl.pptx" and "2023-03-24_slides.pptx".
 
 ## Graph (due 6 April 2023)
 - The original graph sent by Karl (email on 3 April 2023) is in "resources/2023-04-03_gene_plot.pdf".
