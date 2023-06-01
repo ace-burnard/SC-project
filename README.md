@@ -27,7 +27,7 @@
 ## IMRaD report (due 26 May 2023)
 - Requested a report on a predictive model of gene expression (email on 8 May 2023).
 - The predictors investigated are growth factor concentration, treatment and cell line, as well as investigating the effect of a random intercept for gene line.
-- The report is in the folder "IMRaD report".
+- The report is in the folder "IMRaD report", as is the bibliography file for the report.
 
 ## Data provided on 1st March 2023
 -   Data from Karl in "raw-data/2023-03-01_gene-data.xlsx"
