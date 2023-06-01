@@ -4,7 +4,7 @@
 - The raw data (provided by Karl on 1 March 2023) is in "raw-data/2023-03-01_gene-data.xlsx". Each sheet of the file is a different gene line. Each sheet has a cell line (wild-type or cell-type 101) and treatment (placebo or activating factor 42) specified, as well as the gene expression for each concentration of the growth factor (concentration in mg/ml).
 - The raw data was cleaned using the code in "R/2023-03-01_process-data.R" and saved as the file "data/2023-03-01_gene-data.csv".
 - Some summary plots of the data were made using the code in "R/2023-03-02_summary-plots.R" and saved in the "figures" folder, with the file name format "conc-ge\_[grouping]\_[plot type].svg", where [grouping] is one of 'all-grouping', 'cell-line', 'treatment'; and [plot type] is either 'datapoints' or 'lm'.
-- Some models are fitted (using `lm`) in "R/2023-03-07_lm-fitting.R"
+- Some models are fitted (using the `lm` function as well as the `lme` function from the `nlme` package) in "R/2023-03-07_lm-fitting.R"
 - Repeated measures and mixed measures ANOVAs are implemented in "R/2023-03-19_repeated-measures-ANOVA.R" and "R/2023-03-19_mixed-measures-ANOVA.R", to test the significance of predictors on gene expression.
 - A tidied up version of the mixed measures ANOVA code is in "R/2023-03-21_mixed--ANOVA.Rmd".
 - Some more EDA plots of the data are plotted in "R/2023-03-20_EDA-plots.R", and are also saved in the "figures" folder.
