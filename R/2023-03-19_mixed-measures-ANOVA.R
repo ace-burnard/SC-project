@@ -45,12 +45,12 @@ two.way
 stress.effect <- performance %>%
   group_by(time, gender) %>%
   anova_test(dv = score, wid = id, between = stress)
-stress.effect# %>% filter(time == "t2")
+stress.effect
 # simple simple pairwise comparisons
 pwc <- performance %>%
   group_by(time, gender) %>%
   pairwise_t_test(score ~ stress, p.adjust.method = "bonferroni") %>%
-  select(-p, -p.signif) # Remove details
+  select(-p, -p.signif)
 pwc %>% filter(time == "t2", gender == "female")
 # Visualization: box plots with p-values
 pwc <- pwc %>% add_xy_position(x = "gender")
@@ -113,12 +113,12 @@ treatment.effect <- data_aov %>%
   arrange(conc) %>%
   arrange(desc(CL)) %>%
   arrange(desc(`p<.05`))
-treatment.effect# %>% filter(CL == "wild-type")
+treatment.effect
 # simple simple pairwise comparisons
 pwc <- data_aov %>%
   group_by(treatment, CL) %>%
   pairwise_t_test(GE ~ conc, p.adjust.method = "bonferroni") %>%
-  select(-p, -p.signif) # Remove details
+  select(-p, -p.signif)
 pwc %>% filter(CL == "wild-type") %>% arrange(p.adj.signif)
 # Visualization: box plots with p-values
 pwc <- pwc %>%
@@ -133,7 +133,7 @@ bxp2 <- ggboxplot(data_aov,
                  x = 'conc',
                  y = 'GE',
                  color = 'treatment',
-                 palette = 'jco', #palette = "Spectral",
+                 palette = 'jco',
                  facet.by = 'CL')
 bxp2
 bxp2 +
