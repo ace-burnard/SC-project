@@ -40,7 +40,7 @@ data_plotting %>%
   geom_point() +
   ylim(0, NA) +
   theme_light() +
-  scale_colour_brewer(palette = "Set2") +#, name = "") +
+  scale_colour_brewer(palette = "Set2") +
   labs(x = "Concentration (mg/ml)",
        y = "Gene expression",
        color = "Cell Line; Treatment") +
